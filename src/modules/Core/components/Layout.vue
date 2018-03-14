@@ -25,6 +25,6 @@
 
 <style lang="stylus">
   #app-container
-    margin-top -128px
+    margin-top -80px
     padding-top 0 !important
 </style>

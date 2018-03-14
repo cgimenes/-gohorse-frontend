@@ -1,4 +1,4 @@
-import Layout from '@theme/components/Layout'
+import Layout from '@core/components/Layout'
 import Dashboard from './Dashboard'
 
 export default [
@@ -9,7 +9,10 @@ export default [
       {
         path: '/',
         component: Dashboard,
-        meta: {unrequiredAuth: true}
+        meta: {
+          unrequiredAuth: true,
+          title: 'Dashboard'
+        }
       }
     ]
   }

@@ -50,9 +50,10 @@ export default {
   },
   methods: {
     login () {
-      let rollbackUri = localStorage.getItem('rollback-uri')
+      // let rollbackUri = localStorage.getItem('rollback-uri')
 
-      this.$router.replace(rollbackUri || '/')
+      // this.$router.replace(rollbackUri || '/')
+      this.$router.replace('/')
     }
   }
 }

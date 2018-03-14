@@ -1,1 +1,1 @@
-require('./modules/Theme')
+require('./modules/Core')
