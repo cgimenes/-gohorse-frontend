@@ -13,14 +13,14 @@
         v-card
           v-card-title Olá
           v-card-text 
-            grafico-barras(height="205")            
+            grafico-barras(max-height="200px")            
       v-flex(sm6)
         v-card
           v-card-title Olá
           v-card-text 
-            grafico-pizza(height="300")            
+            grafico-pizza(max-height="200px")            
       v-flex(sm12)
-        grafico-linhas(height="300")
+        grafico-linhas(max-height="200px")
       v-flex(sm4)
         v-card
           v-card-title Olá

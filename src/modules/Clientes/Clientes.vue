@@ -123,6 +123,11 @@ export default {
     return {
       msg: 'Welcome to Your Modular Vue.js App'
     }
+  },
+  computed: {
+    batata () {
+      return this.$store.state.clientes.getBatata
+    }
   }
 }
 </script>

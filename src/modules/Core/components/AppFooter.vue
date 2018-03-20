@@ -6,6 +6,7 @@
       v-flex(xs12 py-3 text-xs-center white--text)
         | ©2018 —
         strong Time 02
+        p {{ $store.getters.getEndereco }}
 
 </template>
 <script>
