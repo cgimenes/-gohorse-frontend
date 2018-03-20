@@ -17,6 +17,9 @@
             }
           ]
         },
+        {
+          maintainAspectRatio: false
+        }
       )
     }
   }
