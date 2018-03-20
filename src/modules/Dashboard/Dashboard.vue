@@ -12,13 +12,13 @@
       v-flex(sm6)
         v-card
           v-card-title Olá
-          v-card-text 
-            grafico-barras(max-height="200px")            
+          v-card-text
+            grafico-barras(height="300")
       v-flex(sm6)
         v-card
           v-card-title Olá
-          v-card-text 
-            grafico-pizza(max-height="200px")            
+          v-card-text
+            grafico-pizza(height="300")
       v-flex(sm12)
         grafico-linhas(max-height="200px")
       v-flex(sm4)
