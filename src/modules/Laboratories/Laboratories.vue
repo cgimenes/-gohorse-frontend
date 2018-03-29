@@ -21,11 +21,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-      laboratories: []
-    }
-  },
   computed: {
     laboratories () {
       return this.$store.state.laboratories.getLaboratories

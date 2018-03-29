@@ -1,6 +1,4 @@
-import Vue from 'vue'
-
-const vue = new Vue()
+import http from '@core/http'
 
 const state = {
   laboratories: []
@@ -20,7 +18,7 @@ const mutations = {
 
 const actions = {
   findLaboratories ({ commit }) {
-    vue.$http.get('http://localhost:8084/laboratories').then(response => {
+    http.get('/laboratories').then(response => {
       commit('setLaboratories', response.body)
     })
   }
