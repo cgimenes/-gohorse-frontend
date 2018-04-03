@@ -12,7 +12,7 @@ const getters = {
 
 const mutations = {
   setLaboratories (state, data) {
-    state.laboratories = data
+    state.laboratories = data.items
   }
 }
 

@@ -5,7 +5,7 @@
         v-card
           v-btn(absolute dark fab top right small color='red')
             v-icon add
-          v-list(two-line v-if="laboratories.lenght > 0")
+          v-list(two-line v-if="laboratories.length > 0")
             v-list-tile(avatar @click="" v-for="laboratory in laboratories" :key="laboratory.id")
               v-list-tile-avatar(color="red")
                 b(class="white--text") T
@@ -20,14 +20,17 @@
 </template>
 
 <script>
+
+import LaboratoriesService from './LaboratoriesService'
+
 export default {
-  computed: {
-    laboratories () {
-      return this.$store.state.laboratories.getLaboratories
+  data () {
+    return {
+      laboratories: []
     }
   },
-  beforeCreate () {
-    this.$store.dispatch('findLaboratories')
+  mounted () {
+    this.laboratories = LaboratoriesService.getLaboratories()
   }
 }
 </script>
