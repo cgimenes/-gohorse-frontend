@@ -1,5 +1,6 @@
 import Layout from '@core/components/Layout'
-import Laboratories from './Laboratories'
+import LaboratoriesList from './LaboratoriesList'
+import LaboratoriesForm from './LaboratoriesForm'
 
 export default [
   {
@@ -8,10 +9,18 @@ export default [
     children: [
       {
         path: '/laboratories',
-        component: Laboratories,
+        component: LaboratoriesList,
         meta: {
           unrequiredAuth: true,
           title: 'Laboratórios'
+        }
+      },
+      {
+        path: '/laboratories/create',
+        component: LaboratoriesForm,
+        meta: {
+          unrequiredAuth: true,
+          title: 'Criar um novo laboratório'
         }
       }
     ]
