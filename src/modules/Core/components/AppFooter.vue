@@ -1,0 +1,18 @@
+<template lang="pug">
+  v-footer.primary-gradient(height="auto")
+    v-layout(row wrap justify-center)
+      v-btn(color='white', flat v-for='link in links', :key='link')
+        | {{ link }}
+      v-flex(xs12 py-3 text-xs-center white--text)
+        | ©2018 —
+        strong Time 02
+        p {{ $store.getters.getEndereco }}
+
+</template>
+<script>
+  export default {
+    data: () => ({
+      links: ['Home', 'About Us', 'Team', 'Services', 'Blog', 'Contact Us']
+    })
+  }
+</script>
