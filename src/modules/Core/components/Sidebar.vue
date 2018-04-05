@@ -38,6 +38,7 @@
         menuPrincipal: [
           {icon: 'home', title: 'Dashboard', to: '/'},
           {icon: 'face', title: 'Clientes', to: '/clientes'},
+          {icon: 'account_box', title: 'Proprietários', to: '/proprietarios'},
           {icon: 'security', title: 'Login', to: '/login'}
         ]
       }
