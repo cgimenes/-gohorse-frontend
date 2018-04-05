@@ -1,5 +1,6 @@
 export default {
   appTitle: 'Application Title',
+  api_url: 'http://localhost:8084',
   theme: {
     dark: false,
     clippedLeft: false,

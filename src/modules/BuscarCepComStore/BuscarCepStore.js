@@ -1,3 +1,7 @@
+import Vue from 'vue'
+
+const vue = new Vue()
+
 const state = {
   endereco: 'dasdasdsa'
 }
@@ -14,8 +18,17 @@ const mutations = {
   }
 }
 
+const actions = {
+  buscarCep ({ commit }, cep) {
+    vue.$http.get('http://viacep.com.br/ws/' + cep + '/json/').then(response => {
+      commit('setEndereco', response.body)
+    })
+  }
+}
+
 export default {
   state,
   getters,
-  mutations
+  mutations,
+  actions
 }

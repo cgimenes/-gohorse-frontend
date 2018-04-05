@@ -32,9 +32,7 @@ export default {
   methods: {
     buscar () {
       this.output = 'Pesquisando... '
-      this.$http.get('http://viacep.com.br/ws/' + this.cep + '/json/').then(response => {
-        this.$store.commit('setEndereco', response.body)
-      })
+      this.$store.dispatch('buscarCep', this.cep)
     }
   }
 }

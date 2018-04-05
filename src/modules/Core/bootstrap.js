@@ -5,9 +5,9 @@ import Vuetify from 'vuetify'
 import EnvPlugin from '../../util/env-plugin'
 
 Vue.use(Vuex)
-Vue.use(VueResource)
 Vue.use(Vuetify)
 Vue.use(EnvPlugin)
+Vue.use(VueResource)
 
 Vue.config.productionTip = false
 

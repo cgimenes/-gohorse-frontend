@@ -37,6 +37,7 @@
         show: this.showSidebar,
         menuPrincipal: [
           {icon: 'home', title: 'Dashboard', to: '/'},
+          {icon: 'location_city', title: 'Laboratórios', to: '/laboratories'},
           {icon: 'face', title: 'Clientes', to: '/clientes'},
           {icon: 'account_box', title: 'Proprietários', to: '/proprietarios'},
           {icon: 'security', title: 'Login', to: '/login'}
