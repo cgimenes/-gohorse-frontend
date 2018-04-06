@@ -17,5 +17,11 @@ export default {
     http.get('/laboratories/' + id).then(response => {
       return callback(response.data)
     })
+  },
+
+  removeLaboratory (id, callback) {
+    http.delete('/laboratories/', {data: {id: id}}).then(response => {
+      return callback(response.statusCode)
+    })
   }
 }

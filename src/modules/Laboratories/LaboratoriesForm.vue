@@ -56,7 +56,9 @@ export default {
     saveLaboratory() {
       console.log(this.laboratory);
       LaboratoriesService.createLaboratory(this.laboratory, (res) => {
-        console.log(res)
+        this
+          .$router
+          .push('/laboratories/')
       })
     }
   }

@@ -49,7 +49,7 @@ export default {
     show (laboratory) {
       this
         .$router
-        .push('laboratories/' + laboratory.id)
+        .push('/laboratories/' + laboratory.id)
     }
   }
 }
