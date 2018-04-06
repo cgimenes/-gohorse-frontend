@@ -12,7 +12,7 @@ export default [
         component: OwnersList,
         meta: {
           unrequiredAuth: true,
-          title: 'Laboratórios'
+          title: 'Proprietários'
         }
       },
       {

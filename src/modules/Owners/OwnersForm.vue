@@ -61,19 +61,19 @@
 
 <script>
 
-import LaboratoriesService from './LaboratoriesService'
+import OwnersService from './OwnersService'
 
 export default {
   data () {
     return {
-      laboratory: {}
+      owner: {}
     }
   },
   methods: {
-    saveLaboratory() {
+    saveOwner() {
       alert('seu cu')
-      console.log(this.laboratory);
-      LaboratoriesService.createLaboratory(this.laboratory, (res) => {
+      console.log(this.owner);
+      LaboratoriesService.createOwner(this.owner, (res) => {
         console.log(res)
       })
     }
