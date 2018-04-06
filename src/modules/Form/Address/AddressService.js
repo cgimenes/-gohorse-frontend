@@ -11,11 +11,5 @@ export default {
     http.post('/laboratories', laboratory).then(response => {
       return callback(response)
     })
-  },
-
-  getLaboratoryDetails (id, callback) {
-    http.get('/laboratories/' + id).then(response => {
-      return callback(response.data)
-    })
   }
 }
