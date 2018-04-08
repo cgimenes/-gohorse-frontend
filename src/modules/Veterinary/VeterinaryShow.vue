@@ -62,7 +62,6 @@ export default {
     return {
       fab: false,
       veterinary: {
-        //mock p/ teste
           id: 2,
           name: "teste",
           phone: "3222-2222",

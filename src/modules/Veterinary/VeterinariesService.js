@@ -16,7 +16,6 @@ export default {
   },
 
   getVeterinaryDetails (id, callback) {
-//'/-local-onde-coloca-a-rota-do-backend/'
     //http.get('/veterinarians/' + id).then(response => {
       //return callback(response.data)
     //})

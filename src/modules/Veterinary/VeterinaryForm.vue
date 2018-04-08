@@ -14,10 +14,18 @@
               <v-flex col xs12 sm6="sm6">
                 <phone-input label="Telefone do veterinário" :model.sync="veterinary.phone"></phone-input>
               </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <v-text-field name="crmv" label="CRMV do Veterinário" id="crmv" v-model="veterinary.crmv" key="crmv"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <v-text-field name="email" label="E-mail do Veterinário" id="email" v-model="veterinary.email" key="email"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <v-text-field name="birthDate" label="Data de Aniversário do Veterinário" id="birthDate" v-model="veterinary.birthDate" key="birthDate"></v-text-field>
+              </v-flex>
               <v-flex col xs12>
                 <h4 class="grey--text">Endereço</h4>
               </v-flex>
-              <!--{{veterinary}}-->
               <v-flex col xs12>
                 <address-component :address="veterinary.address"></address-component>
               </v-flex>
