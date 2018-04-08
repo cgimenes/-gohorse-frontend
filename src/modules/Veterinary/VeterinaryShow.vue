@@ -16,7 +16,7 @@
           <v-container grid-list-lg fluid>
             <v-layout row wrap>
               <v-flex col xs12>
-                <h1>{{ Veterinary.name }}</h1>
+                <h1>{{ veterinary.name }}</h1>
               </v-flex>
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Dados do veterinário</h4>
@@ -24,7 +24,16 @@
                   <b>Nome: </b> {{ veterinary.name }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ laboratory.phone }}
+                  <b>Telefone: </b> {{ veterinary.phone }}
+                </p>
+                <p>
+                  <b>CRMV: </b> {{ veterinary.crmv }}
+                </p>
+                <p>
+                  <b>E-mail: </b> {{ veterinary.email }}
+                </p>
+                <p>
+                  <b>Data de nascimento: </b> {{ veterinary.birthDate }}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
@@ -52,8 +61,16 @@ export default {
   data () {
     return {
       fab: false,
-      veterinary: {}
-    }
+      veterinary: {
+        //mock p/ teste
+          id: 2,
+          name: "teste",
+          phone: "3222-2222",
+          crmv: "55554425",
+          email: "joselito.berrantero@gmail.com",
+          birthDate: "10/04/1980"
+        }
+      }
   },
   mounted () {
     VeterinariesService.getVeterinaryDetails(this.$route.params.id, (veterinary) => {

@@ -10,7 +10,7 @@ export default [
     children: [
       {
         path: '/veterinaries',
-        component: VeterinariesList,
+        component: VeterinaryList,
         meta: {
           unrequiredAuth: true,
           title: 'Veterinários'
@@ -18,15 +18,15 @@ export default [
       },
       {
         path: '/veterinaries/create',
-        component: VeterinariesForm,
+        component: VeterinaryForm,
         meta: {
           unrequiredAuth: true,
-          title: 'Criar um novo veterinário'
+          title: 'Criar um novo Veterinário'
         }
       },
       {
         path: '/veterinaries/:id',
-        component: VeterinariesShow,
+        component: VeterinaryShow,
         meta: {
           unrequiredAuth: true,
           title: 'Visualização de Veterinários'
@@ -34,7 +34,7 @@ export default [
       },
       {
         path: '/veterinaries/:id/edit',
-        component: VeterinariesForm,
+        component: VeterinaryForm,
         meta: {
           unrequiredAuth: true,
           title: 'Edição de Veterinários'

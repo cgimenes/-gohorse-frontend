@@ -12,14 +12,14 @@
                 <v-text-field name="name" label="Nome do Veterinário" id="name" v-model="veterinary.name" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone"></phone-input>
+                <phone-input label="Telefone do veterinário" :model.sync="veterinary.phone"></phone-input>
               </v-flex>
               <v-flex col xs12>
                 <h4 class="grey--text">Endereço</h4>
               </v-flex>
-              {{veterinary}}
+              <!--{{veterinary}}-->
               <v-flex col xs12>
-                <address-component :address="laboratory.address"></address-component>
+                <address-component :address="veterinary.address"></address-component>
               </v-flex>
               <v-flex col xs12>
               </v-flex>
@@ -36,7 +36,7 @@
 
 <script>
 
-import LaboratoriesService from './LaboratoriesService'
+import VeterinariesService from './VeterinariesService'
 import AddressComponent from '../Form/Address/AddressComponent'
 import PhoneInput from '../Form/Field/PhoneInput'
 
@@ -44,7 +44,7 @@ export default {
   components: {AddressComponent, PhoneInput},
   data () {
     return {
-      laboratory: {
+      veterinary: {
         address: {
           street: 'rua dos bobo',
           number: 'zero'
@@ -53,9 +53,9 @@ export default {
     }
   },
   methods: {
-    saveLaboratory() {
-      console.log(this.laboratory);
-      LaboratoriesService.createLaboratory(this.laboratory, (res) => {
+    saveVeterinary() {
+      console.log(this.veterinary);
+      VeterinariesService.createVeterinary(this.veterinary, (res) => {
         console.log(res)
       })
     }

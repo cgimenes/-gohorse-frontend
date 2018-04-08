@@ -12,8 +12,8 @@
                 <b class="white--text">T</b>
               </v-list-tile-avatar>
               <v-list-tile-content>
-                <v-list-tile-title>{{ veterinary.companyName }}</v-list-tile-title>
-                <v-list-tile-sub-title>{{ veterinary.phone }}</v-list-tile-sub-title>
+                <v-list-tile-title>{{ veterinary.name }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{ veterinary.crmv }}</v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn icon ripple @click="show(veterinary)">
@@ -37,7 +37,18 @@ import veterinariesService from './VeterinariesService'
 export default {
   data () {
     return {
-      veterinaries: []
+      veterinaries: [
+        {
+          id: 1,
+          name: "teste",
+          crmv: "5555"
+        },
+        {
+          id: 2,
+          name: "teste",
+          crmv: "5555"
+        }
+      ]
     }
   },
   mounted () {
