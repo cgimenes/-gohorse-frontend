@@ -8,7 +8,7 @@ export default {
   },
 
   saveLaboratory (laboratory, callback) {
-    if(!laboratory.id) {
+    if (!laboratory.id) {
       return this.createLaboratory(laboratory, callback)
     }
 

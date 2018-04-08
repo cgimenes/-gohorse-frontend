@@ -21,11 +21,11 @@ export default {
   },
   computed: {
     letter () {
-     return this.word.substr(0, this.lengh);
+      return this.word.substr(0, this.lengh)
     },
     color () {
       return randomColor({
-        luminosity: 'dark',
+        luminosity: 'dark'
       })
     }
   }
