@@ -48,52 +48,44 @@
 </template>
 
 <script>
+  import OwnersService from './OwnersService'
 
-import OwnersService from './OwnersService'
-
-export default {
-  data () {
-    return {
-      fab: false,
-      owner: {}
-    }
-  },
-  mounted () {
-    OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
-      this.owner = owner
-    })
-    this.owner = {
-      "name": "André",
-      "phone": "044999999999",
-      "cpf": "10628413955",
-      "id": "d84c73d2-5bc2-4115-90a3-79c72d7da766"
-  }
-  },
-  methods: {
-    edit () {
-      console.log('owners/' + this.owner.id + '/edit');
-      this
-        .$router
-        .push('owners/' + this.owner.id + '/edit')
+  export default {
+    data() {
+      return {
+        fab: false,
+        owner: {}
+      }
     },
-    destroy () {
-          this.$swal({
-            title: 'Você deseja deletar este proprietário?',
-            text: 'Esta operação não pode ser desfeita',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sim, eu quero deletar!',
-            cancelButtonText: 'Não'
-          }).then((result) => {
-            if (result.value) {
-              OwnersService.removeOwner(this.owner.id, (res) => {
-                this
-                  .$router
-                  .push('/owners/')
-              })
-            }
-          })
-        }
+    mounted() {
+      OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
+        this.owner = owner
+      })
+    },
+    methods: {
+      edit() {
+        this
+          .$router
+          .push('/owners/' + this.owner.id + '/edit')
+      },
+      destroy() {
+        this.$swal({
+          title: 'Você deseja deletar este proprietário?',
+          text: 'Esta operação não pode ser desfeita',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sim, eu quero deletar!',
+          cancelButtonText: 'Não'
+        }).then((result) => {
+          if (result.value) {
+            OwnersService.removeOwner(this.owner.id, (res) => {
+              this
+                .$router
+                .push('/owners/')
+            })
+          }
+        })
+      }
+    }
   }
-}
 </script>

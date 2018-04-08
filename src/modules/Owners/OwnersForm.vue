@@ -57,8 +57,21 @@
     },
     methods: {
       saveOwner() {
-        OwnersService.createOwner(this.owner, (res) => {
+        OwnersService.saveOwner(this.owner, (res) => {
+          this
+            .$router
+            .push('/owners/')
         })
+      },
+      getDataForEdit() {
+        OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
+          this.owner = owner
+        })
+      }
+    },
+    created() {
+      if (this.$route.params.id) {
+        this.getDataForEdit()
       }
     }
   }

@@ -31,26 +31,25 @@
 </template>
 
 <script>
+  import OwnersService from './OwnersService'
 
-import OwnersService from './OwnersService'
-
-export default {
-  data () {
-    return {
-      owners: []
-    }
-  },
-  mounted () {
-    OwnersService.getOwners((owners) => {
-      this.owners = owners
-    })
-  },
-  methods: {
-    show (owner) {
-      this
-        .$router
-        .push('owners/' + owner.id)
+  export default {
+    data() {
+      return {
+        owners: []
+      }
+    },
+    mounted() {
+      OwnersService.getOwners((owners) => {
+        this.owners = owners
+      })
+    },
+    methods: {
+      show(owner) {
+        this
+          .$router
+          .push('/owners/' + owner.id)
+      }
     }
   }
-}
 </script>
