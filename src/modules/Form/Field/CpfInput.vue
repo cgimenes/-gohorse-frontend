@@ -19,14 +19,14 @@
       disabled: {
         type: Boolean,
         default: false
-      },
+      }
     },
     computed: {
       cpf: {
-        get: function() {
+        get: function () {
           return this.model
         },
-        set: function(newValue) {
+        set: function (newValue) {
           this.$emit('update:model', newValue)
         }
       }

@@ -34,18 +34,18 @@
   import OwnersService from './OwnersService'
 
   export default {
-    data() {
+    data () {
       return {
         owners: []
       }
     },
-    mounted() {
+    mounted () {
       OwnersService.getOwners((owners) => {
         this.owners = owners
       })
     },
     methods: {
-      show(owner) {
+      show (owner) {
         this
           .$router
           .push('/owners/' + owner.id)

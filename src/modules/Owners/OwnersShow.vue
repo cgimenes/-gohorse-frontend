@@ -51,24 +51,24 @@
   import OwnersService from './OwnersService'
 
   export default {
-    data() {
+    data () {
       return {
         fab: false,
         owner: {}
       }
     },
-    mounted() {
+    mounted () {
       OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
         this.owner = owner
       })
     },
     methods: {
-      edit() {
+      edit () {
         this
           .$router
           .push('/owners/' + this.owner.id + '/edit')
       },
-      destroy() {
+      destroy () {
         this.$swal({
           title: 'Você deseja deletar este proprietário?',
           text: 'Esta operação não pode ser desfeita',

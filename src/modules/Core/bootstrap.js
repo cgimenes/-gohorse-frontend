@@ -11,7 +11,6 @@ Vue.use(EnvPlugin)
 Vue.use(VueResource)
 Vue.use(VueSweetalert2)
 
-
 Vue.config.productionTip = false
 
 export default Vue

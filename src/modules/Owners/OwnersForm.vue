@@ -48,7 +48,7 @@
       PhoneInput,
       CpfInput
     },
-    data() {
+    data () {
       return {
         owner: {
           address: {}
@@ -56,20 +56,20 @@
       }
     },
     methods: {
-      saveOwner() {
+      saveOwner () {
         OwnersService.saveOwner(this.owner, (res) => {
           this
             .$router
             .push('/owners/')
         })
       },
-      getDataForEdit() {
+      getDataForEdit () {
         OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
           this.owner = owner
         })
       }
     },
-    created() {
+    created () {
       if (this.$route.params.id) {
         this.getDataForEdit()
       }
