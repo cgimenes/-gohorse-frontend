@@ -12,17 +12,9 @@
                 <v-text-field name="name" label="Nome do Laboratório" id="name" v-model="laboratory.companyName" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone"></phone-input>
-              </v-flex>
-              <v-flex col xs12>
-                <h4 class="grey--text">Endereço</h4>
+                <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone" :key="laboratory.phone"></phone-input>
               </v-flex>
               {{laboratory}}
-              <v-flex col xs12>
-                <address-component :address="laboratory.address"></address-component>
-              </v-flex>
-              <v-flex col xs12>
-              </v-flex>
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveLaboratory()">Salvar</v-btn>
               </v-flex>
@@ -37,29 +29,35 @@
 <script>
 
 import LaboratoriesService from './LaboratoriesService'
-import AddressComponent from '../Form/Address/AddressComponent'
 import PhoneInput from '../Form/Field/PhoneInput'
 
 export default {
-  components: {AddressComponent, PhoneInput},
+  components: {PhoneInput},
   data () {
     return {
       laboratory: {
-        address: {
-          street: 'rua dos bobo',
-          number: 'zero'
-        }
+        companyName: '',
+        phone: ''
       }
     }
   },
   methods: {
-    saveLaboratory() {
-      console.log(this.laboratory);
-      LaboratoriesService.createLaboratory(this.laboratory, (res) => {
+    saveLaboratory () {
+      LaboratoriesService.saveLaboratory(this.laboratory, (res) => {
         this
           .$router
           .push('/laboratories/')
       })
+    },
+    getDataForEdit () {
+      LaboratoriesService.getLaboratoryDetails(this.$route.params.id, (laboratory) => {
+        this.laboratory = laboratory
+      })
+    }
+  },
+  created () {
+    if (this.$route.params.id) {
+      this.getDataForEdit()
     }
   }
 }

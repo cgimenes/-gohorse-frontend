@@ -8,8 +8,8 @@
           </v-btn>
           <v-list two-line v-if="laboratories.length > 0">
             <v-list-tile avatar v-for="laboratory in laboratories" :key="laboratory.id">
-              <v-list-tile-avatar color="red">
-                <b class="white--text">T</b>
+              <v-list-tile-avatar>
+                <list-initial-letter :word="laboratory.companyName"></list-initial-letter>
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title>{{ laboratory.companyName }}</v-list-tile-title>
@@ -33,8 +33,10 @@
 <script>
 
 import LaboratoriesService from './LaboratoriesService'
+import ListInitialLetter from '@core/components/ListInitialLetter'
 
 export default {
+  components: {ListInitialLetter},
   data () {
     return {
       laboratories: []
