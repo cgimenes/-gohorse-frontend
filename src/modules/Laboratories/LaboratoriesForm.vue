@@ -1,81 +1,62 @@
-<template lang="pug">
-  v-container(grid-list-lg fluid)
-    v-layout(row wrap)
-      v-flex(xs12)
-        v-card
-          v-container(grid-list-lg fluid)
-            v-layout(row wrap)
-              v-flex
-              v-flex
-                v-text-field(
-                  name="name"
-                  label="Nome do Laboratório"
-                  id="name"
-                  v-model="laboratory.companyName"
-                  key="name"
-                )
-              v-flex
-                v-text-field(
-                  name="phone"
-                  mask="(###) ####-#####"
-                  label="Telefone do Laboratório"
-                  id="phone"
-                  v-model="laboratory.phone"
-                  key="phone"
-                )
-              v-flex
-                v-text-field(
-                  name="address"
-                  label="Endereço"
-                  id="address"
-                )
-              v-flex
-                v-text-field(
-                  name="city"
-                  label="Cidade"
-                  id="city"
-                )
-              v-flex
-                v-text-field(
-                  name="state"
-                  label="Estado"
-                  id="state"
-                )
-              v-flex
-                v-text-field(
-                  name="complement"
-                  label="Complemento"
-                  id="complement"
-                )
-              v-flex
-                v-text-field(
-                  name="number"
-                  label="Número"
-                  id="number"
-                )
-              v-flex
-                v-btn(
-                  @click="saveLaboratory()"
-                ) Salvar
+<template>
+  <v-container grid-list-lg="grid-list-lg" fluid="fluid">
+    <v-layout row="row" wrap="wrap">
+      <v-flex xs12>
+        <v-card>
+          <v-container grid-list-lg="grid-list-lg" fluid="fluid">
+            <v-layout row="row" wrap="wrap">
+              <v-flex col xs12>
+                <h4 class="grey--text">Dados do Laboratório</h4>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <v-text-field name="name" label="Nome do Laboratório" id="name" v-model="laboratory.companyName" key="name"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone" :key="laboratory.phone"></phone-input>
+              </v-flex>
+              <v-flex col xs12>
+                <v-btn color="primary" @click="saveLaboratory()">Salvar</v-btn>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 
 import LaboratoriesService from './LaboratoriesService'
+import PhoneInput from '../Form/Field/PhoneInput'
 
 export default {
+  components: {PhoneInput},
   data () {
     return {
-      laboratory: {}
+      laboratory: {
+        companyName: '',
+        phone: ''
+      }
     }
   },
   methods: {
-    saveLaboratory() {
-      alert('seu cu')
-      console.log(this.laboratory);
-      LaboratoriesService.createLaboratory(this.laboratory, (res) => {
-        console.log(res)
+    saveLaboratory () {
+      LaboratoriesService.saveLaboratory(this.laboratory, (res) => {
+        this
+          .$router
+          .push('/laboratories/')
       })
+    },
+    getDataForEdit () {
+      LaboratoriesService.getLaboratoryDetails(this.$route.params.id, (laboratory) => {
+        this.laboratory = laboratory
+      })
+    }
+  },
+  created () {
+    if (this.$route.params.id) {
+      this.getDataForEdit()
     }
   }
 }
