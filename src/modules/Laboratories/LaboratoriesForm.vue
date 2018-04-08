@@ -12,7 +12,7 @@
                 <v-text-field name="name" label="Nome do Laboratório" id="name" v-model="laboratory.companyName" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone" :key="laboratory.phone"></phone-input>
+                <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone" :key="laboratory.id"></phone-input>
               </v-flex>
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveLaboratory()">Salvar</v-btn>
