@@ -14,7 +14,6 @@
               <v-flex col xs12 sm6="sm6">
                 <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone" :key="laboratory.phone"></phone-input>
               </v-flex>
-              {{laboratory}}
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveLaboratory()">Salvar</v-btn>
               </v-flex>
