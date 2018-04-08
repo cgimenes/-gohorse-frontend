@@ -24,14 +24,6 @@
                 <v-text-field name="birthDate" label="Data de Aniversário do Veterinário" id="birthDate" v-model="veterinary.birthDate" key="birthDate"></v-text-field>
               </v-flex>
               <v-flex col xs12>
-                <h4 class="grey--text">Endereço</h4>
-              </v-flex>
-              <v-flex col xs12>
-                <address-component :address="veterinary.address"></address-component>
-              </v-flex>
-              <v-flex col xs12>
-              </v-flex>
-              <v-flex col xs12>
                 <v-btn color="primary" @click="saveVeterinary()">Salvar</v-btn>
               </v-flex>
             </v-layout>
@@ -67,6 +59,16 @@ export default {
       VeterinariesService.createVeterinary(this.veterinary, (res) => {
         console.log(res)
       })
+    },
+    getDataForEdit () {
+      VeterinariesService.getVeterinaryDetails(this.$route.params.id, (veterinary) => {
+        this.veterinary = veterinary
+      })
+    }
+  },
+  created () {
+    if (this.$route.params.id) {
+      this.getDataForEdit()
     }
   }
 }
