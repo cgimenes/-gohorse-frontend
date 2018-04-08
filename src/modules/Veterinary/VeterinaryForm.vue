@@ -45,18 +45,19 @@
 <script>
 
 import VeterinariesService from './VeterinariesService'
-import AddressComponent from '../Form/Address/AddressComponent'
+//import AddressComponent from '../Form/Address/AddressComponent'
 import PhoneInput from '../Form/Field/PhoneInput'
 
 export default {
-  components: {AddressComponent, PhoneInput},
+  components: {PhoneInput},
   data () {
     return {
       veterinary: {
-        address: {
-          street: 'rua dos bobo',
-          number: 'zero'
-        }
+          name: '',
+          phone: '',
+          crmv: '',
+          email: '',
+          birthDate: ''
       }
     }
   },

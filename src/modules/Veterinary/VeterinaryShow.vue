@@ -6,10 +6,13 @@
         <v-card>
           <v-speed-dial class="show-actions" v-model="fab" absolute top right direction="bottom" open-on-hover transition="scale-transition"        >
             <v-btn slot="activator" color="blue darken-2" dark fab hover v-model="fab">
-              <v-icon>mode_edit</v-icon>
+              <v-icon>more_vert</v-icon>
               <v-icon>close</v-icon>
             </v-btn>
-            <v-btn fab dark small color="danger">
+            <v-btn fab dark small color="blue" @click="edit()">
+              <v-icon>mode_edit</v-icon>
+            </v-btn>
+            <v-btn fab dark small color="red" @click="destroy()">
               <v-icon>delete</v-icon>
             </v-btn>
           </v-speed-dial>
@@ -62,12 +65,12 @@ export default {
     return {
       fab: false,
       veterinary: {
-          id: 2,
-          name: "teste",
-          phone: "3222-2222",
-          crmv: "55554425",
-          email: "joselito.berrantero@gmail.com",
-          birthDate: "10/04/1980"
+          //id: 2,
+          //name: "teste",
+          //phone: "3222-2222",
+          //crmv: "55554425",
+          //email: "joselito.berrantero@gmail.com",
+          //birthDate: "10/04/1980"
         }
       }
   },
@@ -81,6 +84,24 @@ export default {
       this
         .$router
         .push('veterinaries/' + this.veterinaries.id + '/edit')
+    },
+    destroy () {
+      this.$swal({
+        title: 'Você deseja deletar este veterinário?',
+        text: 'Esta operação não pode ser desfeita',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, eu quero deletar!',
+        cancelButtonText: 'Não'
+      }).then((result) => {
+        if (result.value) {
+          VeterinariesService.removeVeterinary(this.veterinary.id, (res) => {
+            this
+              .$router
+              .push('/veterinaries/')
+          })
+        }
+      })
     }
   }
 }

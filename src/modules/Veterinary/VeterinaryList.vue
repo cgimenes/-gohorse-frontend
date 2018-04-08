@@ -8,8 +8,8 @@
           </v-btn>
           <v-list two-line v-if="veterinaries.length > 0">
             <v-list-tile avatar v-for="veterinary in veterinaries" :key="veterinary.id">
-              <v-list-tile-avatar color="red">
-                <b class="white--text">T</b>
+              <v-list-tile-avatar>
+                <list-initial-letter :word="veterinary.name"></list-initial-letter>
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title>{{ veterinary.name }}</v-list-tile-title>
@@ -33,32 +33,13 @@
 <script>
 
 import veterinariesService from './VeterinariesService'
+import ListInitialLetter from '@core/components/ListInitialLetter'
 
 export default {
+  components: {ListInitialLetter},
   data () {
     return {
-      veterinaries: [
-        {
-          id: 1,
-          name: "teste",
-          crmv: "5555"
-        },
-        {
-          id: 2,
-          name: "teste",
-          crmv: "5555"
-        },
-        {
-          id: 3,
-          name: "teste",
-          crmv: "5555"
-        },
-        {
-          id: 4,
-          name: "teste",
-          crmv: "5555"
-        }
-      ]
+      veterinaries: []
     }
   },
   mounted () {
