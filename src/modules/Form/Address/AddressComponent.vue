@@ -20,19 +20,19 @@
 
 <script>
 export default {
-  props:{
+  props: {
     address: {
-        type: Object,
-        default(){
-            return {
-                street: '',
-                city: '',
-                state: '',
-                complement: '',
-                number: '',
-            }
+      type: Object,
+      default () {
+        return {
+          street: '',
+          city: '',
+          state: '',
+          complement: '',
+          number: ''
         }
+      }
     }
-  },
+  }
 }
 </script>

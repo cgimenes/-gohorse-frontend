@@ -6,10 +6,13 @@
         <v-card>
           <v-speed-dial class="show-actions" v-model="fab" absolute top right direction="bottom" open-on-hover transition="scale-transition"        >
             <v-btn slot="activator" color="blue darken-2" dark fab hover v-model="fab">
-              <v-icon>mode_edit</v-icon>
+              <v-icon>more_vert</v-icon>
               <v-icon>close</v-icon>
             </v-btn>
-            <v-btn fab dark small color="danger">
+            <v-btn fab dark small color="blue" @click="edit()">
+              <v-icon>mode_edit</v-icon>
+            </v-btn>
+            <v-btn fab dark small color="red" @click="destroy()">
               <v-icon>delete</v-icon>
             </v-btn>
           </v-speed-dial>
@@ -64,7 +67,25 @@ export default {
     edit () {
       this
         .$router
-        .push('laboratories/' + this.laboratory.id + '/edit')
+        .push('/laboratories/' + this.laboratory.id + '/edit')
+    },
+    destroy () {
+      this.$swal({
+        title: 'Você deseja deletar este laboratório?',
+        text: 'Esta operação não pode ser desfeita',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, eu quero deletar!',
+        cancelButtonText: 'Não'
+      }).then((result) => {
+        if (result.value) {
+          LaboratoriesService.removeLaboratory(this.laboratory.id, (res) => {
+            this
+              .$router
+              .push('/laboratories/')
+          })
+        }
+      })
     }
   }
 }
