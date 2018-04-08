@@ -5,21 +5,21 @@
 <script>
 export default {
   props: {
-     label: {
-       type: String,
-       default: 'Telefone'
-     },
-     model: {
-       type: String,
-       required: true,  
-       default(){
-         return ''
-       }
-     },
-     disabled: {
-       type: Boolean,
-       default: false
-     },
+    label: {
+      type: String,
+      default: 'Telefone'
+    },
+    model: {
+      type: String,
+      required: true,
+      default () {
+        return ''
+      }
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     telefoneMask () {
@@ -37,6 +37,5 @@ export default {
       }
     }
   }
-
 }
 </script>

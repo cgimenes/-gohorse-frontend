@@ -1,10 +1,10 @@
 <template>
   <v-container grid-list-lg fluid>
-    
+
     <v-layout row="row" wrap="wrap">
       <v-flex xs12>
         <v-card>
-          <v-speed-dial class="show-actions" v-model="fab" absolute top right direction="bottom" open-on-hover transition="scale-transition"        >
+          <v-speed-dial class="show-actions" v-model="fab" absolute top right direction="bottom" open-on-hover transition="scale-transition">
             <v-btn slot="activator" color="blue darken-2" dark fab hover v-model="fab">
               <v-icon>more_vert</v-icon>
               <v-icon>close</v-icon>
@@ -19,15 +19,15 @@
           <v-container grid-list-lg fluid>
             <v-layout row wrap>
               <v-flex col xs12>
-                <h1>{{ laboratory.companyName }}</h1>
+                <h1>{{ owner.name }}</h1>
               </v-flex>
               <v-flex col xs12 sm6>
-                <h4 class="grey--text mb-3">Dados do Laboratório</h4>
+                <h4 class="grey--text mb-3">Dados do Proprietário</h4>
                 <p>
-                  <b>Nome: </b> {{ laboratory.companyName }}
+                  <b>Nome: </b> {{ owner.name }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ laboratory.phone }}
+                  <b>Telefone: </b> {{ owner.phone }}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
@@ -48,45 +48,44 @@
 </template>
 
 <script>
+  import OwnersService from './OwnersService'
 
-import LaboratoriesService from './LaboratoriesService'
-
-export default {
-  data () {
-    return {
-      fab: false,
-      laboratory: {}
-    }
-  },
-  mounted () {
-    LaboratoriesService.getLaboratoryDetails(this.$route.params.id, (laboratory) => {
-      this.laboratory = laboratory
-    })
-  },
-  methods: {
-    edit () {
-      this
-        .$router
-        .push('/laboratories/' + this.laboratory.id + '/edit')
+  export default {
+    data () {
+      return {
+        fab: false,
+        owner: {}
+      }
     },
-    destroy () {
-      this.$swal({
-        title: 'Você deseja deletar este laboratório?',
-        text: 'Esta operação não pode ser desfeita',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, eu quero deletar!',
-        cancelButtonText: 'Não'
-      }).then((result) => {
-        if (result.value) {
-          LaboratoriesService.removeLaboratory(this.laboratory.id, (res) => {
-            this
-              .$router
-              .push('/laboratories/')
-          })
-        }
+    mounted () {
+      OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
+        this.owner = owner
       })
+    },
+    methods: {
+      edit () {
+        this
+          .$router
+          .push('/owners/' + this.owner.id + '/edit')
+      },
+      destroy () {
+        this.$swal({
+          title: 'Você deseja deletar este proprietário?',
+          text: 'Esta operação não pode ser desfeita',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sim, eu quero deletar!',
+          cancelButtonText: 'Não'
+        }).then((result) => {
+          if (result.value) {
+            OwnersService.removeOwner(this.owner.id, (res) => {
+              this
+                .$router
+                .push('/owners/')
+            })
+          }
+        })
+      }
     }
   }
-}
 </script>
