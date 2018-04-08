@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12>
         <v-card>
-          <v-btn absolute dark fab top right small color='red' to='/f/create' >
+          <v-btn absolute dark fab top right small color='red' to='/owners/create' >
             <v-icon> add </v-icon>
           </v-btn>
           <v-list two-line v-if="owners.length > 0">
@@ -16,7 +16,7 @@
                 <v-list-tile-sub-title> {{owner.phone}} </v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
-                <v-btn icon ripple>
+                <v-btn icon ripple @click="show(owner)">
                   <v-icon color='grey lighten-1'> info </v-icon>
                 </v-btn>
               </v-list-tile-action>
@@ -44,6 +44,13 @@ export default {
     OwnersService.getOwners((owners) => {
       this.owners = owners
     })
+  },
+  methods: {
+    show (owner) {
+      this
+        .$router
+        .push('owners/' + owner.id)
+    }
   }
 }
 </script>

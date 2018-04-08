@@ -1,82 +1,65 @@
-<template lang="pug">
-  v-container(grid-list-lg fluid)
-    v-layout(row wrap)
-      v-flex(xs12)
-        v-card
-          v-container(grid-list-lg fluid)
-            v-layout(row wrap)
-              v-flex
-              v-flex
-                v-text-field(
-                  name="name"
-                  label="Nome do Laboratório"
-                  id="name"
-                  v-model="laboratory.companyName"
-                  key="name"
-                )
-              v-flex
-                v-text-field(
-                  name="phone"
-                  mask="(###) ####-#####"
-                  label="Telefone do Laboratório"
-                  id="phone"
-                  v-model="laboratory.phone"
-                  key="phone"
-                )
-              v-flex
-                v-text-field(
-                  name="address"
-                  label="Endereço"
-                  id="address"
-                )
-              v-flex
-                v-text-field(
-                  name="city"
-                  label="Cidade"
-                  id="city"
-                )
-              v-flex
-                v-text-field(
-                  name="state"
-                  label="Estado"
-                  id="state"
-                )
-              v-flex
-                v-text-field(
-                  name="complement"
-                  label="Complemento"
-                  id="complement"
-                )
-              v-flex
-                v-text-field(
-                  name="number"
-                  label="Número"
-                  id="number"
-                )
-              v-flex
-                v-btn(
-                  @click="saveLaboratory()"
-                ) Salvar
+<template>
+  <v-container grid-list-lg="grid-list-lg" fluid="fluid">
+    <v-layout row="row" wrap="wrap">
+      <v-flex xs12>
+        <v-card>
+          <v-container grid-list-lg="grid-list-lg" fluid="fluid">
+            <v-layout row="row" wrap="wrap">
+              <v-flex col xs12>
+                <h4 class="grey--text">Dados do Proprietário</h4>
+              </v-flex>
+              <v-flex col xs12 sm4="sm4">
+                <v-text-field name="name" label="Nome do Proprietário" id="name" v-model="owner.name" key="name"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm4="sm4">
+                <cpf-input label="CPF do Proprietário" :model.sync="owner.cpf"></cpf-input>
+              </v-flex>
+              <v-flex col xs12 sm4="sm4">
+                <phone-input label="Telefone do Proprietário" :model.sync="owner.phone"></phone-input>
+              </v-flex>
+              <v-flex col xs12>
+                <h4 class="grey--text">Endereço</h4>
+              </v-flex>
+              <v-flex col xs12>
+                <address-component :address="owner.address"></address-component>
+              </v-flex>
+              <v-flex col xs12>
+              </v-flex>
+              <v-flex col xs12>
+                <v-btn color="primary" @click="saveOwner()">Salvar</v-btn>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
+  import OwnersService from './OwnersService'
+  import AddressComponent from '../Form/Address/AddressComponent'
+  import PhoneInput from '../Form/Field/PhoneInput'
+  import CpfInput from '../Form/Field/CpfInput'
 
-import OwnersService from './OwnersService'
-
-export default {
-  data () {
-    return {
-      owner: {}
-    }
-  },
-  methods: {
-    saveOwner() {
-      alert('seu cu')
-      console.log(this.owner);
-      LaboratoriesService.createOwner(this.owner, (res) => {
-        console.log(res)
-      })
+  export default {
+    components: {
+      AddressComponent,
+      PhoneInput,
+      CpfInput
+    },
+    data() {
+      return {
+        owner: {
+          address: {}
+        }
+      }
+    },
+    methods: {
+      saveOwner() {
+        OwnersService.createOwner(this.owner, (res) => {
+        })
+      }
     }
   }
-}
 </script>
