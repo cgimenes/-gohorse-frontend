@@ -64,14 +64,7 @@ export default {
   data () {
     return {
       fab: false,
-      veterinary: {
-          //id: 2,
-          //name: "teste",
-          //phone: "3222-2222",
-          //crmv: "55554425",
-          //email: "joselito.berrantero@gmail.com",
-          //birthDate: "10/04/1980"
-        }
+      veterinary: {}
       }
   },
   mounted () {
@@ -83,7 +76,7 @@ export default {
     edit () {
       this
         .$router
-        .push('veterinaries/' + this.veterinaries.id + '/edit')
+        .push('veterinarians/' + this.veterinaries.id + '/edit')
     },
     destroy () {
       this.$swal({

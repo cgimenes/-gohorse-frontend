@@ -57,7 +57,9 @@ export default {
     saveVeterinary() {
       console.log(this.veterinary);
       VeterinariesService.createVeterinary(this.veterinary, (res) => {
-        console.log(res)
+        this
+          .$router
+          .push('/laboratories/')
       })
     },
     getDataForEdit () {
