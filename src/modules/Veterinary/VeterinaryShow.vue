@@ -64,15 +64,8 @@ export default {
   data () {
     return {
       fab: false,
-      veterinary: {
-          //id: 2,
-          //name: "teste",
-          //phone: "3222-2222",
-          //crmv: "55554425",
-          //email: "joselito.berrantero@gmail.com",
-          //birthDate: "10/04/1980"
-        }
-      }
+      veterinary: {}
+    }
   },
   mounted () {
     VeterinariesService.getVeterinaryDetails(this.$route.params.id, (veterinary) => {
