@@ -37,7 +37,7 @@
 <script>
 
 import VeterinariesService from './VeterinariesService'
-//import AddressComponent from '../Form/Address/AddressComponent'
+//  import AddressComponent from '../Form/Address/AddressComponent'
 import PhoneInput from '../Form/Field/PhoneInput'
 
 export default {
@@ -45,17 +45,16 @@ export default {
   data () {
     return {
       veterinary: {
-          name: '',
-          phone: '',
-          crmv: '',
-          email: '',
-          birthDate: ''
+        name: '',
+        phone: '',
+        crmv: '',
+        email: '',
+        birthDate: ''
       }
     }
   },
   methods: {
-    saveVeterinary() {
-      console.log(this.veterinary);
+    saveVeterinary () {
       VeterinariesService.createVeterinary(this.veterinary, (res) => {
         this
           .$router

@@ -5,7 +5,6 @@ export default {
     http.get('/veterinarians').then(response => {
       return callback(response.data.items)
     })
-  //  return []
   },
 
   saveVeterinary (veterinary, callback) {
@@ -15,7 +14,7 @@ export default {
 
     return this.updateVeterinary(veterinary, callback)
   },
-//save, update e remove
+
   createVeterinary (veterinary, callback) {
     http.post('/veterinarians', veterinary).then(response => {
       return callback(response)
@@ -37,7 +36,7 @@ export default {
     http.get('/veterinarians/' + id).then(response => {
       return callback(response.data)
     })
-    //return[]
+      //  return[]
   },
 
   removeVeterinary (id, callback) {
