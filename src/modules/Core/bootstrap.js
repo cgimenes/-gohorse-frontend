@@ -4,7 +4,7 @@ import VueResource from 'vue-resource'
 import Vuetify from 'vuetify'
 import EnvPlugin from '../../util/env-plugin'
 import VueSweetalert2 from 'vue-sweetalert2'
-import Toasted from 'vue-toasted';
+import Toasted from 'vue-toasted'
 
 Vue.use(Vuex)
 Vue.use(Vuetify)
