@@ -76,7 +76,7 @@ export default {
     edit () {
       this
         .$router
-        .push('veterinaries/' + this.veterinaries.id + '/edit')
+        .push('veterinarians/' + this.veterinaries.id + '/edit')
     },
     destroy () {
       this.$swal({

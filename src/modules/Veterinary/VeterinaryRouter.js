@@ -21,7 +21,7 @@ export default [
         component: VeterinaryForm,
         meta: {
           unrequiredAuth: true,
-          title: 'Criar um novo V eterinário'
+          title: 'Criar um novo Veterinário'
         }
       },
       {
