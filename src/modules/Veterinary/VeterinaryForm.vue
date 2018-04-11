@@ -70,11 +70,6 @@ export default {
     if (this.$route.params.id) {
       this.getDataForEdit()
     }
-  },
-  created () {
-    if (this.$route.params.id) {
-      this.getDataForEdit()
-    }
   }
 }
 </script>
