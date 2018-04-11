@@ -43,6 +43,7 @@ export default {
   methods: {
     saveLaboratory () {
       LaboratoriesService.saveLaboratory(this.laboratory, (res) => {
+        this.$toasted.success('Laboratório criado com sucesso!', {icon: 'check'})
         this
           .$router
           .push('/laboratories/')
