@@ -19,14 +19,9 @@ export default {
     http.post('/veterinarians', veterinary).then(response => {
       return callback(response)
     })
-  //  return[]
   },
 
   updateVeterinary (veterinary, callback) {
-    // let id = veterinary.id
-    // delete veterinary.id
-
-    // http.put('/veterinaries/' + id, veterinary).then(response => {
     http.put('/veterinarians', veterinary).then(response => {
       return callback(response)
     })
@@ -36,7 +31,6 @@ export default {
     http.get('/veterinarians/' + id).then(response => {
       return callback(response.data)
     })
-      //  return[]
   },
 
   removeVeterinary (id, callback) {
