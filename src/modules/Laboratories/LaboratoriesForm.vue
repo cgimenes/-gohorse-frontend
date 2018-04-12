@@ -20,7 +20,6 @@
               <v-flex col xs12>
                 <address-component :address="laboratory.address"></address-component>
               </v-flex>
-
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveLaboratory()">Salvar</v-btn>
               </v-flex>
