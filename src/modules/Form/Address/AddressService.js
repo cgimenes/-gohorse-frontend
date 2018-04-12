@@ -1,15 +1,29 @@
 import http from '@core/http'
 
 export default {
-  getLaboratories (callback) {
-    http.get('/laboratories').then(response => {
-      return callback(response.data.items)
+  getZipcode (zipcode, callback) {
+    http.get('https://viacep.com.br/ws/' + zipcode + '/json/').then(response => {
+      return callback(response.data)
     })
   },
 
-  createLaboratory (laboratory, callback) {
-    http.post('/laboratories', laboratory).then(response => {
-      return callback(response)
-    })
+  getAddressTypes () {
+    return ['Avenida', 'Rua']
+  },
+
+  getDefaultAddressObject () {
+    return {
+      number: null,
+      complement: null,
+      postalCode: {
+        code: null,
+        streetType: 'Rua',
+        streetName: '',
+        neighbourhood: '',
+        city: '',
+        state: '',
+        country: 'Brasil'
+      }
+    }
   }
 }

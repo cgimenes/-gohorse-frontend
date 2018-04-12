@@ -3,7 +3,7 @@ import http from '@core/http'
 export default {
   getLaboratories (callback) {
     http.get('/laboratories').then(response => {
-      return callback(response.data.items)
+      return callback(response.data.content)
     })
   },
 

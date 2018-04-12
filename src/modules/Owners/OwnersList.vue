@@ -8,8 +8,8 @@
           </v-btn>
           <v-list two-line v-if="owners.length > 0">
             <v-list-tile avatar @click="" v-for="owner in owners" :key="owner.id">
-              <v-list-tile-avatar color="red">
-                <b class="white--text"> T </b>
+              <v-list-tile-avatar>
+                <list-initial-letter :word="owner.name"></list-initial-letter>
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title> {{owner.name}} </v-list-tile-title>
@@ -32,8 +32,10 @@
 
 <script>
   import OwnersService from './OwnersService'
+  import ListInitialLetter from '@core/components/ListInitialLetter'
 
   export default {
+    components: {ListInitialLetter},
     data () {
       return {
         owners: []
