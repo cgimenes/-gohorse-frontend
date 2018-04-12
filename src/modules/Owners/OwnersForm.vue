@@ -51,7 +51,19 @@
     data () {
       return {
         owner: {
-          address: {}
+          address: {
+            number: null,
+            complement: null,
+            postalCode: {
+              code: null,
+              streetType: 'Rua',
+              streetName: '',
+              neighbourhood: '',
+              city: '',
+              state: '',
+              country: 'Brasil'
+            }
+          }
         }
       }
     },

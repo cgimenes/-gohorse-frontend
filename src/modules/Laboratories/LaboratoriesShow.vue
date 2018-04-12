@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-lg fluid>
-    
+
     <v-layout row="row" wrap="wrap">
       <v-flex xs12>
         <v-card>
@@ -33,10 +33,10 @@
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> Rua teste, 245 - casa, Maringá PR
+                  <b>Endereço: </b> {{laboratory.address.postalCode.streetName}}, {{laboratory.address.number}} - {{laboratory.address.complement}}, {{laboratory.address.postalCode.city}} {{laboratory.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> 00000-000
+                  <b>CEP: </b> {{laboratory.address.postalCode.code}}
                 </p>
               </v-flex>
             </v-layout>

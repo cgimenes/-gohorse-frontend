@@ -23,10 +23,10 @@ export default {
   },
   computed: {
     telefoneMask () {
-      if (this.model.length > 11) {
-        return '(###) # ####-####'
+      if (this.model.length > 10) {
+        return '(##) # ####-####'
       }
-      return '(###) ####-#####'
+      return '(##) ####-#####'
     },
     telefone: {
       get: function () {
