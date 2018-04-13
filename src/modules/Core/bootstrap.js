@@ -16,10 +16,10 @@ Vue.use(Toasted, {
   duration: 3000,
   iconPack: 'material'
 })
-Vue.filter('PhoneFilter', PhoneFilter)
-Vue.filter('CEPFilter', CEPFilter)
-Vue.filter('CPFFilter', CPFFilter)
-Vue.filter('DateFilter', DateFilter)
+Vue.filter('phone', PhoneFilter)
+Vue.filter('cep', CEPFilter)
+Vue.filter('cpf', CPFFilter)
+Vue.filter('date', DateFilter)
 
 Vue.config.productionTip = false
 

@@ -27,13 +27,13 @@
                   <b>Nome: </b> {{ owner.name }}
                 </p>
                 <p>
-                  <b>CPF: </b> {{ owner.cpf | CPFFilter }}
+                  <b>CPF: </b> {{ owner.cpf | cpf }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ owner.phone | PhoneFilter }}
+                  <b>Telefone: </b> {{ owner.phone | phone }}
                 </p>
                 <p>
-                  <b>Data de Nascimento: </b> {{ owner.birthDate | DateFilter}}
+                  <b>Data de Nascimento: </b> {{ owner.birthDate | date}}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
@@ -42,7 +42,7 @@
                   <b>Endereço: </b> {{owner.address.postalCode.streetName}}, {{owner.address.number}} - {{owner.address.complement}}, {{owner.address.postalCode.city}} {{owner.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> {{owner.address.postalCode.code | CEPFilter }}
+                  <b>CEP: </b> {{owner.address.postalCode.code | cep }}
                 </p>
               </v-flex>
             </v-layout>

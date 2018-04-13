@@ -27,7 +27,7 @@
                   <b>Nome: </b> {{ laboratory.companyName }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ laboratory.phone | PhoneFilter}}
+                  <b>Telefone: </b> {{ laboratory.phone | phone}}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
@@ -36,7 +36,7 @@
                   <b>Endereço: </b> {{laboratory.address.postalCode.streetName}}, {{laboratory.address.number}} - {{laboratory.address.complement}}, {{laboratory.address.postalCode.city}} {{laboratory.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> {{laboratory.address.postalCode.code | CEPFilter}}
+                  <b>CEP: </b> {{laboratory.address.postalCode.code | cep}}
                 </p>
               </v-flex>
             </v-layout>
