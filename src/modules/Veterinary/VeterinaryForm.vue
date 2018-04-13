@@ -21,7 +21,10 @@
                 <v-text-field name="email" label="E-mail do Veterinário" id="email" v-model="veterinary.email" key="email"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <v-text-field name="birthDate" label="Data de Aniversário do Veterinário" id="birthDate" v-model="veterinary.birthDate" key="birthDate"></v-text-field>
+                <v-text-field type="date" name="birthDate" label="E-mail do Veterinário" id="birthDate" v-model="veterinary.birthDate" key="email"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                {{veterinary}}
               </v-flex>
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveVeterinary()">Salvar</v-btn>
@@ -48,7 +51,7 @@ export default {
         phone: '',
         crmv: '',
         email: '',
-        birthDate: ''
+        birthDate: '1996-06-18'
       }
     }
   },
