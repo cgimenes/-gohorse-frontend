@@ -1,5 +1,5 @@
 <template>
-  <v-text-field :label="label" v-model="cpf" :mask="'###.###.###-###'" :disabled="disabled"></v-text-field>
+  <v-text-field :label="label" v-model="cpf" :mask="'###.###.###-##'" :disabled="disabled"></v-text-field>
 </template>
 
 <script>
