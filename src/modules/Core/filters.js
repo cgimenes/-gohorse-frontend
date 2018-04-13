@@ -25,7 +25,7 @@ function CPFFilter (CPF) {
 
 function DateFilter (date) {
   if (date) {
-    return date.slice(8,10) + '/' + date.slice(5,7)  + '/' + date.slice(0,4)
+    return date.slice(8, 10) + '/' + date.slice(5, 7) + '/' + date.slice(0, 4)
   }
   return ''
 }
