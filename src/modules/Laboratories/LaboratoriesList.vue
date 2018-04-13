@@ -13,7 +13,7 @@
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title>{{ laboratory.companyName }}</v-list-tile-title>
-                <v-list-tile-sub-title>{{ laboratory.phone }}</v-list-tile-sub-title>
+                <v-list-tile-sub-title>{{ laboratory.phone | PhoneFilter}}</v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn icon ripple @click="show(laboratory)">

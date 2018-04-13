@@ -27,13 +27,13 @@
                   <b>Nome: </b> {{ owner.name }}
                 </p>
                 <p>
-                  <b>CPF: </b> {{ owner.cpf }}
+                  <b>CPF: </b> {{ owner.cpf | CPFFilter }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ owner.phone | phoneMask }}
+                  <b>Telefone: </b> {{ owner.phone | PhoneFilter }}
                 </p>
                 <p>
-                  <b>Data de Nascimento: </b> {{ owner.birthDate }}
+                  <b>Data de Nascimento: </b> {{ owner.birthDate | DateFilter}}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
@@ -42,7 +42,7 @@
                   <b>Endereço: </b> {{owner.address.postalCode.streetName}}, {{owner.address.number}} - {{owner.address.complement}}, {{owner.address.postalCode.city}} {{owner.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> {{owner.address.postalCode.code }}
+                  <b>CEP: </b> {{owner.address.postalCode.code | CEPFilter }}
                 </p>
               </v-flex>
             </v-layout>
@@ -60,7 +60,21 @@
     data () {
       return {
         fab: false,
-        owner: {}
+        owner: {
+          address: {
+            number: null,
+            complement: null,
+            postalCode: {
+              code: null,
+              streetType: 'Rua',
+              streetName: '',
+              neighbourhood: '',
+              city: '',
+              state: '',
+              country: 'Brasil'
+            }
+          }
+        }
       }
     },
     mounted () {

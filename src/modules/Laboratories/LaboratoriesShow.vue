@@ -27,7 +27,7 @@
                   <b>Nome: </b> {{ laboratory.companyName }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ laboratory.phone }}
+                  <b>Telefone: </b> {{ laboratory.phone | PhoneFilter}}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
@@ -36,7 +36,7 @@
                   <b>Endereço: </b> {{laboratory.address.postalCode.streetName}}, {{laboratory.address.number}} - {{laboratory.address.complement}}, {{laboratory.address.postalCode.city}} {{laboratory.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> {{laboratory.address.postalCode.code}}
+                  <b>CEP: </b> {{laboratory.address.postalCode.code | CEPFilter}}
                 </p>
               </v-flex>
             </v-layout>
@@ -55,7 +55,21 @@ export default {
   data () {
     return {
       fab: false,
-      laboratory: {}
+      laboratory: {
+        address: {
+          number: null,
+          complement: null,
+          postalCode: {
+            code: null,
+            streetType: 'Rua',
+            streetName: '',
+            neighbourhood: '',
+            city: '',
+            state: '',
+            country: 'Brasil'
+          }
+        }
+      }
     }
   },
   mounted () {
