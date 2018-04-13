@@ -8,14 +8,17 @@
               <v-flex col xs12>
                 <h4 class="grey--text">Dados do Proprietário</h4>
               </v-flex>
-              <v-flex col xs12 sm4="sm4">
+              <v-flex col xs12 sm3="sm3">
                 <v-text-field name="name" label="Nome do Proprietário" id="name" v-model="owner.name" key="name"></v-text-field>
               </v-flex>
-              <v-flex col xs12 sm4="sm4">
+              <v-flex col xs12 sm3="sm3">
                 <cpf-input label="CPF do Proprietário" :model.sync="owner.cpf"></cpf-input>
               </v-flex>
-              <v-flex col xs12 sm4="sm4">
-                <phone-input label="Telefone do Proprietário" :model.sync="owner.phone"></phone-input>
+              <v-flex col xs12 sm3="sm3">
+                <v-text-field name="name" label="Data de nascimento" id="birthdate" v-model="owner.birthDate" :key="owner.id"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm3="sm3">
+                <phone-input label="Telefone do Proprietário" :model.sync="owner.phone" :key="owner.id"></phone-input>
               </v-flex>
               <v-flex col xs12>
                 <h4 class="grey--text">Endereço</h4>

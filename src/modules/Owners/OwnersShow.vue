@@ -27,16 +27,22 @@
                   <b>Nome: </b> {{ owner.name }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ owner.phone }}
+                  <b>CPF: </b> {{ owner.cpf }}
+                </p>
+                <p>
+                  <b>Telefone: </b> {{ owner.phone | phoneMask }}
+                </p>
+                <p>
+                  <b>Data de Nascimento: </b> {{ owner.birthDate }}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> Rua teste, 245 - casa, Maringá PR
+                  <b>Endereço: </b> {{owner.address.postalCode.streetName}}, {{owner.address.number}} - {{owner.address.complement}}, {{owner.address.postalCode.city}} {{owner.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> 00000-000
+                  <b>CEP: </b> {{owner.address.postalCode.code }}
                 </p>
               </v-flex>
             </v-layout>
