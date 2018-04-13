@@ -15,6 +15,12 @@
                 <phone-input label="Telefone do Laboratório" :model.sync="laboratory.phone" :key="laboratory.id"></phone-input>
               </v-flex>
               <v-flex col xs12>
+                <h4 class="grey--text">Endereço</h4>
+              </v-flex>
+              <v-flex col xs12>
+                <address-component :address="laboratory.address"></address-component>
+              </v-flex>
+              <v-flex col xs12>
                 <v-btn color="primary" @click="saveLaboratory()">Salvar</v-btn>
               </v-flex>
             </v-layout>
@@ -29,20 +35,35 @@
 
 import LaboratoriesService from './LaboratoriesService'
 import PhoneInput from '../Form/Field/PhoneInput'
+import AddressComponent from '../Form/Address/AddressComponent'
 
 export default {
-  components: {PhoneInput},
+  components: {PhoneInput, AddressComponent},
   data () {
     return {
       laboratory: {
         companyName: '',
-        phone: ''
+        phone: '',
+        address: {
+          number: null,
+          complement: null,
+          postalCode: {
+            code: null,
+            streetType: 'Rua',
+            streetName: '',
+            neighbourhood: '',
+            city: '',
+            state: '',
+            country: 'Brasil'
+          }
+        }
       }
     }
   },
   methods: {
     saveLaboratory () {
       LaboratoriesService.saveLaboratory(this.laboratory, (res) => {
+        this.$toasted.success('Laboratório criado com sucesso!', {icon: 'check'})
         this
           .$router
           .push('/laboratories/')

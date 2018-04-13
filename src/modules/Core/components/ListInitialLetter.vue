@@ -11,7 +11,7 @@ export default {
       type: String,
       required: true
     },
-    lengh: {
+    letters: {
       type: Number,
       required: false,
       default () {
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     letter () {
-      return this.word.substr(0, this.lengh)
+      return this.word.substr(0, this.letters)
     },
     color () {
       return randomColor({
