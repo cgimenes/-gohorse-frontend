@@ -32,7 +32,7 @@
 
 <script>
 
-import veterinariesService from './VeterinariesService'
+import VeterinariesService from './VeterinariesService'
 import ListInitialLetter from '@core/components/ListInitialLetter'
 
 export default {
@@ -43,7 +43,9 @@ export default {
     }
   },
   mounted () {
-    veterinariesService.getVeterinaries((veterinaries) => {
+    console.log(this)
+    VeterinariesService.getVeterinaries((veterinaries) => {
+      console.log(this)
       this.veterinaries = veterinaries
     })
   },

@@ -3,7 +3,7 @@ import http from '@core/http'
 export default {
   getVeterinaries (callback) {
     http.get('/veterinarians').then(response => {
-      return callback(response.data.items)
+      return callback(response.data.content)
     })
   },
 

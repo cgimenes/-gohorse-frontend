@@ -21,7 +21,13 @@
                 <v-text-field name="email" label="E-mail do Veterinário" id="email" v-model="veterinary.email" key="email"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <v-text-field type="date" name="birthDate" label="E-mail do Veterinário" id="birthDate" v-model="veterinary.birthDate" key="email"></v-text-field>
+                <v-text-field type="date" name="birthDate" label="Data de Nascimento" id="birthDate" v-model="veterinary.birthDate" key="email"></v-text-field>
+              </v-flex>
+              <v-flex col xs12>
+                <h4 class="grey--text">Endereço</h4>
+              </v-flex>
+              <v-flex col xs12>
+                <address-component :address="veterinary.address"></address-component>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
                 {{veterinary}}
@@ -41,9 +47,10 @@
 
 import VeterinariesService from './VeterinariesService'
 import PhoneInput from '../Form/Field/PhoneInput'
+import AddressComponent from '../Form/Address/AddressComponent'
 
 export default {
-  components: {PhoneInput},
+  components: {PhoneInput, AddressComponent},
   data () {
     return {
       veterinary: {
@@ -51,7 +58,20 @@ export default {
         phone: '',
         crmv: '',
         email: '',
-        birthDate: '1996-06-18'
+        birthDate: '',
+        address: {
+          number: null,
+          complement: null,
+          postalCode: {
+            code: null,
+            streetType: 'Rua',
+            streetName: '',
+            neighbourhood: '',
+            city: '',
+            state: '',
+            country: 'Brasil'
+          }
+        }
       }
     }
   },
