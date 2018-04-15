@@ -13,7 +13,7 @@
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title> {{owner.name}} </v-list-tile-title>
-                <v-list-tile-sub-title> {{owner.phone}} </v-list-tile-sub-title>
+                <v-list-tile-sub-title> {{owner.phone | phone}} </v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn icon ripple @click="show(owner)">
