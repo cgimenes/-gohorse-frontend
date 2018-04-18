@@ -27,25 +27,25 @@
                   <b>Nome: </b> {{ veterinary.name }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ veterinary.phone }}
+                  <b>Telefone: </b> {{ veterinary.phone | phone }}
                 </p>
                 <p>
-                  <b>CRMV: </b> {{ veterinary.crmv }}
+                  <b>CRMV: </b> {{ veterinary.crmv}}
                 </p>
                 <p>
-                  <b>E-mail: </b> {{ veterinary.email }}
+                  <b>E-mail: </b> {{ veterinary.email}}
                 </p>
                 <p>
-                  <b>Data de nascimento: </b> {{ veterinary.birthDate }}
+                  <b>Data de nascimento: </b> {{ veterinary.birthDate | date}}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> Rua teste, 245 - casa, Maringá PR
+                  <b>Endereço: </b> {{veterinary.address.postalCode.streetName}}, {{veterinary.address.number}} - {{veterinary.address.complement}}, {{veterinary.address.postalCode.city}} {{veterinary.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> 00000-000
+                  <b>CEP: </b> {{veterinary.address.postalCode.code | cep }}
                 </p>
               </v-flex>
             </v-layout>
@@ -64,7 +64,21 @@ export default {
   data () {
     return {
       fab: false,
-      veterinary: {}
+      veterinary: {
+        address: {
+          number: null,
+          complement: null,
+          postalCode: {
+            code: null,
+            streetType: 'Rua',
+            streetName: '',
+            neighbourhood: '',
+            city: '',
+            state: '',
+            country: 'Brasil'
+          }
+        }
+      }
     }
   },
   mounted () {
@@ -76,7 +90,7 @@ export default {
     edit () {
       this
         .$router
-        .push('veterinaries/' + this.veterinaries.id + '/edit')
+        .push('/veterinaries/' + this.veterinary.id + '/edit')
     },
     destroy () {
       this.$swal({

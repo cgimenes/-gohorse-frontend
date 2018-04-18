@@ -12,7 +12,7 @@
                 <v-text-field name="name" label="Nome do Veterinário" id="name" v-model="veterinary.name" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <phone-input label="Telefone do veterinário" :model.sync="veterinary.phone"></phone-input>
+                <phone-input label="Telefone do veterinário" :model.sync="veterinary.phone" :key="veterinary.id"></phone-input>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
                 <v-text-field name="crmv" label="CRMV do Veterinário" id="crmv" v-model="veterinary.crmv" key="crmv"></v-text-field>
@@ -30,7 +30,6 @@
                 <address-component :address="veterinary.address"></address-component>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                {{veterinary}}
               </v-flex>
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveVeterinary()">Salvar</v-btn>
@@ -77,7 +76,7 @@ export default {
   },
   methods: {
     saveVeterinary () {
-      VeterinariesService.createVeterinary(this.veterinary, (res) => {
+      VeterinariesService.saveVeterinary(this.veterinary, (res) => {
         this
           .$router
           .push('/veterinaries/')

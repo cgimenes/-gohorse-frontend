@@ -43,9 +43,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this)
     VeterinariesService.getVeterinaries((veterinaries) => {
-      console.log(this)
       this.veterinaries = veterinaries
     })
   },
@@ -53,7 +51,7 @@ export default {
     show (veterinary) {
       this
         .$router
-        .push('veterinaries/' + veterinary.id)
+        .push('/veterinaries/' + veterinary.id)
     }
   }
 }

@@ -8,11 +8,10 @@ export default {
   },
 
   saveVeterinary (veterinary, callback) {
-    if (!veterinary.id) {
-      return this.createVeterinary(veterinary, callback)
+    if (veterinary.id) {
+      return this.updateVeterinary(veterinary, callback)
     }
-
-    return this.updateVeterinary(veterinary, callback)
+    return this.createVeterinary(veterinary, callback)
   },
 
   createVeterinary (veterinary, callback) {
