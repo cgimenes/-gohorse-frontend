@@ -8,20 +8,23 @@
               <v-flex col xs12>
                 <h4 class="grey--text">Dados do Veterinário</h4>
               </v-flex>
-              <v-flex col xs12 sm6="sm6">
-                <v-text-field name="name" label="Nome do Veterinário" id="name" v-model="veterinary.name" key="name"></v-text-field>
+              <v-flex col xs12 >
+                <v-text-field name="name" label="Nome" id="name" v-model="veterinary.name" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <phone-input label="Telefone do veterinário" :model.sync="veterinary.phone" :key="veterinary.id"></phone-input>
-              </v-flex>
-              <v-flex col xs12 sm6="sm6">
-                <v-text-field name="crmv" label="CRMV do Veterinário" id="crmv" v-model="veterinary.crmv" key="crmv"></v-text-field>
-              </v-flex>
-              <v-flex col xs12 sm6="sm6">
-                <v-text-field name="email" label="E-mail do Veterinário" id="email" v-model="veterinary.email" key="email"></v-text-field>
+                <v-text-field name="crmv" label="CRMV" id="crmv" v-model="veterinary.crmv" key="crmv"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
                 <v-text-field type="date" name="birthDate" label="Data de Nascimento" id="birthDate" v-model="veterinary.birthDate" key="email"></v-text-field>
+              </v-flex>
+              <v-flex col xs12>
+                <h4 class="grey--text">Dados de contato</h4>
+              </v-flex>
+              <v-flex col xs12 sm8>
+                <v-text-field name="email" label="E-mail" id="email" v-model="veterinary.email" key="email"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm4>
+                <phone-input label="Telefone" :model.sync="veterinary.phone" :key="veterinary.id"></phone-input>
               </v-flex>
               <v-flex col xs12>
                 <h4 class="grey--text">Endereço</h4>

@@ -27,16 +27,16 @@
                   <b>Nome: </b> {{ veterinary.name }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ veterinary.phone | phone }}
-                </p>
-                <p>
                   <b>CRMV: </b> {{ veterinary.crmv}}
                 </p>
                 <p>
-                  <b>E-mail: </b> {{ veterinary.email}}
+                  <b>Telefone: </b> {{ veterinary.phone | phone }}
                 </p>
                 <p>
                   <b>Data de nascimento: </b> {{ veterinary.birthDate | date}}
+                </p>
+                <p>
+                  <b>E-mail: </b> {{ veterinary.email}}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
