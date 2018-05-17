@@ -1,5 +1,5 @@
 <template>
-  <v-text-field :label="label" v-model="cpf" :mask="'###.###.###-##'" :disabled="disabled"></v-text-field>
+  <v-text-field :label="label" v-model="document" :mask="documentMask" :disabled="disabled"></v-text-field>
 </template>
 
 <script>
@@ -22,7 +22,13 @@
       }
     },
     computed: {
-      cpf: {
+      documentMask () {
+        if (this.model.length > 13) {
+          return '##.###.###/####-##'
+        }
+        return '###.###.###-#####'
+      },
+      document: {
         get: function () {
           return this.model
         },
