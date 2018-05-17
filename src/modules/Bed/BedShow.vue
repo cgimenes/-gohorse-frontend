@@ -46,10 +46,7 @@ export default {
   data () {
     return {
       fab: false,
-      bed: {
-        Code: '',
-        busy: '',
-      }
+      bed: {}
     }
   },
   mounted () {

@@ -13,7 +13,8 @@
                 <!--Mudar daqui para baixo de veterinary para bed-->
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <v-text-field name="busy" label="Ocupado" id="busy" v-model="bed.busy" key="busy"></v-text-field>
+                <v-switch  label="Ocupado"   v-model="bed.busy"></v-switch>
+                {{bed}}
               </v-flex>
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveBed()">Salvar</v-btn>
@@ -36,7 +37,7 @@ export default {
     return {
       bed: {
         code: '',
-        busy: ''
+        busy: false
       }
     }
   },
