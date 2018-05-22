@@ -39,15 +39,11 @@ export default {
   components: {ListInitialLetter},
   data () {
     return {
-      colors: [
-        '#009688',
-        '#F44336'
-      ],
       beds: []
     }
   },
   mounted () {
-    BedService.getBed((bed) => {
+    BedService.getBeds((bed) => {
       this.beds = bed
     })
   },

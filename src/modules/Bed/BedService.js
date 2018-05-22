@@ -1,7 +1,7 @@
 import http from '@core/http'
 
 export default {
-  getBed (callback) {
+  getBeds (callback) {
     http.get('/bed').then(response => {
       return callback(response.data.content)
     })
