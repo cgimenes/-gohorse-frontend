@@ -7,9 +7,9 @@ import randomColor from 'randomcolor'
 
 export default {
   props: {
-    color:{
+    color: {
       type: String,
-      default(){
+      default () {
         return null
       }
     },
@@ -30,7 +30,7 @@ export default {
       return this.word.substr(0, this.letters)
     },
     avatarColor () {
-      if(this.color){
+      if (this.color) {
         return this.color
       }
       return randomColor({

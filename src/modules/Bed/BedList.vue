@@ -52,14 +52,14 @@ export default {
     })
   },
   methods: {
-    getBusy(bed){
-      if(bed.busy){
+    getBusy (bed) {
+      if (bed.busy) {
         return 'Ocupado'
       }
       return 'Livre'
     },
-    getColor (bed){
-      if(bed.busy){
+    getColor (bed) {
+      if (bed.busy) {
         return '#F44336'
       }
       return '#009688'
