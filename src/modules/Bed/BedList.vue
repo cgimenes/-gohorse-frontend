@@ -48,10 +48,10 @@ export default {
     }
   },
   mounted () {
-    this.loadBads();
+    this.loadBeds()
   },
   methods: {
-    loadBads() {
+    loadBeds () {
       BedService.getBeds((bed) => {
         this.beds = bed
       })
@@ -65,10 +65,8 @@ export default {
     getColor (bed) {
       if (bed.busy) {
         return 'red lighten-4'
-        // return '#F44336'
       }
       return 'white'
-      // return '#009688'
     },
     edit (bed) {
       this
@@ -86,7 +84,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           BedService.removeBed(bed.id, (res) => {
-            this.loadBads();
+            this.loadBeds()
           })
         }
       })

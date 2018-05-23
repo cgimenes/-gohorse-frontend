@@ -9,7 +9,7 @@
                 <h4 class="grey--text">Dados do Leito</h4>
               </v-flex>
               <v-flex col xs12 >
-                <v-text-field name="name" label="Número" id="code" v-model="bed.code" key="code"></v-text-field>
+                <v-text-field name="name" label="Identificação" id="code" v-model="bed.code" key="code"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
                 <v-switch label="Ocupado" v-model="bed.busy"></v-switch>
