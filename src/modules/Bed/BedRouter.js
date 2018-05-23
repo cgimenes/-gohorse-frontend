@@ -1,7 +1,6 @@
 import Layout from '@core/components/Layout'
 import BedList from './BedList'
 import BedForm from './BedForm'
-import BedShow from './BedShow'
 
 export default [
   {
@@ -22,14 +21,6 @@ export default [
         meta: {
           unrequiredAuth: true,
           title: 'Criar um novo Leitos'
-        }
-      },
-      {
-        path: '/bed/:id',
-        component: BedShow,
-        meta: {
-          unrequiredAuth: true,
-          title: 'Visualização de Leitos'
         }
       },
       {
