@@ -42,6 +42,7 @@
           {icon: 'account_box', title: 'Proprietários', to: '/owners'},
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', title: 'Leitos', to: '/bed'},
+          {icon: 'security', title: 'Internamentos', to: '/internments'},
           {icon: 'security', title: 'Login', to: '/login'}
         ]
       }

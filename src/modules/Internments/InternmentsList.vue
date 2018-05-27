@@ -51,7 +51,7 @@ export default {
     show (internment) {
       this
         .$router
-        .push('/internments/' + internment.id)
+        .push(`/internments/${internment.id}`)
     }
   }
 }

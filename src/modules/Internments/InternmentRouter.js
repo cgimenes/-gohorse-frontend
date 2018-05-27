@@ -23,6 +23,22 @@ export default [
           unrequiredAuth: true,
           title: 'Cadastro de Internamento'
         }
+      },
+      {
+        path: '/internments/:id',
+        component: InternmentsShow,
+        meta: {
+          unrequiredAuth: true,
+          title: 'Visualização de Internamento'
+        }
+      },
+      {
+        path: '/internments/:id/edit',
+        component: InternmentsShow,
+        meta: {
+          unrequiredAuth: true,
+          title: 'Edição de Internamento'
+        }
       }
     ]
   }
