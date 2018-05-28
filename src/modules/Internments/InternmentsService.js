@@ -6,7 +6,7 @@ export default {
       return callback(response.data.content)
     })
   },
-  saveInternments(internment, callback) {
+  saveInternment(internment, callback) {
     if(!internment.id) {
       return this.createInternment(internment, callback)      
     }
