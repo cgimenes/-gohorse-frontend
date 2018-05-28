@@ -15,7 +15,7 @@
                 <v-menu
                  ref="menu"
                  :close-on-content-click="false"
-                 v-model="menu"
+                 v-model="menuBusyAt"
                  nudge-right="40"
                  lazy
                  transition="scale-transition"
@@ -26,13 +26,35 @@
                >
                  <v-text-field
                    slot="activator"
-                   v-model="internment.date"
+                   v-model="internment.busyAt"
                    label="Date"
                    hint="MM/DD/YYYY format"
                    persistent-hint
                    prepend-icon="event"
                  ></v-text-field>
-                 <v-date-picker v-model="internment.date" no-title></v-date-picker>
+                 <v-date-picker v-model="internment.busyAt" no-title></v-date-picker>
+               </v-menu>
+               <v-menu
+                 ref="menu"
+                 :close-on-content-click="false"
+                 v-model="menuBusyUntil"
+                 nudge-right="40"
+                 lazy
+                 transition="scale-transition"
+                 offset-y
+                 full-width
+                 max-width="290px"
+                 min-width="290px"
+               >
+                 <v-text-field
+                   slot="activator"
+                   v-model="internment.busyUntil"
+                   label="Date"
+                   hint="MM/DD/YYYY format"
+                   persistent-hint
+                   prepend-icon="event"
+                 ></v-text-field>
+                 <v-date-picker v-model="internment.busyUntil" no-title></v-date-picker>
                </v-menu>
               </v-flex>
               <v-flex col xs12>
@@ -58,11 +80,11 @@ export default {
       internment: {
           animalId: '',
           bedId: '',
-          busyAt: '',//moment(Date.now()).format('DD/MM/YY HH:MM'),
-          busyUntil: '',
-          date: null
+          busyAt: null,
+          busyUntil: null
       },
-      menu: false
+      menuBusyUntil: false,
+      menuBusyAt: false
     }
   },
   methods: {
