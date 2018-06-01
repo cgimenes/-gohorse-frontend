@@ -9,53 +9,58 @@
                 <h4 class="grey--text">Dados do Internamento</h4>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <v-text-field name="name" label="Nome do Animal" id="name" v-model="internment.animalId" key="name"></v-text-field>
+                <v-text-field name="name" label="Animal" id="name" v-model="internment.animalId" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <v-menu
-                 ref="menu"
-                 :close-on-content-click="false"
-                 v-model="menuBusyAt"
-                 nudge-right="40"
-                 lazy
-                 transition="scale-transition"
-                 offset-y
-                 full-width
-                 max-width="290px"
-                 min-width="290px"
-               >
-                 <v-text-field
-                   slot="activator"
-                   v-model="internment.busyAt"
-                   label="Date"
-                   hint="MM/DD/YYYY format"
-                   persistent-hint
-                   prepend-icon="event"
-                 ></v-text-field>
-                 <v-date-picker v-model="internment.busyAt" no-title></v-date-picker>
-               </v-menu>
-               <v-menu
-                 ref="menu"
-                 :close-on-content-click="false"
-                 v-model="menuBusyUntil"
-                 nudge-right="40"
-                 lazy
-                 transition="scale-transition"
-                 offset-y
-                 full-width
-                 max-width="290px"
-                 min-width="290px"
-               >
-                 <v-text-field
-                   slot="activator"
-                   v-model="internment.busyUntil"
-                   label="Date"
-                   hint="MM/DD/YYYY format"
-                   persistent-hint
-                   prepend-icon="event"
-                 ></v-text-field>
-                 <v-date-picker v-model="internment.busyUntil" no-title></v-date-picker>
-               </v-menu>
+                <v-text-field name="name" label="Leito" id="name" v-model="internment.bedId" key="name"></v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <v-dialog
+                    ref="dialog"
+                    v-model="modalBusyAt"
+                    :return-value.sync="internment.busyAt"
+                    persistent
+                    lazy
+                    full-width
+                    width="290px"
+                  >
+                  <v-text-field
+                    slot="activator"
+                    v-model="internment.busyAt"
+                    label="Data de Entrada"
+                    prepend-icon="event"
+                    readonly
+                  ></v-text-field>
+                  <v-date-picker v-model="internment.busyAt" scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn flat color="primary" @click="modal = false">Cancelar</v-btn>
+                    <v-btn flat color="primary" @click="$refs.dialog.save(internment.busyAt)">OK</v-btn>
+                  </v-date-picker>
+                </v-dialog>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <v-dialog
+                    ref="dialog"
+                    v-model="modalBusyUntil"
+                    :return-value.sync="internment.busyUntil"
+                    persistent
+                    lazy
+                    full-width
+                    width="290px"
+                  >
+                  <v-text-field
+                    slot="activator"
+                    v-model="internment.busyUntil"
+                    label="Data de Saída"
+                    prepend-icon="event"
+                    readonly
+                  ></v-text-field>
+                  <v-date-picker v-model="internment.busyUntil" scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+                    <v-btn flat color="primary" @click="$refs.dialog.save(internment.busyUntil)">OK</v-btn>
+                  </v-date-picker>
+                </v-dialog>
               </v-flex>
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveInternment()">Salvar</v-btn>
@@ -84,7 +89,9 @@ export default {
           busyUntil: null
       },
       menuBusyUntil: false,
-      menuBusyAt: false
+      menuBusyAt: false,
+      modalBusyAt: false,
+      modalBusyUntil: false
     }
   },
   methods: {
