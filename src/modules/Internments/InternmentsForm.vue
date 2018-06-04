@@ -16,7 +16,7 @@
               </v-flex>
               <v-flex col xs12 sm6="sm6">
                 <v-dialog
-                    ref="dialog"
+                    ref="dialogBusyAt"
                     v-model="modalBusyAt"
                     :return-value.sync="internment.busyAt"
                     persistent
@@ -31,16 +31,16 @@
                     prepend-icon="event"
                     readonly
                   ></v-text-field>
-                  <v-date-picker v-model="internment.busyAt" scrollable>
+                  <v-date-picker v-model="internment.busyAt" scrollable locale="pt-br">
                     <v-spacer></v-spacer>
-                    <v-btn flat color="primary" @click="modal = false">Cancelar</v-btn>
-                    <v-btn flat color="primary" @click="$refs.dialog.save(internment.busyAt)">OK</v-btn>
+                    <v-btn flat color="primary" @click="modalBusyAt = false">Cancelar</v-btn>
+                    <v-btn flat color="primary" @click="$refs.dialogBusyAt.save(internment.busyAt)">OK</v-btn>
                   </v-date-picker>
                 </v-dialog>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
                 <v-dialog
-                    ref="dialog"
+                    ref="dialogBusyUntil"
                     v-model="modalBusyUntil"
                     :return-value.sync="internment.busyUntil"
                     persistent
@@ -55,10 +55,10 @@
                     prepend-icon="event"
                     readonly
                   ></v-text-field>
-                  <v-date-picker v-model="internment.busyUntil" scrollable>
+                  <v-date-picker v-model="internment.busyUntil" scrollable locale="pt-br">
                     <v-spacer></v-spacer>
-                    <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                    <v-btn flat color="primary" @click="$refs.dialog.save(internment.busyUntil)">OK</v-btn>
+                    <v-btn flat color="primary" @click="modalBusyUntil = false">Cancelar</v-btn>
+                    <v-btn flat color="primary" @click="$refs.dialogBusyUntil.save(internment.busyUntil)">OK</v-btn>
                   </v-date-picker>
                 </v-dialog>
               </v-flex>
@@ -88,8 +88,6 @@ export default {
           busyAt: null,
           busyUntil: null
       },
-      menuBusyUntil: false,
-      menuBusyAt: false,
       modalBusyAt: false,
       modalBusyUntil: false
     }
