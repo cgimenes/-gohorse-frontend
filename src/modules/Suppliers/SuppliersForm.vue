@@ -17,14 +17,24 @@
               <v-flex col xs12 sm3="sm3">
                 <phone-input label="Telefone" :model.sync="supplier.phone" :key="supplier.id"></phone-input>
               </v-flex>
-              <v-flex col xs12 sm3="sm3">
-                <h5> Tipo de distribuição </h5>
-                <select v-model="selected">
-                  <option disabled value="">Selecione um tipo de distribuição</option>
-                  <option>A</option>
-                  <option>B</option>
-                  <option>C</option>
-                </select>
+              <v-flex col xs12 sm3="sm2">
+                <template>
+                  <v-layout row>
+                    <v-flex>
+                      <v-select
+                        :items="distributionTypes"
+                        label="Tipo de distribuição"
+                        item-value="text"
+                      ></v-select>
+                    </v-flex>
+                    <v-flex xs2>
+                      <v-btn dark fab flat color='teal' to='' >
+                        <v-icon> add </v-icon>
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                </template>
+
               </v-flex>
               <v-flex col xs12>
                 <h4 class="grey--text">Endereço</h4>
@@ -59,7 +69,7 @@
     },
     data () {
       return {
-        selected: '',
+        distributionTypes: [],
         supplier: {
           address: {
             number: null,
