@@ -102,6 +102,9 @@
       getDataForEdit () {
         SuppliersService.getSupplierDetails(this.$route.params.id, (supplier) => {
           this.supplier = supplier
+          supplier.distributionType = {
+            value: 'A',
+          }
         })
       }
     },
