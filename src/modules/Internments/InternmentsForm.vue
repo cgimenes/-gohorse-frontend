@@ -18,6 +18,7 @@
               <v-flex col xs12>
                 <h4 class="grey--text">Dados do Internamento</h4>
               </v-flex>
+              
               <v-flex col xs12 sm6="sm6">
                 <v-text-field
                   :rules="rules.animal"
@@ -30,6 +31,7 @@
                   >
                 </v-text-field>
               </v-flex>
+              
               <v-flex col xs12 sm3="sm3">
                 <v-menu
                   ref="menuBusyAt"
@@ -56,11 +58,13 @@
                   <v-date-picker
                     v-model="dateBusyAt"
                     no-title
+                    locale="pt-br"
                     @input="menuBusyAt=false"
                     >
                   </v-date-picker>
                 </v-menu>
               </v-flex>
+
               <v-flex col xs12 sm3="sm3">
                 <v-text-field
                   required
@@ -75,6 +79,7 @@
                   >
                 </v-text-field>
               </v-flex>
+
               <v-flex col xs12 sm6="sm6">
                 <v-text-field
                   :rules="rules.bed"
@@ -87,6 +92,7 @@
                   >
                 </v-text-field>
               </v-flex>
+
               <v-flex col xs12 sm3="sm3">
                 <v-menu
                   ref="menuBusyUntil"
@@ -111,11 +117,13 @@
                   <v-date-picker
                     v-model="dateBusyUntil"
                     no-title
+                    locale="pt-br"
                     @input="menuBusyUntil=false"
                     >
                   </v-date-picker>
                 </v-menu>
               </v-flex>
+
               <v-flex col xs12 sm3="sm3">
                 <v-text-field
                   :mask="hourMask"
@@ -128,6 +136,7 @@
                   >
                 </v-text-field>
               </v-flex>
+
               <v-flex col xs12>
                 <v-btn
                   color="primary"
@@ -136,10 +145,11 @@
                 >Salvar
                 </v-btn>
               </v-flex>
+
             </v-layout>
           </v-container>
         </v-card>
-      </v-flex>
+      </v-flex>      
     </v-layout>
   </v-container>
 </template>
