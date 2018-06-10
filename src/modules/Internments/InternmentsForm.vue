@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-lg="grid-list-lg" fluid="fluid">
-    <v-snackbar
+    <!-- <v-snackbar
       v-model="snackbar"
       absolute
       top
@@ -9,7 +9,7 @@
     >
       <span>Internamento criado com sucesso!</span>
       <v-icon dark>check_circle</v-icon>
-    </v-snackbar>
+    </v-snackbar> -->
     <v-layout row="row" wrap="wrap">
       <v-flex xs12>
         <v-card>          
@@ -155,92 +155,127 @@
 </template>
 
 <script>
-
-import InternmentsService from './InternmentsService'
-import moment from 'moment';
+import InternmentsService from "./InternmentsService";
+import moment from "moment";
 
 export default {
   components: {},
   data() {
     return {
       internment: {
-          animalId: '',
-          bedId: '',
-          busyAt: {
-            date: null,
-            hour: null
-          },
-          busyUntil: {
-            date: null,
-            hour: null
-          }
+        animalId: "",
+        bedId: "",
+        busyAt: {
+          date: null,
+          hour: null
+        },
+        busyUntil: {
+          date: null,
+          hour: null
+        }
       },
       menuBusyAt: false,
       menuBusyUntil: false,
       dateBusyAt: null,
       dateBusyUntil: null,
-      hourMask: 'time',
-      dateMask: 'date',
-      snackbar: false,
-      
+      hourMask: "time",
+      dateMask: "date",
+      //snackbar: false,
+
       rules: {
-        animal: [val => (val || '').length > 0 || 'Preenchimento obrigatório!'],
-        bed: [val => (val || '').length > 0 || 'Preenchimento obrigatório!'],
-        busyAtDate: [val => (val || '').length > 0 || 'Preenchimento obrigatório!'],
-        busyAtHour: [val => (val || '').length > 0 || 'Preenchimento obrigatório!']
+        animal: [val => (val || "").length > 0 || "Preenchimento obrigatório!"],
+        bed: [val => (val || "").length > 0 || "Preenchimento obrigatório!"],
+        busyAtDate: [
+          val => (val || "").length > 0 || "Preenchimento obrigatório!"
+        ],
+        busyAtHour: [
+          val => (val || "").length > 0 || "Preenchimento obrigatório!"
+        ]
       }
-    }
+    };
   },
   watch: {
-    dateBusyAt (val) {
-      this.internment.busyAt.date = this.formatDate(this.dateBusyAt)
+    dateBusyAt(val) {
+      this.internment.busyAt.date = this.formatDate(this.dateBusyAt);
     },
-    dateBusyUntil (val) {
-      this.internment.busyUntil.date = this.formatDate(this.dateBusyUntil)
+    dateBusyUntil(val) {
+      this.internment.busyUntil.date = this.formatDate(this.dateBusyUntil);
     }
   },
   computed: {
-    formIsValid () {
+    formIsValid() {
       return (
         this.internment.animalId &&
         this.internment.bedId &&
         this.internment.busyAt.date &&
         this.internment.busyAt.hour
-      )
+      );
     }
   },
   methods: {
     saveInternment() {
-      InternmentsService.saveInternment(this.internment, (res) => {
-        this.$toasted.success('Internamento criado com sucesso!', {icon: 'check'})
-        this
-          .$router
-          .push('/internments/')
-      })
-      this.snackbar = true
+      let internmentFinal = {
+        animalId: this.internment.animalId,
+        bedId: this.internment.bedId,
+        busyAt: new moment.utc(
+          `${this.internment.busyAt.date} ${this.internment.busyAt.hour}`,
+          "DD/MM/YYYY HH:mm"
+        ),
+        busyUntil: new moment.utc(
+          `${this.internment.busyUntil.date} ${this.internment.busyUntil.hour}`,
+          "DD/MM/YYYY HH:mm"
+        )
+      };
+
+      InternmentsService.saveInternment(internmentFinal, res => {
+        this.$toasted.success("Internamento criado com sucesso!", {
+          icon: "check"
+        });
+        this.$router.push("/internments/");
+      });
+      //this.snackbar = true;
     },
     getDataForEdit() {
-      InternmentsService.getInternmentDetails(this.$route.params.id, (internment) => {
-        this.internment = internment
-      })
-    },
-    formatDate (date) {
-      if (!date) return null
+      InternmentsService.getInternmentDetails(
+        this.$route.params.id,
+        internment => {
+          this.internment.animalId = internment.animalId;
+          this.internment.bedId = internment.bedId;
+          this.internment.busyAt.date = new moment(internment.busyAt).format(
+            "DD/MM/YYYY"
+          );
+          this.internment.busyAt.hour = new moment(internment.busyAt).format(
+            "HH:mm"
+          );
 
-      const [year, month, day] = date.split('-')
-      return `${day}/${month}/${year}`
+          if (internment.busyUntil) {
+            this.internment.busyUntil.date = new moment(
+              internment.busyUntil
+            ).format("DD/MM/YYYY");
+            this.internment.busyUntil.hour = new moment(
+              internment.busyUntil
+            ).format("HH:mm");
+          }
+        }
+      );
     },
-    parseDate (date) {
-      if (!date) return null
+    formatDate(date) {
+      if (!date) return null;
 
-      const [month, day, year] = date.split('/')
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+      const [year, month, day] = date.split("-");
+      return `${day}/${month}/${year}`;
+    },
+    parseDate(date) {
+      if (!date) return null;
+
+      const [month, day, year] = date.split("/");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     }
   },
   created() {
-    if(this.$route.params.id){
-      this.getDataForEdit()
+    if (this.$route.params.id) {
+      this.getDataForEdit();
     }
   }
-}
+};
 </script>

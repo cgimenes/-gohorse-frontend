@@ -9,11 +9,11 @@
           <v-list two-line v-if="internments.length > 0">
             <v-list-tile avatar v-for="internment in internments" :key="internment.id">
               <v-list-tile-avatar>
-                <list-initial-letter :word="internment.companyName"></list-initial-letter>
+                <list-initial-letter :word="internment.animalId"></list-initial-letter>
               </v-list-tile-avatar>
               <v-list-tile-content>
-                <v-list-tile-title>{{ internment.companyName }}</v-list-tile-title>
-                <v-list-tile-sub-title>{{ internment.phone | phone}}</v-list-tile-sub-title>
+                <v-list-tile-title>{{ internment.bedId }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{ internment.animalId | animalId}}</v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn icon ripple @click="show(internment)">
@@ -31,28 +31,25 @@
 </template>
 
 <script>
-
-import InternmentsService from './InternmentsService'
-import ListInitialLetter from '@core/components/ListInitialLetter'
+import InternmentsService from "./InternmentsService";
+import ListInitialLetter from "@core/components/ListInitialLetter";
 
 export default {
-  components: {ListInitialLetter},
+  components: { ListInitialLetter },
   data() {
     return {
       internments: []
-    }
+    };
   },
   mounted() {
-    InternmentsService.getInternments((internamentos) => {
-      this.internments = internamentos
-    })
+    InternmentsService.getInternments(internamentos => {
+      this.internments = internamentos;
+    });
   },
   methods: {
-    show (internment) {
-      this
-        .$router
-        .push(`/internments/${internment.id}`)
+    show(internment) {
+      this.$router.push(`/internments/${internment.id}`);
     }
   }
-}
+};
 </script>
