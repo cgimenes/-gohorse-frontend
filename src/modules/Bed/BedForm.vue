@@ -11,9 +11,6 @@
               <v-flex col xs12 >
                 <v-text-field name="name" label="Identificação" id="code" v-model="bed.code" key="code"></v-text-field>
               </v-flex>
-              <v-flex col xs12 sm6="sm6">
-                <v-switch label="Ocupado" v-model="bed.busy"></v-switch>
-              </v-flex>
               <v-flex col xs12>
                 <v-btn color="primary" @click="saveBed()">Salvar</v-btn>
               </v-flex>
@@ -34,7 +31,6 @@ export default {
     return {
       bed: {
         code: '',
-        busy: false
       }
     }
   },
