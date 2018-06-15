@@ -19,25 +19,23 @@
           <v-container grid-list-lg fluid>
             <v-layout row wrap>
               <v-flex col xs12>
-                <h1>{{ internment.companyName }}</h1>
+                <h1>{{ internment.animal.name }}</h1>
               </v-flex>
               <v-flex col xs12 sm6>
-                <h4 class="grey--text mb-3">Dados do Laboratório</h4>
+                <h4 class="grey--text mb-3">Dados do Internamento</h4>
                 <p>
-                  <b>Nome: </b> {{ laboratory.companyName }}
+                  <b>Paciente: </b> {{ internment.animal.name }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ laboratory.phone | phone}}
+                  <b>Leito: </b> {{ internment.bed.code }}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
-                <h4 class="grey--text mb-3">Endereço</h4>
+                <h4 class="grey--text mb-3">Permanência</h4>
                 <p>
-                  <b>Endereço: </b> {{laboratory.address.postalCode.streetName}}, {{laboratory.address.number}} - {{laboratory.address.complement}}, {{laboratory.address.postalCode.city}} {{laboratory.address.postalCode.state}}
-                </p>
+                  <b>Entrada: </b> {{internment.busyAt}}</p>
                 <p>
-                  <b>CEP: </b> {{laboratory.address.postalCode.code | cep}}
-                </p>
+                  <b>Saída: </b> {{internment.busyUntil}}</p>
               </v-flex>
             </v-layout>
           </v-container>
@@ -49,39 +47,73 @@
 
 <script>
 
-import LaboratoriesService from './LaboratoriesService'
+import InternmentsService from './InternmentsService'
+import moment from 'moment'
 
 export default {
   data () {
     return {
       fab: false,
-      laboratory: {
-        address: {
-          number: null,
-          complement: null,
-          postalCode: {
-            code: null,
-            streetType: 'Rua',
-            streetName: '',
-            neighbourhood: '',
-            city: '',
-            state: '',
-            country: 'Brasil'
-          }
-        }
+      internment: {        
+        id:null,
+        bed:{
+          id:null,
+          code:null,
+          busy:null
+        },
+        animal:{
+          id:null,
+          name:null,
+          owner:{
+            id:null,
+            name:null,
+            phone:null,
+            cpf:null,
+            birthDate:null,
+            address:{
+              postalCode:{
+                code:null,
+                streetType:null,
+                streetName:null,
+                neighbourhood:null,
+                city:null,
+                state:null,
+                country:null
+              },
+              number:null,
+              complement:null
+            }
+          },
+          breed:{
+            id:null,
+            name:null
+          },
+          specie:{
+            id:null,
+            name:null
+          },
+          sex:null,
+          birthDate:null,
+          castrated:null,
+          weight:null
+        },
+        busyAt:null,
+        busyUntil:null
       }
     }
   },
   mounted () {
-    LaboratoriesService.getLaboratoryDetails(this.$route.params.id, (laboratory) => {
-      this.laboratory = laboratory
+    InternmentsService.getInternmentDetails(this.$route.params.id, (internment) => {
+      this.internment = internment
+      this.internment.busyAt = new moment(internment.busyAt).format('DD/MM/YYYY HH:mm')
+      this.internment.busyUntil = new moment(internment.busyUntil).format('DD/MM/YYYY HH:mm')
     })
   },
   methods: {
     edit () {
       this
         .$router
-        .push('/laboratories/' + this.laboratory.id + '/edit')
+        .push('/internments/' + this.internment.id + '/edit')
     },
     destroy () {
       this.$swal({
@@ -93,10 +125,10 @@ export default {
         cancelButtonText: 'Não'
       }).then((result) => {
         if (result.value) {
-          LaboratoriesService.removeLaboratory(this.laboratory.id, (res) => {
+          InternmentsService.removeInternment(this.internment.id, (res) => {
             this
               .$router
-              .push('/laboratories/')
+              .push('/internments/')
           })
         }
       })
