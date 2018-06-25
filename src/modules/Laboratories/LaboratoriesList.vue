@@ -20,8 +20,7 @@
                   <v-icon color='grey lighten-1'>info</v-icon>
                 </v-btn>
               </v-list-tile-action>
-            </v-list-tile>
-            <v-divider inset />
+            </v-list-tile>            
           </v-list>
           <p class='grey--text pa-5' v-if="laboratories.length == 0">Nenhum laboratório encontrado</p>
         </v-card>

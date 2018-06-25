@@ -7,7 +7,7 @@
             <v-icon>add</v-icon>
           </v-btn>
           <v-list two-line v-if="veterinaries.length > 0">
-            <v-list-tile avatar v-for="veterinary in veterinaries" :key="veterinary.id">
+            <v-list-tile avatar @click="show(veterinary)" v-for="veterinary in veterinaries" :key="veterinary.id">
               <v-list-tile-avatar>
                 <list-initial-letter :word="veterinary.name"></list-initial-letter>
               </v-list-tile-avatar>
@@ -21,7 +21,6 @@
                 </v-btn>
               </v-list-tile-action>
             </v-list-tile>
-            <v-divider inset />
           </v-list>
           <p class='grey--text pa-5' v-if="veterinaries.length == 0">Nenhum veterinário encontrado</p>
         </v-card>
