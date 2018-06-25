@@ -117,7 +117,7 @@ export default {
     },
     destroy () {
       this.$swal({
-        title: 'Você deseja deletar este laboratório?',
+        title: 'Você deseja deletar este internamento?',
         text: 'Esta operação não pode ser desfeita',
         type: 'warning',
         showCancelButton: true,

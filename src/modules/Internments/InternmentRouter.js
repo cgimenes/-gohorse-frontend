@@ -13,7 +13,7 @@ export default [
         component: InternmentsList,
         meta: {
           unrequiredAuth: true,
-          title: 'Internamentos' 
+          title: 'Internamentos'
         }
       },
       {
@@ -34,7 +34,7 @@ export default [
       },
       {
         path: '/internments/:id/edit',
-        component: InternmentsShow,
+        component: InternmentsForm,
         meta: {
           unrequiredAuth: true,
           title: 'Edição de Internamento'

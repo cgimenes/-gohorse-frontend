@@ -153,8 +153,8 @@ export default {
   data() {
     return {
       internment: {
-        animalId: "",
-        bedId: "",
+        animalId: null,
+        bedId: null,
         busyAt: {
           date: null,
           hour: null
@@ -227,8 +227,8 @@ export default {
       InternmentsService.getInternmentDetails(
         this.$route.params.id,
         internment => {
-          this.internment.animalId = internment.animalId
-          this.internment.bedId = internment.bedId
+          this.internment.animalId = internment.animal.id
+          this.internment.bedId = internment.bed.id
           this.internment.busyAt.date = new moment(internment.busyAt).format(
             "DD/MM/YYYY"
           )
