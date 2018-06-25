@@ -1,17 +1,17 @@
 import Layout from '@core/components/Layout'
-import Clientes from './Clientes'
+import Pacientes from './Pacientes'
 
 export default [
   {
-    path: '/clientes',
+    path: '/pacientes',
     component: Layout,
     children: [
       {
-        path: '/clientes',
-        component: Clientes,
+        path: '/pacientes',
+        component: Pacientes,
         meta: {
           unrequiredAuth: true,
-          title: 'Clientes'
+          title: 'Pacientes'
         }
       }
     ]
