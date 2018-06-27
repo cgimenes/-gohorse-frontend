@@ -2,13 +2,13 @@
   <v-container grid-list-lg='grid-list-lg' fluid='fluid'>
     <v-layout row='row' wrap='wrap'>
       <v-flex xs12>
-        <v-card>          
+        <v-card>
           <v-container grid-list-lg='grid-list-lg' fluid='fluid'>
             <v-layout row='row' wrap='wrap'>
               <v-flex col xs12>
                 <h4 class='grey--text'>Dados do Internamento</h4>
               </v-flex>
-              
+
               <v-flex col xs12 sm6='sm6'>
                 <v-text-field
                   :rules='rules.animal'
@@ -21,7 +21,7 @@
                   >
                 </v-text-field>
               </v-flex>
-              
+
               <v-flex col xs12 sm3='sm3'>
                 <v-menu
                   ref='menuBusyAt'
@@ -122,7 +122,7 @@
                   id='hour'
                   prepend-icon='access_time'
                   v-model='internment.busyUntil.hour'
-                  key='name' 
+                  key='name'
                   >
                 </v-text-field>
               </v-flex>
@@ -138,14 +138,14 @@
             </v-layout>
           </v-container>
         </v-card>
-      </v-flex>      
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
 import InternmentsService from './InternmentsService'
-import moment from 'moment'
+import Moment from 'moment'
 
 export default {
   components: {},
@@ -204,11 +204,11 @@ export default {
     saveInternment () {
       let internmentFinal = this.internment
 
-      internmentFinal.busyAt = new moment.utc(
+      internmentFinal.busyAt = new Moment.Utc(
         `${this.internment.busyAt.date} ${this.internment.busyAt.hour}`,
         'DD/MM/YYYY HH:mm'
       )
-      internmentFinal.busyUntil = new moment.utc(
+      internmentFinal.busyUntil = new Moment.Utc(
         `${this.internment.busyUntil.date} ${this.internment.busyUntil.hour}`,
         'DD/MM/YYYY HH:mm'
       )
@@ -227,18 +227,18 @@ export default {
           this.internment.id = internment.id
           this.internment.animalId = internment.animal.id
           this.internment.bedId = internment.bed.id
-          this.internment.busyAt.date = new moment(internment.busyAt).format(
+          this.internment.busyAt.date = new Moment(internment.busyAt).format(
             'DD/MM/YYYY'
           )
-          this.internment.busyAt.hour = new moment(internment.busyAt).format(
+          this.internment.busyAt.hour = new Moment(internment.busyAt).format(
             'HH:mm'
           )
 
           if (internment.busyUntil) {
-            this.internment.busyUntil.date = new moment(
+            this.internment.busyUntil.date = new Moment(
               internment.busyUntil
             ).format('DD/MM/YYYY')
-            this.internment.busyUntil.hour = new moment(
+            this.internment.busyUntil.hour = new Moment(
               internment.busyUntil
             ).format('HH:mm')
           }

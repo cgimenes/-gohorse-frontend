@@ -48,7 +48,7 @@
 <script>
 
 import InternmentsService from './InternmentsService'
-import moment from 'moment'
+import Moment from 'moment'
 
 export default {
   data () {
@@ -105,8 +105,8 @@ export default {
   mounted () {
     InternmentsService.getInternmentDetails(this.$route.params.id, (internment) => {
       this.internment = internment
-      this.internment.busyAt = new moment(internment.busyAt).format('DD/MM/YYYY HH:mm')
-      this.internment.busyUntil = new moment(internment.busyUntil).format('DD/MM/YYYY HH:mm')
+      this.internment.busyAt = new Moment(internment.busyAt).format('DD/MM/YYYY HH:mm')
+      this.internment.busyUntil = new Moment(internment.busyUntil).format('DD/MM/YYYY HH:mm')
     })
   },
   methods: {
