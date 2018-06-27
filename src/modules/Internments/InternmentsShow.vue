@@ -54,51 +54,51 @@ export default {
   data () {
     return {
       fab: false,
-      internment: {        
-        id:null,
-        bed:{
-          id:null,
-          code:null,
-          busy:null
+      internment: {
+        id: null,
+        bed: {
+          id: null,
+          code: null,
+          busy: null
         },
-        animal:{
-          id:null,
-          name:null,
-          owner:{
-            id:null,
-            name:null,
-            phone:null,
-            cpf:null,
-            birthDate:null,
-            address:{
-              postalCode:{
-                code:null,
-                streetType:null,
-                streetName:null,
-                neighbourhood:null,
-                city:null,
-                state:null,
-                country:null
+        animal: {
+          id: null,
+          name: null,
+          owner: {
+            id: null,
+            name: null,
+            phone: null,
+            cpf: null,
+            birthDate: null,
+            address: {
+              postalCode: {
+                code: null,
+                streetType: null,
+                streetName: null,
+                neighbourhood: null,
+                city: null,
+                state: null,
+                country: null
               },
-              number:null,
-              complement:null
+              number: null,
+              complement: null
             }
           },
-          breed:{
-            id:null,
-            name:null
+          breed: {
+            id: null,
+            name: null
           },
-          specie:{
-            id:null,
-            name:null
+          specie: {
+            id: null,
+            name: null
           },
-          sex:null,
-          birthDate:null,
-          castrated:null,
-          weight:null
+          sex: null,
+          birthDate: null,
+          castrated: null,
+          weight: null
         },
-        busyAt:null,
-        busyUntil:null
+        busyAt: null,
+        busyUntil: null
       }
     }
   },

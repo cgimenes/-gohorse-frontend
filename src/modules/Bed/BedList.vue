@@ -48,10 +48,10 @@ export default {
     }
   },
   mounted () {
-    this.loadBads();
+    this.loadBads()
   },
   methods: {
-    loadBads() {
+    loadBads () {
       BedService.getBeds((bed) => {
         this.beds = bed
       })
@@ -86,7 +86,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           BedService.removeBed(bed.id, (res) => {
-            this.loadBads();
+            this.loadBads()
           })
         }
       })

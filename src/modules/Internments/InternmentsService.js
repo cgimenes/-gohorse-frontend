@@ -8,7 +8,7 @@ export default {
   },
   saveInternment (internment, callback) {
     if (!internment.id) {
-      return this.createInternment(internment, callback)      
+      return this.createInternment(internment, callback)
     }
     return this.updateInternment(internment, callback)
   },

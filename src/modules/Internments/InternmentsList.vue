@@ -16,14 +16,14 @@
           </v-btn>
           <v-list
             two-line
-            v-if="internments.length > 0">
+            v-if='internments.length > 0'>
             <v-list-tile
               avatar
-              @click="show(internment)"
-              v-for="internment in internments"
-              :key="internment.id">
+              @click='show(internment)'
+              v-for='internment in internments'
+              :key='internment.id'>
               <v-list-tile-avatar>
-                <list-initial-letter :word="internment.animal.name"></list-initial-letter>
+                <list-initial-letter :word='internment.animal.name'></list-initial-letter>
               </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title>{{ internment.bed.code }}</v-list-tile-title>
@@ -33,13 +33,13 @@
                 <v-btn
                   icon
                   ripple
-                  @click="show(internment)">
+                  @click='show(internment)'>
                   <v-icon color='grey lighten-1'>info</v-icon>
                 </v-btn>
               </v-list-tile-action>
             </v-list-tile>
           </v-list>
-          <p class='grey--text pa-5' v-if="internments.length == 0">Nenhum internamento encontrado</p>
+          <p class='grey--text pa-5' v-if='internments.length == 0'>Nenhum internamento encontrado</p>
         </v-card>
       </v-flex>
     </v-layout>
@@ -47,25 +47,25 @@
 </template>
 
 <script>
-import InternmentsService from "./InternmentsService";
-import ListInitialLetter from "@core/components/ListInitialLetter";
+import InternmentsService from './InternmentsService'
+import ListInitialLetter from '@core/components/ListInitialLetter'
 
 export default {
   components: { ListInitialLetter },
-  data() {
+  data () {
     return {
       internments: []
-    };
+    }
   },
-  mounted() {
+  mounted () {
     InternmentsService.getInternments(allInternaments => {
-      this.internments = allInternaments;
-    });
+      this.internments = allInternaments
+    })
   },
   methods: {
-    show(internment) {
-      this.$router.push(`/internments/${internment.id}`);
+    show (internment) {
+      this.$router.push(`/internments/${internment.id}`)
     }
   }
-};
+}
 </script>
