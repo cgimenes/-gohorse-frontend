@@ -135,7 +135,7 @@
                 >Salvar
                 </v-btn>
               </v-flex>
-
+              {{internment}}
             </v-layout>
           </v-container>
         </v-card>
@@ -203,18 +203,16 @@ export default {
   },
   methods: {
     saveInternment () {
-      let internmentFinal = {
-        animalId: this.internment.animalId,
-        bedId: this.internment.bedId,
-        busyAt: new moment.utc(
-          `${this.internment.busyAt.date} ${this.internment.busyAt.hour}`,
-          'DD/MM/YYYY HH:mm'
-        ),
-        busyUntil: new moment.utc(
-          `${this.internment.busyUntil.date} ${this.internment.busyUntil.hour}`,
-          'DD/MM/YYYY HH:mm'
-        )
-      }
+      let internmentFinal = this.internment
+
+      internmentFinal.busyAt = new moment.utc(
+        `${this.internment.busyAt.date} ${this.internment.busyAt.hour}`,
+        'DD/MM/YYYY HH:mm'
+      )
+      internmentFinal.busyUntil = new moment.utc(
+        `${this.internment.busyUntil.date} ${this.internment.busyUntil.hour}`,
+        'DD/MM/YYYY HH:mm'
+      )
 
       InternmentsService.saveInternment(internmentFinal, res => {
         this.$toasted.success('Internamento criado com sucesso!', {
@@ -227,6 +225,7 @@ export default {
       InternmentsService.getInternmentDetails(
         this.$route.params.id,
         internment => {
+          this.internment.id = internment.id
           this.internment.animalId = internment.animal.id
           this.internment.bedId = internment.bed.id
           this.internment.busyAt.date = new moment(internment.busyAt).format(
