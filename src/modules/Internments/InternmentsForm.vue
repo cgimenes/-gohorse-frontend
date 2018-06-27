@@ -135,6 +135,7 @@
                 >Salvar
                 </v-btn>
               </v-flex>
+              {{internment}}
             </v-layout>
           </v-container>
         </v-card>
@@ -202,13 +203,13 @@ export default {
   },
   methods: {
     saveInternment () {
-      let internmentFinal = this.internment
+      const internmentFinal = { ...this.internment }
 
-      internmentFinal.busyAt = new moment.utc(
+      internmentFinal.busyAt = moment.utc(
         `${this.internment.busyAt.date} ${this.internment.busyAt.hour}`,
         'DD/MM/YYYY HH:mm'
       )
-      internmentFinal.busyUntil = new moment.utc(
+      internmentFinal.busyUntil = moment.utc(
         `${this.internment.busyUntil.date} ${this.internment.busyUntil.hour}`,
         'DD/MM/YYYY HH:mm'
       )
@@ -227,20 +228,20 @@ export default {
           this.internment.id = internment.id
           this.internment.animalId = internment.animal.id
           this.internment.bedId = internment.bed.id
-          this.internment.busyAt.date = new moment(internment.busyAt).format(
-            'DD/MM/YYYY'
-          )
-          this.internment.busyAt.hour = new moment(internment.busyAt).format(
-            'HH:mm'
-          )
+          this.internment.busyAt.date =
+            moment(internment.busyAt)
+            .format('DD/MM/YYYY')
+          this.internment.busyAt.hour =
+            moment(internment.busyAt)
+            .format('HH:mm')
 
           if (internment.busyUntil) {
-            this.internment.busyUntil.date = new moment(
-              internment.busyUntil
-            ).format('DD/MM/YYYY')
-            this.internment.busyUntil.hour = new moment(
-              internment.busyUntil
-            ).format('HH:mm')
+            this.internment.busyUntil.date =
+              moment(internment.busyUntil)
+              .format('DD/MM/YYYY')
+            this.internment.busyUntil.hour =
+              moment(internment.busyUntil)
+              .format('HH:mm')
           }
         }
       )
