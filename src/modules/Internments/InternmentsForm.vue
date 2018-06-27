@@ -135,7 +135,6 @@
                 >Salvar
                 </v-btn>
               </v-flex>
-              {{internment}}
             </v-layout>
           </v-container>
         </v-card>
