@@ -20,7 +20,7 @@ export default [
         component: BedForm,
         meta: {
           unrequiredAuth: true,
-          title: 'Criar um novo Leitos'
+          title: 'Criar um novo Leito'
         }
       },
       {

@@ -7,11 +7,10 @@
       </v-btn>
 
       <v-flex xs12 sm4 lg3 xg2 v-for="bed in beds" :key="bed.id">
-        <v-card :color="getColor(bed)">
+        <v-card>
           <v-card-title primary-title>
             <div>
               <h4 class="headline text-truncation mb-3">{{ bed.code }}</h4>
-              <div>{{ getBusy(bed) }}</div>
             </div>
           </v-card-title>
           <v-card-actions class="py-2">
@@ -48,27 +47,13 @@ export default {
     }
   },
   mounted () {
-    this.loadBads()
+    this.loadBeds()
   },
   methods: {
-    loadBads () {
+    loadBeds () {
       BedService.getBeds((bed) => {
         this.beds = bed
       })
-    },
-    getBusy (bed) {
-      if (bed.busy) {
-        return 'Ocupado'
-      }
-      return 'Livre'
-    },
-    getColor (bed) {
-      if (bed.busy) {
-        return 'red lighten-4'
-        // return '#F44336'
-      }
-      return 'white'
-      // return '#009688'
     },
     edit (bed) {
       this
@@ -86,7 +71,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           BedService.removeBed(bed.id, (res) => {
-            this.loadBads()
+            this.loadBeds()
           })
         }
       })
