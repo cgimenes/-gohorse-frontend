@@ -2,13 +2,13 @@
   <v-container grid-list-lg='grid-list-lg' fluid='fluid'>
     <v-layout row='row' wrap='wrap'>
       <v-flex xs12>
-        <v-card>          
+        <v-card>
           <v-container grid-list-lg='grid-list-lg' fluid='fluid'>
             <v-layout row='row' wrap='wrap'>
               <v-flex col xs12>
                 <h4 class='grey--text'>Dados do Internamento</h4>
               </v-flex>
-              
+
               <v-flex col xs12 sm6='sm6'>
                 <v-text-field
                   :rules='rules.animal'
@@ -21,7 +21,7 @@
                   >
                 </v-text-field>
               </v-flex>
-              
+
               <v-flex col xs12 sm3='sm3'>
                 <v-menu
                   ref='menuBusyAt'
@@ -122,7 +122,7 @@
                   id='hour'
                   prepend-icon='access_time'
                   v-model='internment.busyUntil.hour'
-                  key='name' 
+                  key='name'
                   >
                 </v-text-field>
               </v-flex>
@@ -139,14 +139,14 @@
             </v-layout>
           </v-container>
         </v-card>
-      </v-flex>      
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
 import InternmentsService from './InternmentsService'
-import moment from 'moment'
+import Moment from 'moment'
 
 export default {
   components: {},
