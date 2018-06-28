@@ -40,7 +40,7 @@
           {icon: 'location_city', title: 'Laboratórios', to: '/laboratories'},
           {icon: 'face', title: 'Clientes', to: '/clientes'},
           {icon: 'account_box', title: 'Proprietários', to: '/owners'},
-          {icon: 'contact_phone', title: 'Fornecedores', to: '/suppliers'},
+          {icon: 'local_shipping', title: 'Fornecedores', to: '/suppliers'},
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', title: 'Leitos', to: '/bed'},
           {icon: 'security', title: 'Login', to: '/login'}
