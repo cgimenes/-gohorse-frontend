@@ -33,7 +33,7 @@
                   <b>Telefone: </b> {{ supplier.phone | phone }}
                 </p>
                 <p>
-                  <b>Tipo de distribuição: </b> {{ supplier.distributionType.name }}
+                  <b>Tipo de distribuição: </b> 1 <!-- {{ supplier.distributionType.name }} -->
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
