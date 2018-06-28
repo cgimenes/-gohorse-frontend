@@ -174,7 +174,7 @@ export default {
       rules: {
         empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!',
         hour: value => {
-          const pattern = /([0-9]|0[0-9]|1[0-9]|2[0-9]):[0-5][0-9]/
+          const pattern = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/
           return pattern.test(moment(value, 'HH:mm').format('HH:mm')) || 'Horário inválido!'
         },
         busyUntil: value => {
