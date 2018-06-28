@@ -11,7 +11,7 @@
 
               <v-flex col xs12 sm6='sm6'>
                 <v-text-field
-                  :rules='rules.animal'
+                  :rules='[rules.empty]'
                   required
                   name='name'
                   label='Paciente'
@@ -37,7 +37,7 @@
                 >
                   <v-text-field
                     required
-                    :rules='rules.busyAtDate'
+                    :rules='[rules.empty]'
                     :mask='dateMask'
                     slot='activator'
                     v-model='internment.busyAt.date'
@@ -58,7 +58,7 @@
               <v-flex col xs12 sm3='sm3'>
                 <v-text-field
                   required
-                  :rules='rules.busyAtHour'
+                  :rules='[rules.empty, rules.hour]'
                   :mask='hourMask'
                   name='name'
                   label='Horário de entrada'
@@ -72,7 +72,7 @@
 
               <v-flex col xs12 sm6='sm6'>
                 <v-text-field
-                  :rules='rules.bed'
+                  :rules='[rules.empty]'
                   required
                   name='name'
                   label='Leito'
@@ -117,6 +117,7 @@
               <v-flex col xs12 sm3='sm3'>
                 <v-text-field
                   :mask='hourMask'
+                  :rules='[rules.empty, rules.hour, rules.busyUntil]'
                   name='name'
                   label='Horário de saída'
                   id='hour'
@@ -145,7 +146,7 @@
 
 <script>
 import InternmentsService from './InternmentsService'
-import Moment from 'moment'
+import moment from 'moment'
 
 export default {
   components: {},
@@ -171,14 +172,24 @@ export default {
       dateMask: 'date',
 
       rules: {
-        animal: [val => (val || '').length > 0 || 'Preenchimento obrigatório!'],
-        bed: [val => (val || '').length > 0 || 'Preenchimento obrigatório!'],
-        busyAtDate: [
-          val => (val || '').length > 0 || 'Preenchimento obrigatório!'
-        ],
-        busyAtHour: [
-          val => (val || '').length > 0 || 'Preenchimento obrigatório!'
-        ]
+        empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!',
+        hour: value => {
+          const pattern = /([0-9]|0[0-9]|1[0-9]|2[0-9]):[0-5][0-9]/
+          return pattern.test(moment(value, 'HH:mm').format('HH:mm')) || 'Horário inválido!'
+        },
+        busyUntil: value => {
+          const busyAt =
+            moment.utc(
+              `${this.internment.busyAt.date} ${this.internment.busyAt.hour}`,
+              'DD/MM/YYYY HH:mm'
+            )
+          const busyUntil =
+            moment.utc(
+              `${this.internment.busyUntil.date} ${this.internment.busyUntil.hour}`,
+              'DD/MM/YYYY HH:mm'
+            )
+          return busyUntil > busyAt || 'A data de entrada não pode ser menor que a de saída!'
+        }
       }
     }
   },
