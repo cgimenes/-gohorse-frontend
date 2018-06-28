@@ -117,7 +117,7 @@
               <v-flex col xs12 sm3='sm3'>
                 <v-text-field
                   :mask='hourMask'
-                  :rules='[rules.empty, rules.hour, rules.busyUntil]'
+                  :rules='[rules.empty, rules.hour]'
                   name='name'
                   label='Horário de saída'
                   id='hour'
@@ -170,25 +170,11 @@ export default {
       dateBusyUntil: null,
       hourMask: 'time',
       dateMask: 'date',
-
       rules: {
         empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!',
         hour: value => {
           const pattern = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/
           return pattern.test(moment(value, 'HH:mm').format('HH:mm')) || 'Horário inválido!'
-        },
-        busyUntil: value => {
-          const busyAt =
-            moment.utc(
-              `${this.internment.busyAt.date} ${this.internment.busyAt.hour}`,
-              'DD/MM/YYYY HH:mm'
-            )
-          const busyUntil =
-            moment.utc(
-              `${this.internment.busyUntil.date} ${this.internment.busyUntil.hour}`,
-              'DD/MM/YYYY HH:mm'
-            )
-          return busyUntil > busyAt || 'A data de entrada não pode ser menor que a de saída!'
         }
       }
     }
@@ -225,9 +211,15 @@ export default {
       )
 
       InternmentsService.saveInternment(internmentFinal, res => {
+        if (internmentFinal.busyUntil < internmentFinal.busyAt) {
+          return this.$toasted.error('A saída do animal não pode ser anterior à entrada!', {
+            icon: 'warning'
+          })
+        }
         this.$toasted.success('Internamento criado com sucesso!', {
           icon: 'check'
         })
+
         this.$router.push('/internments/')
       })
     },
