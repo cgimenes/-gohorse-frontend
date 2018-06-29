@@ -12,7 +12,7 @@
                 <v-text-field name="name" label="Nome" id="name" v-model="supplier.name" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm3="sm3">
-                <document-input label="CPF/CNPJ" :model.sync="supplier.document"></document-input>
+                <document-input label="CPF/CNPJ" :model.sync="supplier.document" :key="supplier.id"></document-input>
               </v-flex>
               <v-flex col xs12 sm3="sm3">
                 <phone-input label="Telefone" :model.sync="supplier.phone" :key="supplier.id"></phone-input>
