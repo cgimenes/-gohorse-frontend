@@ -7,7 +7,7 @@
             <v-icon> add </v-icon>
           </v-btn>
           <v-list two-line v-if="suppliers.length > 0">
-            <v-list-tile avatar @click="" v-for="supplier in suppliers" :key="supplier.id">
+            <v-list-tile avatar @click="" v-for="supplier in suppliers" :key="supplier.id" @click="show(supplier)">
               <v-list-tile-avatar>
                 <list-initial-letter :word="supplier.name"></list-initial-letter>
               </v-list-tile-avatar>
@@ -16,7 +16,7 @@
                 <v-list-tile-sub-title> {{supplier.phone | phone}} </v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
-                <v-btn icon ripple @click="show(supplier)">
+                <v-btn icon ripple>
                   <v-icon color='grey lighten-1'> info </v-icon>
                 </v-btn>
               </v-list-tile-action>

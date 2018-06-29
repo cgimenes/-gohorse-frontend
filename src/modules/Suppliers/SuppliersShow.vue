@@ -27,7 +27,7 @@
                   <b>Nome: </b> {{ supplier.name }}
                 </p>
                 <p>
-                  <b>CPF: </b> {{ supplier.document | cpf }}
+                  <b>CPF/CNPJ: </b> {{ supplier.document | document }}
                 </p>
                 <p>
                   <b>Telefone: </b> {{ supplier.phone | phone }}
