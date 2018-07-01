@@ -8,15 +8,79 @@
               <v-flex col xs12>
                 <h4 class="grey--text">Dados do Veterinário</h4>
               </v-flex>
+
               <v-flex col xs12 >
-                <v-text-field name="name" label="Nome" id="name" v-model="veterinary.name" key="name"></v-text-field>
+                <v-text-field
+                  required
+                  :rules= '[rules.empty]'
+                  name="name"
+                  label="Nome"
+                  id="name"
+                  v-model="veterinary.name"
+                  key="name"
+                  >
+                </v-text-field>
               </v-flex>
+
               <v-flex col xs12 sm6="sm6">
-                <v-text-field name="crmv" label="CRMV" id="crmv" v-model="veterinary.crmv" key="crmv"></v-text-field>
+                <v-text-field
+                  required
+                  :rules='[rules.empty]'
+                  name="crmv"
+                  label="CRMV"
+                  id="crmv"
+                  v-model="veterinary.crmv"
+                  key="crmv"
+                  >
+                </v-text-field>
               </v-flex>
-              <v-flex col xs12 sm6="sm6">
-                <v-text-field type="date" name="birthDate" label="Data de Nascimento" id="birthDate" v-model="veterinary.birthDate" key="email"></v-text-field>
+
+              <v-flex col xs12 sm6='sm6'>
+                <v-menu
+                ref='menuBusyUntil'
+                :close-on-content-click='false'
+                v-model='menuDateBirth'
+                :nudge-right='40'
+                lazy
+                transition='scale-transition'
+                offset-y
+                full-width
+                max-width='290px'
+                min-width='290px'
+              >
+                  <v-text-field
+                    required
+                    :rules='[rules.empty]'
+                    :mask='dateMask'
+                    slot='activator'
+                    v-model='veterinary.birthDate'
+                    label='Data de nascimento'
+                    prepend-icon='event'
+                    @blur='dateBirth = parseDate(veterinary.birthDate)'
+                  >
+                  </v-text-field>
+                  <v-date-picker
+                    v-model='dateBirth'
+                    no-title
+                    locale='pt-br'
+                    @input='menuDateBirth=false'
+                    >
+                  </v-date-picker>
+                </v-menu>
+                {{veterinary}}
               </v-flex>
+              <!--v-flex col xs12 sm6="sm6">
+                <v-text-field
+                  required
+                  :rules='[rules.empty]'
+                  name="birthDate"
+                  label="Data de Nascimento"
+                  id="birthDate"
+                  v-model="veterinary.birthDate"
+                  key="email"
+                  >
+                </v-text-field-->
+              <!--/v-flex-->
               <v-flex col xs12>
                 <h4 class="grey--text">Dados de contato</h4>
               </v-flex>
@@ -35,7 +99,12 @@
               <v-flex col xs12 sm6="sm6">
               </v-flex>
               <v-flex col xs12>
-                <v-btn color="primary" @click="saveVeterinary()">Salvar</v-btn>
+                <v-btn
+                  color="primary"
+                  :disabled='!formIsValid'
+                  @click="saveVeterinary()"
+                  >Salvar
+                </v-btn>
               </v-flex>
             </v-layout>
           </v-container>
@@ -50,6 +119,7 @@
 import VeterinariesService from './VeterinariesService'
 import PhoneInput from '../Form/Field/PhoneInput'
 import AddressComponent from '../Form/Address/AddressComponent'
+import moment from 'moment'
 
 export default {
   components: {PhoneInput, AddressComponent},
@@ -74,11 +144,39 @@ export default {
             country: 'Brasil'
           }
         }
+      },
+      menuDateBirth: false,
+      dateMask: 'date',
+      dateBirth: null,
+
+      rules: {
+        empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
       }
+    }
+  },
+  watch: {
+    dateBirth (val) {
+      this.veterinary.birthDate = this.formatDate(this.dateBirth)
+    }
+  },
+  computed: {
+    formIsValid () {
+      return (
+        this.veterinary.name &&
+        this.veterinary.crmv &&
+        this.veterinary.birthDate
+      )
     }
   },
   methods: {
     saveVeterinary () {
+      const veterinaryFinal = { ...this.veterinary }
+
+      veterinaryFinal.birthDate = moment.utc(
+        `${this.veterinary.birthDate}`,
+        'DD/MM/YYYY'
+      )
+
       VeterinariesService.saveVeterinary(this.veterinary, (res) => {
         this
           .$router
@@ -89,6 +187,18 @@ export default {
       VeterinariesService.getVeterinaryDetails(this.$route.params.id, (veterinary) => {
         this.veterinary = veterinary
       })
+    },
+    formatDate (date) {
+      if (!date) return null
+
+      const [year, month, day] = date.split('-')
+      return `${day}/${month}/${year}`
+    },
+    parseDate (date) {
+      if (!date) return null
+
+      const [month, day, year] = date.split('/')
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     }
   },
   created () {
@@ -97,4 +207,5 @@ export default {
     }
   }
 }
+
 </script>
