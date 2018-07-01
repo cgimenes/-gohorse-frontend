@@ -1,5 +1,5 @@
 <template lang="pug">
-    <b class="list_letter" :style="{ 'background': color } ">{{ letter }}</b>
+    <b class="list_letter" :style="{ 'background': avatarColor } ">{{ letter }}</b>
 </template>
 
 <script>
@@ -7,6 +7,12 @@ import randomColor from 'randomcolor'
 
 export default {
   props: {
+    color: {
+      type: String,
+      default () {
+        return null
+      }
+    },
     word: {
       type: String,
       required: true
@@ -23,7 +29,10 @@ export default {
     letter () {
       return this.word.substr(0, this.letters)
     },
-    color () {
+    avatarColor () {
+      if (this.color) {
+        return this.color
+      }
       return randomColor({
         luminosity: 'dark'
       })
