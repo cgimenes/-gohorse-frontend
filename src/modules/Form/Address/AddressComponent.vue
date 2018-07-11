@@ -1,4 +1,4 @@
-<template lang="pug">
+<template>
   <v-layout row="row" wrap="wrap" id="address-form">
     <v-flex col xs12 sm6>
       <v-text-field name="zipcode" mask="#####-###" v-model="address.postalCode.code" label="CEP" id="address"></v-text-field>
