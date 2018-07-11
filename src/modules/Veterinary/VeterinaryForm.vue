@@ -170,12 +170,7 @@ export default {
   },
   methods: {
     saveVeterinary () {
-      const veterinaryFinal = { ...this.veterinary }
 
-      veterinaryFinal.birthDate = moment.utc(
-        `${this.veterinary.birthDate}`,
-        'DD/MM/YYYY'
-      )
 
       VeterinariesService.saveVeterinary(this.veterinary, (res) => {
         this
