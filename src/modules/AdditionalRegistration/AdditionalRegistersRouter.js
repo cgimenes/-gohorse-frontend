@@ -1,5 +1,5 @@
 import Layout from '@core/components/Layout'
-import EnumList from './EnumList'
+import AdditionalRegistersList from './AdditionalRegistersList'
 
 export default [
   {
@@ -8,7 +8,7 @@ export default [
     children: [
       {
         path: '/enums',
-        component: EnumsList,
+        component: AdditionalRegistersList,
         meta: {
           unrequiredAuth: true,
           title: 'Cadastros complementares'
