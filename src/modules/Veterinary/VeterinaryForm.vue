@@ -164,7 +164,10 @@ export default {
       return (
         this.veterinary.name &&
         this.veterinary.crmv &&
-        this.veterinary.birthDate
+        this.veterinary.birthDate &&
+        this.veterinary.address.postalCode.code &&
+        this.veterinary.address.number &&
+        this.veterinary.address.postalCodes.neighbourhood
       )
     }
   },

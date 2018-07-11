@@ -1,7 +1,7 @@
 <template>
   <v-layout row="row" wrap="wrap" id="address-form">
     <v-flex col xs12 sm6>
-      <v-text-field name="zipcode" mask="#####-###" v-model="address.postalCode.code" label="CEP" id="address"></v-text-field>
+      <v-text-field required :rules='[rules.empty]' name="zipcode" mask="#####-###" v-model="address.postalCode.code" label="CEP" id="address"></v-text-field>
     </v-flex>
     <v-flex col xs12 sm6>
     <v-select :items="addressTypes" v-model="address.postalCode.streetType" label="Tipo" single-line></v-select>
@@ -10,13 +10,13 @@
       <v-text-field name="address" :disabled="(matched && address.postalCode.streetName)" v-model="address.postalCode.streetName" label="Endereço" id="address"></v-text-field>
     </v-flex>
     <v-flex col xs12 sm2>
-      <v-text-field name="number" v-model="address.number" label="Número" id="number"></v-text-field>
+      <v-text-field required :rules='[rules.empty]' name="number" v-model="address.number" label="Número" id="number"></v-text-field>
     </v-flex>
     <v-flex col xs12 sm4>
       <v-text-field name="complement" v-model="address.complement" label="Complemento" id="complement"></v-text-field>
     </v-flex>
     <v-flex col xs12 sm6>
-      <v-text-field name="neighbourhood" :disabled="(matched && address.postalCode.neighbourhood)" v-model="address.postalCode.neighbourhood" label="Bairro" id="neighbourhood"></v-text-field>
+      <v-text-field required :rules='[rules.empty]' name="neighbourhood" :disabled="(matched && address.postalCode.neighbourhood)" v-model="address.postalCode.neighbourhood" label="Bairro" id="neighbourhood"></v-text-field>
     </v-flex>
     <v-flex col xs8 sm4>
       <v-text-field name="city" :disabled="matched" v-model="address.postalCode.city" label="Cidade" id="city"></v-text-field>
@@ -53,7 +53,10 @@ export default {
   },
   data: function () {
     return {
-      matched: false
+      matched: false,
+      rules: {
+        empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
+      }
     }
   },
   computed: {
