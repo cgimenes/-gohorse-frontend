@@ -66,27 +66,15 @@
                     >
                   </v-date-picker>
                 </v-menu>
-                {{veterinary}}
               </v-flex>
-              <!--v-flex col xs12 sm6="sm6">
-                <v-text-field
-                  required
-                  :rules='[rules.empty]'
-                  name="birthDate"
-                  label="Data de Nascimento"
-                  id="birthDate"
-                  v-model="veterinary.birthDate"
-                  key="email"
-                  >
-                </v-text-field-->
-              <!--/v-flex-->
               <v-flex col xs12>
                 <h4 class="grey--text">Dados de contato</h4>
               </v-flex>
               <v-flex col xs12 sm8>
                 <v-text-field
                   required
-                  :rules='[rules.empty]'
+                  :rules='[rules.empty, rules.validMail]'
+                  :mask='mailMask'
                   name="email"
                   label="E-mail"
                   id="email"
@@ -161,9 +149,14 @@ export default {
       menuDateBirth: false,
       dateMask: 'date',
       dateBirth: null,
+      mailMask: '',
 
       rules: {
-        empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
+        empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!',
+        validMail: value => {
+          const mail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/gi
+          return mail.test(value) || 'E-mail inválido'
+        }
       }
     }
   },
@@ -209,6 +202,7 @@ export default {
     getDataForEdit () {
       VeterinariesService.getVeterinaryDetails(this.$route.params.id, (veterinary) => {
         this.veterinary = veterinary
+        this.veterinary.birthDate = moment(veterinary.birthDate).format('DD/MM/YYYY')
       })
     },
     formatDate (date) {

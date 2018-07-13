@@ -33,7 +33,7 @@
                   <b>Telefone: </b> {{ veterinary.phone | phone }}
                 </p>
                 <p>
-                  <b>Data de nascimento: </b> {{ veterinary.birthDate | date}}
+                  <b>Data de nascimento: </b> {{ veterinary.birthDate}}
                 </p>
                 <p>
                   <b>E-mail: </b> {{ veterinary.email}}
@@ -59,6 +59,7 @@
 <script>
 
 import VeterinariesService from './VeterinariesService'
+import Moment from 'moment'
 
 export default {
   data () {
@@ -84,6 +85,7 @@ export default {
   mounted () {
     VeterinariesService.getVeterinaryDetails(this.$route.params.id, (veterinary) => {
       this.veterinary = veterinary
+      this.veterinary.birthDate = new Moment(veterinary.birthDate).format('DD/MM/YYYY')
     })
   },
   methods: {
