@@ -42,7 +42,7 @@
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> {{veterinary.address.postalCode.streetName}}, {{veterinary.address.number}} - {{veterinary.address.complement}}, {{veterinary.address.postalCode.city}} {{veterinary.address.postalCode.state}}
+                  <b>Endereço: </b> {{veterinary.address.postalCode.streetName}}, {{veterinary.address.number}} {{veterinary.address.complement}}, {{veterinary.address.postalCode.city}} {{veterinary.address.postalCode.state}}
                 </p>
                 <p>
                   <b>CEP: </b> {{veterinary.address.postalCode.code | cep }}

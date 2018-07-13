@@ -4,10 +4,10 @@
       <v-text-field required :rules='[rules.empty]' name="zipcode" mask="#####-###" v-model="address.postalCode.code" label="CEP" id="address"></v-text-field>
     </v-flex>
     <v-flex col xs12 sm6>
-    <v-select :items="addressTypes" v-model="address.postalCode.streetType" label="Tipo" single-line></v-select>
+      <v-select :items="addressTypes" v-model="address.postalCode.streetType" label="Tipo" single-line></v-select>
     </v-flex>
     <v-flex col xs12 sm6>
-      <v-text-field name="address" :disabled="(matched && address.postalCode.streetName)" v-model="address.postalCode.streetName" label="Endereço" id="address"></v-text-field>
+      <v-text-field required :rules='[rules.empty]' name="address" :disabled="(matched && address.postalCode.streetName)" v-model="address.postalCode.streetName" label="Endereço" id="address"></v-text-field>
     </v-flex>
     <v-flex col xs12 sm2>
       <v-text-field required :rules='[rules.empty]' name="number" v-model="address.number" label="Número" id="number"></v-text-field>
@@ -19,10 +19,10 @@
       <v-text-field required :rules='[rules.empty]' name="neighbourhood" :disabled="(matched && address.postalCode.neighbourhood)" v-model="address.postalCode.neighbourhood" label="Bairro" id="neighbourhood"></v-text-field>
     </v-flex>
     <v-flex col xs8 sm4>
-      <v-text-field name="city" :disabled="matched" v-model="address.postalCode.city" label="Cidade" id="city"></v-text-field>
+      <v-text-field required :rules='[rules.empty]' name="city" :disabled="matched" v-model="address.postalCode.city" label="Cidade" id="city"></v-text-field>
     </v-flex>
     <v-flex col xs4 sm2>
-      <v-text-field name="state" :disabled="matched" v-model="address.postalCode.state" label="Estado" id="state"></v-text-field>
+      <v-text-field required :rules='[rules.empty]' name="state" :disabled="matched" v-model="address.postalCode.state" label="Estado" id="state"></v-text-field>
     </v-flex>
   </v-layout>
 </template>

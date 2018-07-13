@@ -56,7 +56,6 @@
                     v-model='veterinary.birthDate'
                     label='Data de nascimento'
                     prepend-icon='event'
-                    @blur='dateBirth = parseDate(veterinary.birthDate)'
                   >
                   </v-text-field>
                   <v-date-picker
@@ -85,10 +84,24 @@
                 <h4 class="grey--text">Dados de contato</h4>
               </v-flex>
               <v-flex col xs12 sm8>
-                <v-text-field name="email" label="E-mail" id="email" v-model="veterinary.email" key="email"></v-text-field>
+                <v-text-field
+                  required
+                  :rules='[rules.empty]'
+                  name="email"
+                  label="E-mail"
+                  id="email"
+                  v-model="veterinary.email"
+                  key="email"
+                  >
+                 </v-text-field>
               </v-flex>
               <v-flex col xs12 sm4>
-                <phone-input label="Telefone" :model.sync="veterinary.phone" :key="veterinary.id"></phone-input>
+                <phone-input
+                  label="Telefone"
+                  :model.sync="veterinary.phone"
+                  :key="veterinary.id"
+                  >
+                </phone-input>
               </v-flex>
               <v-flex col xs12>
                 <h4 class="grey--text">Endereço</h4>
@@ -165,17 +178,29 @@ export default {
         this.veterinary.name &&
         this.veterinary.crmv &&
         this.veterinary.birthDate &&
+        this.veterinary.email &&
+        this.veterinary.phone &&
         this.veterinary.address.postalCode.code &&
         this.veterinary.address.number &&
-        this.veterinary.address.postalCodes.neighbourhood
+        this.veterinary.address.postalCode.neighbourhood &&
+        this.veterinary.address.postalCode.streetName &&
+        this.veterinary.address.postalCode.city &&
+        this.veterinary.address.postalCode.state
       )
     }
   },
   methods: {
     saveVeterinary () {
 
+      const veterinaryFinal = { ...this.veterinary }
 
-      VeterinariesService.saveVeterinary(this.veterinary, (res) => {
+      veterinaryFinal.birthDate = moment.utc(
+        this.veterinary.birthDate, 'DD/MM/YYYY'
+
+
+      ).format('YYYY-MM-DD')
+
+      VeterinariesService.saveVeterinary(veterinaryFinal, (res) => {
         this
           .$router
           .push('/veterinaries/')
