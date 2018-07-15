@@ -33,13 +33,13 @@
                   <b>Telefone: </b> {{ owner.phone | phone }}
                 </p>
                 <p>
-                  <b>Data de Nascimento: </b> {{ owner.birthDate | date}}
+                  <b>Data de Nascimento: </b> {{ owner.birthDate}}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> {{owner.address.postalCode.streetName}}, {{owner.address.number}} - {{owner.address.complement}}, {{owner.address.postalCode.city}} {{owner.address.postalCode.state}}
+                  <b>Endereço: </b> {{owner.address.postalCode.streetName}}, {{owner.address.number}}  {{owner.address.complement}}, {{owner.address.postalCode.city}} {{owner.address.postalCode.state}}
                 </p>
                 <p>
                   <b>CEP: </b> {{owner.address.postalCode.code | cep }}
@@ -54,7 +54,9 @@
 </template>
 
 <script>
+
   import OwnersService from './OwnersService'
+  import Moment from 'moment'
 
   export default {
     data () {
@@ -80,6 +82,7 @@
     mounted () {
       OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
         this.owner = owner
+        this.owner.birthDate = new Moment(owner.birthDate).format('DD/MM/YYYY')
       })
     },
     methods: {

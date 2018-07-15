@@ -4,13 +4,13 @@
 
 <script>
   export default {
-      data() {
-        return{
-          rules: {
-            empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
-          }
+    data() {
+      return{
+        rules: {
+          empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
         }
-      },
+      }
+    },
     props: {
       label: {
         type: String,
