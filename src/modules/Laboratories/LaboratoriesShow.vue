@@ -33,7 +33,7 @@
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> {{laboratory.address.postalCode.streetName}}, {{laboratory.address.number}} - {{laboratory.address.complement}}, {{laboratory.address.postalCode.city}} {{laboratory.address.postalCode.state}}
+                  <b>Endereço: </b> {{laboratory.address.postalCode.streetName}}, {{laboratory.address.number}}  {{laboratory.address.complement}}, {{laboratory.address.postalCode.city}} {{laboratory.address.postalCode.state}}
                 </p>
                 <p>
                   <b>CEP: </b> {{laboratory.address.postalCode.code | cep}}

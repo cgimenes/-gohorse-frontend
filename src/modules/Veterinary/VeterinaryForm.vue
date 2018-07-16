@@ -194,6 +194,7 @@ export default {
       ).format('YYYY-MM-DD')
 
       VeterinariesService.saveVeterinary(veterinaryFinal, (res) => {
+        this.$toasted.success('Veterinário salvo com sucesso!', {icon: 'check'})
         this
           .$router
           .push('/veterinaries/')

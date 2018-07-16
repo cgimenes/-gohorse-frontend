@@ -170,6 +170,7 @@
 
         ).format('YYYY-MM-DD')
         OwnersService.saveOwner(ownerFinal, (res) => {
+          this.$toasted.success('Proprietário salvo com sucesso!', {icon: 'check'})
           this
             .$router
             .push('/owners/')
