@@ -105,7 +105,6 @@
   import CpfInput from '../Form/Field/CpfInput'
   import moment from 'moment'
 
-
   export default {
     components: {
       AddressComponent,
@@ -161,12 +160,10 @@
     },
     methods: {
       saveOwner () {
-
         const ownerFinal = { ...this.owner }
 
         ownerFinal.birthDate = moment.utc(
           this.owner.birthDate, 'DD/MM/YYYY'
-
 
         ).format('YYYY-MM-DD')
         OwnersService.saveOwner(ownerFinal, (res) => {

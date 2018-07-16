@@ -86,7 +86,7 @@ export default {
     }
   },
   computed: {
-    formIsValid(){
+    formIsValid () {
       return (
         this.laboratory.companyName &&
         this.laboratory.phone &&

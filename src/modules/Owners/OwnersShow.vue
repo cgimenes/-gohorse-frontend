@@ -54,7 +54,6 @@
 </template>
 
 <script>
-
   import OwnersService from './OwnersService'
   import Moment from 'moment'
 

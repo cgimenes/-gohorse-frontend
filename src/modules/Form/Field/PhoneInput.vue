@@ -4,8 +4,8 @@
 
 <script>
   export default {
-    data() {
-      return{
+    data () {
+      return {
         rules: {
           empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
         }
