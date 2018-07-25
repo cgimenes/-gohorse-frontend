@@ -19,7 +19,7 @@ function CEPFilter (CEP) {
 function DocumentFilter (document) {
   if (document) {
     if (document.length > 13) {
-      return document.slice(0, 2) + '.' + document.slice(2, 5) + '.' + document.slice(5, 8) + '/' + document.slice(8,11) + '-' + document.slice(11, 13)
+      return document.slice(0, 2) + '.' + document.slice(2, 5) + '.' + document.slice(5, 8) + '/' + document.slice(8,12) + '-' + document.slice(12, 14)
     }else{
       return document.slice(0, 3) + '.' + document.slice(3, 6) + '.' + document.slice(6, 9) + '-' + document.slice(9)
     }
