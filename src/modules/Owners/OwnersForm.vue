@@ -21,11 +21,7 @@
                 </v-text-field>
               </v-flex>
               <v-flex col xs12 sm3="sm3">
-                <cpf-input
-                  label="CPF do Proprietário"
-                  :model.sync="owner.cpf"
-                  >
-                </cpf-input>
+                <document-input label="CPF do Proprietário" :model.sync="owner.document"></document-input>
               </v-flex>
               <v-flex col xs12 sm3="sm3">
                 <v-menu
@@ -90,7 +86,6 @@
                 </v-btn>
               </v-flex>
             </v-layout>
-
           </v-container>
         </v-card>
       </v-flex>
@@ -102,14 +97,14 @@
   import OwnersService from './OwnersService'
   import AddressComponent from '../Form/Address/AddressComponent'
   import PhoneInput from '../Form/Field/PhoneInput'
-  import CpfInput from '../Form/Field/CpfInput'
   import moment from 'moment'
+  import DocumentInput from '../Form/Field/DocumentInput'
 
   export default {
     components: {
       AddressComponent,
       PhoneInput,
-      CpfInput
+      DocumentInput
     },
     data () {
       return {
@@ -147,7 +142,7 @@
         return (
           this.owner.name &&
           this.owner.birthDate &&
-          this.owner.cpf &&
+          this.owner.document &&
           this.owner.phone &&
           this.owner.address.postalCode.code &&
           this.owner.address.number &&

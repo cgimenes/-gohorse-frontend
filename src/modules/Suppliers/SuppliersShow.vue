@@ -19,30 +19,30 @@
           <v-container grid-list-lg fluid>
             <v-layout row wrap>
               <v-flex col xs12>
-                <h1>{{ owner.name }}</h1>
+                <h1>{{ supplier.name }}</h1>
               </v-flex>
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Dados do Proprietário</h4>
                 <p>
-                  <b>Nome: </b> {{ owner.name }}
+                  <b>Nome: </b> {{ supplier.name }}
                 </p>
                 <p>
-                  <b>CPF: </b> {{ owner.document | document }}
+                  <b>CPF/CNPJ: </b> {{ supplier.document | document }}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ owner.phone | phone }}
+                  <b>Telefone: </b> {{ supplier.phone | phone }}
                 </p>
                 <p>
-                  <b>Data de Nascimento: </b> {{ owner.birthDate}}
+                  <b>Tipo de distribuição: </b> 1 <!-- {{ supplier.distributionType.name }} -->
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> {{owner.address.postalCode.streetName}}, {{owner.address.number}}  {{owner.address.complement}}, {{owner.address.postalCode.city}} {{owner.address.postalCode.state}}
+                  <b>Endereço: </b> {{supplier.address.postalCode.streetName}}, {{supplier.address.number}} - {{supplier.address.complement}}, {{supplier.address.postalCode.city}} {{supplier.address.postalCode.state}}
                 </p>
                 <p>
-                  <b>CEP: </b> {{owner.address.postalCode.code | cep }}
+                  <b>CEP: </b> {{supplier.address.postalCode.code | cep }}
                 </p>
               </v-flex>
             </v-layout>
@@ -54,14 +54,14 @@
 </template>
 
 <script>
-  import OwnersService from './OwnersService'
-  import Moment from 'moment'
+  import SuppliersService from './SuppliersService'
 
   export default {
     data () {
       return {
         fab: false,
-        owner: {
+        supplier: {
+          distributionType: {},
           address: {
             number: null,
             complement: null,
@@ -79,20 +79,19 @@
       }
     },
     mounted () {
-      OwnersService.getOwnerDetails(this.$route.params.id, (owner) => {
-        this.owner = owner
-        this.owner.birthDate = new Moment(owner.birthDate).format('DD/MM/YYYY')
+      SuppliersService.getSupplierDetails(this.$route.params.id, (supplier) => {
+        this.supplier = supplier
       })
     },
     methods: {
       edit () {
         this
           .$router
-          .push('/owners/' + this.owner.id + '/edit')
+          .push('/suppliers/' + this.supplier.id + '/edit')
       },
       destroy () {
         this.$swal({
-          title: 'Você deseja deletar este proprietário?',
+          title: 'Você deseja deletar este fornecedor?',
           text: 'Esta operação não pode ser desfeita',
           type: 'warning',
           showCancelButton: true,
@@ -100,10 +99,10 @@
           cancelButtonText: 'Não'
         }).then((result) => {
           if (result.value) {
-            OwnersService.removeOwner(this.owner.id, (res) => {
+            SuppliersService.removeSupplier(this.supplier.id, (res) => {
               this
                 .$router
-                .push('/owners/')
+                .push('/suppliers/')
             })
           }
         })

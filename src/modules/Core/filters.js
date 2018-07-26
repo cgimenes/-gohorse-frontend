@@ -16,9 +16,13 @@ function CEPFilter (CEP) {
   return ''
 }
 
-function CPFFilter (CPF) {
-  if (CPF) {
-    return CPF.slice(0, 3) + '.' + CPF.slice(3, 6) + '.' + CPF.slice(6, 9) + '-' + CPF.slice(9)
+function DocumentFilter (document) {
+  if (document) {
+    if (document.length > 13) {
+      return document.slice(0, 2) + '.' + document.slice(2, 5) + '.' + document.slice(5, 8) + '/' + document.slice(8,12) + '-' + document.slice(12, 14)
+    }else{
+      return document.slice(0, 3) + '.' + document.slice(3, 6) + '.' + document.slice(6, 9) + '-' + document.slice(9)
+    }
   }
   return ''
 }
@@ -30,4 +34,4 @@ function DateFilter (date) {
   return ''
 }
 
-export {PhoneFilter, CEPFilter, CPFFilter, DateFilter}
+export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter}
