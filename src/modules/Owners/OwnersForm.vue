@@ -12,7 +12,7 @@
                 <v-text-field name="name" label="Nome do Proprietário" id="name" v-model="owner.name" key="name"></v-text-field>
               </v-flex>
               <v-flex col xs12 sm3="sm3">
-                <cpf-input label="CPF do Proprietário" :model.sync="owner.cpf"></cpf-input>
+                <document-input label="CPF do Proprietário" :model.sync="owner.document"></document-input>
               </v-flex>
               <v-flex col xs12 sm3="sm3">
                 <v-text-field name="name" label="Data de nascimento" id="birthdate" v-model="owner.birthDate" :key="owner.id"></v-text-field>
@@ -43,13 +43,13 @@
   import OwnersService from './OwnersService'
   import AddressComponent from '../Form/Address/AddressComponent'
   import PhoneInput from '../Form/Field/PhoneInput'
-  import CpfInput from '../Form/Field/CpfInput'
+  import DocumentInput from '../Form/Field/DocumentInput'
 
   export default {
     components: {
       AddressComponent,
       PhoneInput,
-      CpfInput
+      DocumentInput
     },
     data () {
       return {
