@@ -3,7 +3,7 @@
     <v-card>
       <v-container fluid>
         <v-layout row wrap>
-          <v-flex xs12 sm6 lg4 xg3 v-for="register in enums" :key="register.type">
+          <v-flex xs12 sm6 lg4 xg3 v-for="register in enumerators" :key="register.type">
             <v-card style="height: 500px; margin: 20px 10px">
               <v-btn absolute dark fab top right small color='red' @click="create(register)"  style="z-index: 1;">
                 <v-icon >add</v-icon>
@@ -69,19 +69,20 @@
             </v-card>
           </v-flex>
         </v-layout>
+        <p class="grey--text pt-3" v-if="enumerators.length == 0"> Nenhum cadastro adicional encontrado </p>
       </v-container>
     </v-card>
   </v-container>
 </template>
 
 <script>
-  import AdditionalRegistersService from './AdditionalRegistersService'
+  import EnumeratorsService from './EnumeratorsService'
   import axios from 'axios'
 
   export default {
     data () {
       return {
-        enums: [],
+        enumerators: [],
         registerForm: {},
         item: {},
         dialog: false,
@@ -93,8 +94,8 @@
       }
     },
     mounted () {
-      AdditionalRegistersService.getAdditionalRegistration((enums) => {
-        this.enums = enums
+      EnumeratorsService.getAdditionalRegistration((enumerators) => {
+        this.enumerators = enumerators
       })
     },
     methods: {
@@ -113,15 +114,15 @@
       },
       save (register, newName, item){
         if (newName) {
-          var enumIndex = this.enums.indexOf(register);
+          var enumIndex = this.enumerators.indexOf(register);
           var createdOrEdited
-          AdditionalRegistersService.saveAdditionalRegister(item, () => {
+          EnumeratorsService.saveAdditionalRegister(item, () => {
             if (item){
-              var itemIndex = this.enums[enumIndex].registers.indexOf(item)
+              var itemIndex = this.enumerators[enumIndex].registers.indexOf(item)
               createdOrEdited = ' editado'
-              this.enums[enumIndex].registers[itemIndex].name = newName
+              this.enumerators[enumIndex].registers[itemIndex].name = newName
             }else{
-              this.enums[enumIndex].registers.push({ name: newName })
+              this.enumerators[enumIndex].registers.push({ name: newName })
               createdOrEdited = ' criado'
             }
             this.dialog = false
@@ -147,10 +148,10 @@
           cancelButtonText: 'Não'
         }).then((result) => {
           if (result.value) {
-            AdditionalRegistersService.removeAdditionalRegister(item.id, () => {
-              var enumIndex = this.enums.indexOf(register)
-              var itemIndex = this.enums[enumIndex].registers.indexOf(item)
-              this.enums[enumIndex].registers.splice(itemIndex, 1)
+            EnumeratorsService.removeAdditionalRegister(item.id, () => {
+              var enumIndex = this.enumerators.indexOf(register)
+              var itemIndex = this.enumerators[enumIndex].registers.indexOf(item)
+              this.enumerators[enumIndex].registers.splice(itemIndex, 1)
               this.$toasted.success( item.name + ' removido com sucesso!', {icon: 'check'})
             })
           }

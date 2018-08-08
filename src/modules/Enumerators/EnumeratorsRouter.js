@@ -1,14 +1,14 @@
 import Layout from '@core/components/Layout'
-import AdditionalRegistersList from './AdditionalRegistersList'
+import EnumeratorsList from './EnumeratorsList'
 
 export default [
   {
-    path: '/enums',
+    path: '/enumerators',
     component: Layout,
     children: [
       {
-        path: '/enums',
-        component: AdditionalRegistersList,
+        path: '/enumerators',
+        component: EnumeratorsList,
         meta: {
           unrequiredAuth: true,
           title: 'Cadastros complementares'
