@@ -21,11 +21,11 @@
           <v-list two-line v-if="dayAppointments.length > 0">
             <v-list-tile avatar v-for="appointment in dayAppointments" :key="appointment.id">
               <v-list-tile-avatar>
-                <list-initial-letter :word="appointment.companyName"></list-initial-letter>
+                <list-initial-letter :word="appointment.animal.name"></list-initial-letter>
               </v-list-tile-avatar>
               <v-list-tile-content>
-                <v-list-tile-title>{{ appointment.companyName }}</v-list-tile-title>
-                <v-list-tile-sub-title>{{ appointment.phone | phone}}</v-list-tile-sub-title>
+                <v-list-tile-title>{{ appointment.animal.name }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{ appointment.dateTime | hour }}</v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn icon ripple @click="show(appointment)">
@@ -59,9 +59,7 @@
       }
     },
     mounted() {
-      AppointmentsService.getDayAppointments(this.date, (appointments) => {
-        this.dayAppointments = appointments
-      })
+      this.pickerDay()
     },
     watch: {
       pickerDate(month) {
