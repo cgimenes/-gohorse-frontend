@@ -216,7 +216,7 @@ export default {
             icon: 'warning'
           })
         }
-        this.$toasted.success('Internamento criado com sucesso!', {
+        this.$toasted.success('Internamento salvo com sucesso!', {
           icon: 'check'
         })
 

@@ -1,9 +1,16 @@
 <template>
-  <v-text-field :label="label" v-model="telefone" :mask="telefoneMask" :disabled="disabled"></v-text-field>
+  <v-text-field required :rules='[rules.empty]' :label="label" v-model="telefone" :mask="telefoneMask" :disabled="disabled"></v-text-field>
 </template>
 
 <script>
   export default {
+    data () {
+      return {
+        rules: {
+          empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
+        }
+      }
+    },
     props: {
       label: {
         type: String,

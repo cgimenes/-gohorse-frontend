@@ -1,9 +1,16 @@
 <template>
-  <v-text-field :label="label" v-model="cpf" :mask="'###.###.###-##'" :disabled="disabled"></v-text-field>
+  <v-text-field required :rules='[rules.empty]' :label="label" v-model="document" :mask="documentMask" :disabled="disabled"></v-text-field>
 </template>
 
 <script>
   export default {
+    data () {
+      return {
+        rules: {
+          empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
+        }
+      }
+    },
     props: {
       label: {
         type: String,
@@ -22,7 +29,13 @@
       }
     },
     computed: {
-      cpf: {
+      documentMask () {
+        if (this.model.length > 13) {
+          return '##.###.###/####-##'
+        }
+        return '###.###.###-#####'
+      },
+      document: {
         get: function () {
           return this.model
         },
