@@ -43,7 +43,7 @@
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', title: 'Leitos', to: '/bed'},
           {icon: 'security', title: 'Login', to: '/login'},
-          {icon: 'extension', title: 'Cadastros complementares', to: '/enums'}
+          {icon: 'extension', title: 'Cadastros complementares', to: '/enumerators'}
         ]
       }
     },

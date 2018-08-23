@@ -2,28 +2,9 @@ import http from '@core/http'
 
 export default {
 
-  getAdditionalRegistration (callback) {
-  // return callback([{
-  //   type: 'Raças',
-  //   registers:[
-  //       { id: 'aaaaaa',
-  //         name:"macarena" },
-  //       { id: 'aaaaaaa',
-  //         name:"macarena" },
-  //       { id: 'aaaaaaaa',
-  //         name:"macarena" }
-  //     ]
-  //   },
-  //   {
-  //     type: 'Tipos de distribuição',
-  //     registers:[
-  //       { id: 'aaaaaab',
-  //         name:"macarena" }
-  //     ]
-  //   }])
-
-    http.get('/enumerators').then(response => {
-      return callback(response.data.content)
+  getEnumerators(callback) {
+      http.get('/enumerators/all').then(response => {
+        return callback(response.data)
     })
   },
 

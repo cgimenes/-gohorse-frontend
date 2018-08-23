@@ -3,7 +3,7 @@
     <v-card>
       <v-container fluid>
         <v-layout row wrap>
-          <v-flex xs12 sm6 lg4 xg3 v-for="register in enumerators" :key="register.type">
+          <v-flex xs12 sm6 lg4 xg3 v-for="register in enumerators" :key="register.name">
             <v-card style="height: 500px; margin: 20px 10px">
               <v-btn absolute dark fab top right small color='red' @click="create(register)"  style="z-index: 1;">
                 <v-icon >add</v-icon>
@@ -13,7 +13,7 @@
                   <v-card>
                     <v-form v-model="valid" lazy-validation>
                       <v-card-title>
-                        <span class="headline">{{registerForm.type}}</span>
+                        <span class="headline">{{registerForm.name}}</span>
                       </v-card-title>
                       <v-card-text>
                         <v-container grid-list-md>
@@ -42,12 +42,12 @@
               <v-card-title primary-title>
                 <v-spacer></v-spacer>
                 <div>
-                  <h4 class="headline text-truncation mb-2">{{register.type}}</h4>
+                  <h4 class="headline text-truncation mb-2">{{register.name}}</h4>
                 </div>
               </v-card-title>
               <v-divider></v-divider>
               <v-flex style="height: 400px; overflow-y: scroll">
-                <v-list v-for="item in register.registers">
+                <v-list v-for="item in register.enumerators">
                   <v-layout row>
                     <v-flex xs6 sm6 lg8 xg8 >
                       <p style="padding: 10px 10px; margin-top:5px"> <strong>{{item.name}} </strong></p>
@@ -94,8 +94,8 @@
       }
     },
     mounted () {
-      EnumeratorsService.getAdditionalRegistration((enumerators) => {
-        this.enumerators = enumerators
+      EnumeratorsService.getEnumerators((enumeratorsFound) => {
+        this.enumerators = enumeratorsFound
       })
     },
     methods: {
@@ -116,7 +116,7 @@
         if (newName) {
           var enumIndex = this.enumerators.indexOf(register);
           var createdOrEdited
-          EnumeratorsService.saveAdditionalRegister(item, () => {
+          EnumeratorsService.saveEnumerator(item, () => {
             if (item){
               var itemIndex = this.enumerators[enumIndex].registers.indexOf(item)
               createdOrEdited = ' editado'
@@ -148,7 +148,7 @@
           cancelButtonText: 'Não'
         }).then((result) => {
           if (result.value) {
-            EnumeratorsService.removeAdditionalRegister(item.id, () => {
+            EnumeratorsService.removeEnumerator(item.id, () => {
               var enumIndex = this.enumerators.indexOf(register)
               var itemIndex = this.enumerators[enumIndex].registers.indexOf(item)
               this.enumerators[enumIndex].registers.splice(itemIndex, 1)
