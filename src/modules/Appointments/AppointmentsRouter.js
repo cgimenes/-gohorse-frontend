@@ -21,7 +21,7 @@ export default [
         component: AppointmentsForm,
         meta: {
           unrequiredAuth: true,
-          title: 'Criar uma nova Consulta'
+          title: 'Cadastro de Consulta'
         }
       },
       {
@@ -29,7 +29,7 @@ export default [
         component: AppointmentsShow,
         meta: {
           unrequiredAuth: true,
-          title: 'Visualização de uma Consulta'
+          title: 'Visualização de Consulta'
         }
       },
       {
@@ -37,7 +37,7 @@ export default [
         component: AppointmentsForm,
         meta: {
           unrequiredAuth: true,
-          title: 'Edição de uma Consulta'
+          title: 'Edição de Consulta'
         }
       }
     ]
