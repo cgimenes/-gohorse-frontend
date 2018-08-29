@@ -58,7 +58,20 @@ export default {
   data () {
     return {
       fab: false,
-      appointment: {}
+      appointment: {
+        id: '',
+        animal: {
+          owner: {}
+        },
+        veterinary: {},
+        dateTime: null,
+        status: '',
+        appointmentType: '',
+        place: '',
+        address: {
+          postalCode:{}
+        }
+      }
     }
   },
   mounted () {

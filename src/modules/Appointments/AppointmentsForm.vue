@@ -156,16 +156,6 @@ export default {
   },
   computed: {
     formIsValid () {
-        console.log(this.appointment.animal.id)
-        console.log(this.appointment.veterinary.id)
-        console.log(this.appointment.dateTime.date)
-        console.log(this.appointment.dateTime.hour)
-        console.log(this.appointment.address.postalCode.code)
-        console.log(this.appointment.address.number)
-        console.log(this.appointment.address.postalCode.neighbourhood)
-        console.log(this.appointment.address.postalCode.streetName)
-        console.log(this.appointment.address.postalCode.city)
-        console.log(this.appointment.address.postalCode.state)
       return (
         this.appointment.animal.id &&
         this.appointment.veterinary.id &&
