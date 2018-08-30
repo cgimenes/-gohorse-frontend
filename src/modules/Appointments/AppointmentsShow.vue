@@ -33,7 +33,7 @@
               <v-flex col xs12 sm6>
                 <h3 class="grey--text mb-3">Endereço</h3>
                 <p>
-                  <b>Local: </b> {{ appointment.place === 'CLINIC' ? 'Clínica' : 'Residência - ' + appointment.address.postalCode.streetName + ', ' + appointment.address.number + ', ' + appointment.address.complement + ', ' + appointment.address.postalCode.city + ', ' + appointment.address.postalCode.state}}
+                  <b>Local: </b> {{ appointment.place === 'CLINIC' ? 'Clínica' : `${appointment.address.postalCode.streetName}, ${appointment.address.number}, ${appointment.address.complement}, ${appointment.address.postalCode.city}, ${appointment.address.postalCode.state}`}}
                 </p>
                 <p>
                   <b>Data:</b> 16/08/2018

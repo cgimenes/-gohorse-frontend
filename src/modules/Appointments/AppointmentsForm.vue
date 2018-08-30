@@ -185,6 +185,7 @@ export default {
             icon: 'warning'
           })
         }
+        
         this.$toasted.success('Consulta salva com sucesso!', {
           icon: 'check'
         })
@@ -196,8 +197,9 @@ export default {
       AppointmentsService.getAppointmentDetails(
         this.$route.params.id,
         (appointment) => {
-          this.appointment = appointment
-
+          this.appointment.animal = appointment.animal
+          this.appointment.veterinary = appointment.veterinary
+          this.appointment.address = appointment.address
           this.appointment.dateTime.date =
             moment(appointment.dateTime)
             .format('DD/MM/YYYY')
