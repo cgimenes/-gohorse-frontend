@@ -154,7 +154,7 @@ export default {
       rules: {
         empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!',
         validMail: value => {
-          const mail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/gi
+          const mail = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/gi
           return mail.test(value) || 'E-mail inválido'
         }
       }
