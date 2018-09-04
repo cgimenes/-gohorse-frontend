@@ -86,7 +86,7 @@
           },
           document: '',
           distributionType: {
-            value: 'A',
+            value: 'A'
           }
         }
       }
@@ -103,7 +103,7 @@
         SuppliersService.getSupplierDetails(this.$route.params.id, (supplier) => {
           this.supplier = supplier
           supplier.distributionType = {
-            value: 'A',
+            value: 'A'
           }
         })
       }
