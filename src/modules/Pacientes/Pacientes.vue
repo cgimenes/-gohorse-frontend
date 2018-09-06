@@ -15,7 +15,6 @@
               v-list-tile-action
                 v-btn(icon ripple)
                   v-icon(color='grey lighten-1') info
-            v-divider(inset)
           v-list(two-line)
             v-list-tile(avatar @click="")
               v-list-tile-avatar(color="red")
@@ -26,7 +25,6 @@
               v-list-tile-action
                 v-btn(icon ripple)
                   v-icon(color='grey lighten-1') info
-            v-divider(inset)
           v-list(two-line)
             v-list-tile(avatar @click="")
               v-list-tile-avatar(color="red")
@@ -37,7 +35,6 @@
               v-list-tile-action
                 v-btn(icon ripple)
                   v-icon(color='grey lighten-1') info
-            v-divider(inset)
           v-list(two-line)
             v-list-tile(avatar @click="")
               v-list-tile-avatar(color="red")
@@ -48,7 +45,6 @@
               v-list-tile-action
                 v-btn(icon ripple)
                   v-icon(color='grey lighten-1') info
-            v-divider(inset)
           v-list(two-line)
             v-list-tile(avatar @click="")
               v-list-tile-avatar(color="red")
@@ -59,7 +55,6 @@
               v-list-tile-action
                 v-btn(icon ripple)
                   v-icon(color='grey lighten-1') info
-            v-divider(inset)
           v-list(two-line)
             v-list-tile(avatar @click="")
               v-list-tile-avatar(color="red")
@@ -70,7 +65,6 @@
               v-list-tile-action
                 v-btn(icon ripple)
                   v-icon(color='grey lighten-1') info
-            v-divider(inset)
           v-list(two-line)
             v-list-tile(avatar @click="")
               v-list-tile-avatar(color="red")
@@ -81,29 +75,7 @@
               v-list-tile-action
                 v-btn(icon ripple)
                   v-icon(color='grey lighten-1') info
-            v-divider(inset)
           v-list(two-line)
-            v-list-tile(avatar @click="")
-              v-list-tile-avatar(color="red")
-                b(class="white--text") T
-              v-list-tile-content
-                v-list-tile-title Teste
-                v-list-tile-sub-title Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              v-list-tile-action
-                v-btn(icon ripple)
-                  v-icon(color='grey lighten-1') info
-            v-divider(inset)
-          v-list(two-line)
-            v-list-tile(avatar @click="")
-              v-list-tile-avatar(color="red")
-                b(class="white--text") T
-              v-list-tile-content
-                v-list-tile-title Teste
-                v-list-tile-sub-title Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              v-list-tile-action
-                v-btn(icon ripple)
-                  v-icon(color='grey lighten-1') info
-            v-divider(inset)
             v-list-tile(avatar @click="")
               v-list-tile-avatar(color="red")
                 b(class="white--text") T

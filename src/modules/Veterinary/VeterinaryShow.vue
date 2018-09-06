@@ -33,7 +33,7 @@
                   <b>Telefone: </b> {{ veterinary.phone | phone }}
                 </p>
                 <p>
-                  <b>Data de nascimento: </b> {{ veterinary.birthDate | date}}
+                  <b>Data de nascimento: </b> {{ veterinary.birthDate}}
                 </p>
                 <p>
                   <b>E-mail: </b> {{ veterinary.email}}
@@ -42,7 +42,7 @@
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
                 <p>
-                  <b>Endereço: </b> {{veterinary.address.postalCode.streetName}}, {{veterinary.address.number}} - {{veterinary.address.complement}}, {{veterinary.address.postalCode.city}} {{veterinary.address.postalCode.state}}
+                  <b>Endereço: </b> {{veterinary.address.postalCode.streetName}}, {{veterinary.address.number}} {{veterinary.address.complement}}, {{veterinary.address.postalCode.city}} {{veterinary.address.postalCode.state}}
                 </p>
                 <p>
                   <b>CEP: </b> {{veterinary.address.postalCode.code | cep }}
@@ -59,6 +59,7 @@
 <script>
 
 import VeterinariesService from './VeterinariesService'
+import Moment from 'moment'
 
 export default {
   data () {
@@ -84,6 +85,7 @@ export default {
   mounted () {
     VeterinariesService.getVeterinaryDetails(this.$route.params.id, (veterinary) => {
       this.veterinary = veterinary
+      this.veterinary.birthDate = new Moment(veterinary.birthDate).format('DD/MM/YYYY')
     })
   },
   methods: {
