@@ -72,7 +72,7 @@ export default {
         address.postalCode.city = postalCode.localidade
         address.postalCode.state = postalCode.uf
         address.postalCode.neighbourhood = postalCode.bairro || address.postalCode.neighbourhood
-        address.hasStreet = postalCode.logradouro != ""
+        address.hasStreet = postalCode.logradouro !== ''
       })
     }
   },
