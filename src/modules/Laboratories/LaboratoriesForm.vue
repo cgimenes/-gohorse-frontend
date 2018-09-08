@@ -34,6 +34,8 @@
               <v-flex col xs12>
                 <address-component
                   :address="laboratory.address"
+                  :model.sync="laboratory.address"
+                  :key="laboratory.id"
                   >
                 </address-component>
               </v-flex>
