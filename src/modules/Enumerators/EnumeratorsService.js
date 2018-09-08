@@ -16,21 +16,22 @@ export default {
   },
 
   createEnumerator (item, callback) {
-    return callback({})
+    //return callback({})
+    console.log(item)
     http.post('/enumerators', item).then(response => {
       return callback(response)
     })
   },
 
   updateEnumerator (item, callback) {
-    return callback({})
+    //return callback({})
     http.put('/enumerators', item).then(response => {
       return callback(response)
     })
   },
 
   removeEnumerator (id, callback) {
-    return callback({})
+    //return callback({})
     http.delete('/enumerators/', {data: {id: id}}).then(response => {
       return callback(response.statusCode)
     })
