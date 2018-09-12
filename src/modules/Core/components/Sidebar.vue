@@ -39,7 +39,7 @@
           {icon: 'home', title: 'Dashboard', to: '/'},
           {icon: 'book', title: 'Consultas', to: '/appointments'},
           {icon: 'location_city', title: 'Laboratórios', to: '/laboratories'},
-          {icon: 'pets', title: 'Pacientes', to: '/pacientes'},
+          {icon: 'pets', title: 'Pacientes', to: '/animals'},
           {icon: 'face', title: 'Proprietários', to: '/owners'},
           {icon: 'local_shipping', title: 'Fornecedores', to: '/suppliers'},
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
