@@ -95,7 +95,12 @@
                 <h4 class="grey--text">Endereço</h4>
               </v-flex>
               <v-flex col xs12>
-                <address-component :address="veterinary.address"></address-component>
+                <address-component
+                  :address="veterinary.address"
+                  :model.sync="veterinary.address"
+                  :key="veterinary.id"
+                  >
+                </address-component>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
               </v-flex>

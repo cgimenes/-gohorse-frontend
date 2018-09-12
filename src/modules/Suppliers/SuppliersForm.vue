@@ -40,7 +40,12 @@
                 <h4 class="grey--text">Endereço</h4>
               </v-flex>
               <v-flex col xs12>
-                <address-component :address="supplier.address"></address-component>
+                <address-component
+                  :address="supplier.address"
+                  :model.sync="supplier.address"
+                  :key="supplier.id"
+                  >
+                </address-component>
               </v-flex>
               <v-flex col xs12>
               </v-flex>
