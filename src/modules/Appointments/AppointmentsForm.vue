@@ -88,6 +88,8 @@
               <v-flex col xs12>
                 <address-component
                   :address="appointment.address"
+                  :model.sync="appointment.address"
+                  :key="appointment.id"
                   >
                 </address-component>
               </v-flex>
@@ -197,6 +199,7 @@ export default {
       AppointmentsService.getAppointmentDetails(
         this.$route.params.id,
         (appointment) => {
+          this.appointment.id = appointment.id
           this.appointment.animal = appointment.animal
           this.appointment.veterinary = appointment.veterinary
           this.appointment.address = appointment.address
