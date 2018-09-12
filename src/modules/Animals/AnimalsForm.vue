@@ -15,7 +15,7 @@
                               <v-text-field type="date" name="birthDate" label="Data de Nascimento" id="birthDate" v-model="animal.birthDate" key="birthDate"></v-text-field>
                             </v-flex>
                             <v-flex col xs12 sm6="sm6">
-                              <autocomplete> </autocomplete>
+                              <autocomplete label="Proprietário do Animal" :model.sync="animal.owner" :key="animal.id"></autocomplete>
                             </v-flex>
                             <v-flex col xs12 sm4="sm4">
                                 <v-text-field name="specie" label="Espécie do Animal" id="specie" v-model="animal.specie" key="specie"></v-text-field>

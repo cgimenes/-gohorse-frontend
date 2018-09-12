@@ -1,36 +1,77 @@
 <template>
   <v-select
-    :items="owners"
-    :filter="customFilter"
-    v-model="a1"
-    item-text="name"
-    label="Proprietário"
-    autocomplete
-  ></v-select>
+    :label="label"
+    v-model="proprietario"
+	  autocomplete
+	  :loading="loading"
+    :items="items"
+	  item-text="name"
+    item-value="id"
+	  :search-input.sync="search"
+	  :value="select">
+  </v-select>
 </template>
 
 <script>
   import OwnersService from '../Owners/OwnersService'
 
   export default {
+    props: {
+      label: {
+        type: String,
+        default: 'Proprietario'
+      },
+      model: {
+        type: Object,
+        required: true,
+        default () {
+          return ''
+        }
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      }
+    },
     data () {
       return {
-        a1: null,
-        owners: [],
-        customFilter (item, queryText, itemText) {
-          const hasValue = val => val != null ? val : ''
-          const text = hasValue(item.name)
-          const query = hasValue(queryText)
-          return text.toString()
-            .toLowerCase()
-            .indexOf(query.toString().toLowerCase()) > -1
+        loading: false,
+        items: [],
+        search: null,
+        select: null,
+      }
+    },
+    watch: {
+      search (val) {
+        this.items = null
+        if(this.searchTimeout){
+          clearTimeout(this.searchTimeout)
+        }
+        if (val.length >= 3) {
+          val && this.querySelections(val)
         }
       }
     },
-    mounted () {
-      OwnersService.getOwnersByName('',(owners) => {
-        this.owners = owners
-      })
+    methods: {
+      querySelections (v) {
+        this.loading = true
+        this.searchTimeout = setTimeout(() => {
+        OwnersService.getOwnersByName(v,(owners) => {
+          this.items = owners
+          this.loading = false
+        })
+        }, 100)
+      }
+    },
+    computed: {
+      proprietario: {
+        get: function () {
+          return this.model
+        },
+        set: function (newValue) {
+          this.$emit('update:model', newValue)
+        }
+      }
     }
   }
 </script>
