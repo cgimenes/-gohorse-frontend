@@ -18,25 +18,28 @@
           </v-speed-dial>
           <v-container grid-list-lg fluid>
             <v-layout row wrap>
-              <v-flex col xs12>
-                <h1>{{ laboratory.companyName }}</h1>
+              <v-flex col xs12 sm6>
+                <h4 class="grey--text mb-3">Dados da Consulta</h4>
+                <p>
+                  <b>Proprietário: </b> {{ appointment.animal.owner.name }}
+                </p>
+                <p>
+                  <b>Paciente: </b> {{ appointment.animal.name }}
+                </p>
+                <p>
+                  <b>Veterinário: </b> {{ appointment.veterinary.name }}
+                </p>
               </v-flex>
               <v-flex col xs12 sm6>
-                <h4 class="grey--text mb-3">Dados do Laboratório</h4>
+                <h3 class="grey--text mb-3">Endereço</h3>
                 <p>
-                  <b>Nome: </b> {{ laboratory.companyName }}
+                  <b>Local: </b> {{ appointment.place === 'CLINIC' ? 'Clínica' : `${appointment.address.postalCode.streetName}, ${appointment.address.number}, ${appointment.address.complement}, ${appointment.address.postalCode.city}, ${appointment.address.postalCode.state}`}}
                 </p>
                 <p>
-                  <b>Telefone: </b> {{ laboratory.phone | phone}}
-                </p>
-              </v-flex>
-              <v-flex col xs12 sm6>
-                <h4 class="grey--text mb-3">Endereço</h4>
-                <p>
-                  <b>Endereço: </b> {{laboratory.address.postalCode.streetName}}, {{laboratory.address.number}}  {{laboratory.address.complement}}, {{laboratory.address.postalCode.city}} {{laboratory.address.postalCode.state}}
+                  <b>Data:</b> 16/08/2018
                 </p>
                 <p>
-                  <b>CEP: </b> {{laboratory.address.postalCode.code | cep}}
+                  <b>Hora:</b> 15:00
                 </p>
               </v-flex>
             </v-layout>
@@ -49,43 +52,42 @@
 
 <script>
 
-import LaboratoriesService from './LaboratoriesService'
+import AppointmentsService from './AppointmentsService'
 
 export default {
   data () {
     return {
       fab: false,
-      laboratory: {
+      appointment: {
+        id: '',
+        animal: {
+          owner: {}
+        },
+        veterinary: {},
+        dateTime: null,
+        status: '',
+        appointmentType: '',
+        place: '',
         address: {
-          number: null,
-          complement: null,
-          postalCode: {
-            code: null,
-            streetType: 'Rua',
-            streetName: '',
-            neighbourhood: '',
-            city: '',
-            state: '',
-            country: 'Brasil'
-          }
+          postalCode:{}
         }
       }
     }
   },
   mounted () {
-    LaboratoriesService.getLaboratoryDetails(this.$route.params.id, (laboratory) => {
-      this.laboratory = laboratory
+    AppointmentsService.getAppointmentDetails(this.$route.params.id, (appointment) => {
+      this.appointment = appointment
     })
   },
   methods: {
     edit () {
       this
         .$router
-        .push('/laboratories/' + this.laboratory.id + '/edit')
+        .push('/appointments/' + this.appointment.id + '/edit')
     },
     destroy () {
       this.$swal({
-        title: 'Você deseja deletar este laboratório?',
+        title: 'Você deseja deletar este consulta?',
         text: 'Esta operação não pode ser desfeita',
         type: 'warning',
         showCancelButton: true,
@@ -93,10 +95,10 @@ export default {
         cancelButtonText: 'Não'
       }).then((result) => {
         if (result.value) {
-          LaboratoriesService.removeLaboratory(this.laboratory.id, (res) => {
+          AppointmentsService.removeAppointment(this.appointment.id, (res) => {
             this
               .$router
-              .push('/laboratories/')
+              .push('/appointments/')
           })
         }
       })

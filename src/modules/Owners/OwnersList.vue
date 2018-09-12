@@ -7,7 +7,7 @@
             <v-icon> add </v-icon>
           </v-btn>
           <v-list two-line v-if="owners.length > 0">
-            <v-list-tile avatar @click="" v-for="owner in owners" :key="owner.id">
+            <v-list-tile avatar @click="show(owner)" v-for="owner in owners" :key="owner.id">
               <v-list-tile-avatar>
                 <list-initial-letter :word="owner.name"></list-initial-letter>
               </v-list-tile-avatar>
@@ -22,7 +22,6 @@
               </v-list-tile-action>
             </v-list-tile>
           </v-list>
-          <v-divider inset ></v-divider>
           <p class="grey--text pa-5" v-if="owners.length == 0"> Nenhum proprietário encontrado </p>
         </v-card>
       </v-flex>
