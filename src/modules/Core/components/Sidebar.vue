@@ -37,11 +37,13 @@
         show: this.showSidebar,
         menuPrincipal: [
           {icon: 'home', title: 'Dashboard', to: '/'},
+          {icon: 'book', title: 'Consultas', to: '/appointments'},
           {icon: 'location_city', title: 'Laboratórios', to: '/laboratories'},
-          {icon: 'face', title: 'Clientes', to: '/clientes'},
-          {icon: 'account_box', title: 'Proprietários', to: '/owners'},
-          {icon: 'pets', title: 'Animais', to: '/animals'},
+          {icon: 'pets', title: 'Pacientes', to: '/animals'},
+          {icon: 'face', title: 'Proprietários', to: '/owners'},
+          {icon: 'local_shipping', title: 'Fornecedores', to: '/suppliers'},
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
+          {icon: 'hotel', title: 'Internamentos', to: '/internments'},
           {icon: 'security', title: 'Login', to: '/login'}
         ]
       }
