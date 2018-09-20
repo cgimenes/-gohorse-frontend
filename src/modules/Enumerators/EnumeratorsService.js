@@ -8,30 +8,29 @@ export default {
     })
   },
 
-  saveEnumerator (item, callback) {
+  saveEnumerator (item) {
     if (item && item.id) {
-      return this.updateEnumerator(item, callback)
+      return this.updateEnumerator(item)
     }
-    return this.createEnumerator(item, callback)
+    return this.createEnumerator(item)
   },
 
-  createEnumerator (item, callback) {
-    //return callback({})
-    console.log(item)
+  createEnumerator (item) {
+    var created = false;
+
     http.post('/enumerators', item).then(response => {
-      return callback(response)
+      created = response.status == 201
+      return created
     })
   },
 
-  updateEnumerator (item, callback) {
-    //return callback({})
+  updateEnumerator (item) {
     http.put('/enumerators', item).then(response => {
-      return callback(response)
+      return response.status === 201
     })
   },
 
   removeEnumerator (id, callback) {
-    //return callback({})
     http.delete('/enumerators/', {data: {id: id}}).then(response => {
       return callback(response.statusCode)
     })

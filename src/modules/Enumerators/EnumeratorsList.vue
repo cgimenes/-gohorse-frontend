@@ -3,7 +3,7 @@
     <v-card>
       <v-container fluid>
         <v-layout row wrap>
-          <v-flex xs12 sm6 lg4 xg3 v-for="register in enumerators" :key="register.name">
+          <v-flex xs12 sm6 lg4 xg3 v-if="loadEnumerators" v-for="register in enumerators" :key="register.name">
             <v-card style="height: 500px; margin: 20px 10px">
               <v-btn absolute dark fab top right small color='red' @click="create(register)"  style="z-index: 1;">
                 <v-icon >add</v-icon>
@@ -47,7 +47,7 @@
               </v-card-title>
               <v-divider></v-divider>
               <v-flex style="height: 400px; overflow-y: scroll">
-                <v-list v-for="item in register.enumerators">
+                <v-list v-for="item in register.enumerators" :key="item.id">
                   <v-layout row>
                     <v-flex xs6 sm6 lg8 xg8 >
                       <p style="padding: 10px 10px; margin-top:5px"> <strong>{{item.name}} </strong></p>
@@ -95,8 +95,19 @@
     },
     mounted () {
       EnumeratorsService.getEnumerators((enumeratorsFound) => {
+        console.log('aqui, certeza')
         this.enumerators = enumeratorsFound
       })
+    },
+    computed: {
+      loadEnumerators () {
+        EnumeratorsService.getEnumerators((enumeratorsFound) => {
+          this.enumerators = enumeratorsFound
+          console.log('vish maria')
+          console.log(enumeratorsFound)
+        })
+        return true
+      }
     },
     methods: {
       dismiss () {
@@ -114,25 +125,17 @@
       },
       save (register, newName, item){
         if (newName) {
-          var enumIndex = this.enumerators.indexOf(register);
-          var createdOrEdited;
-          this.item = { name: newName,
-                  kind: register.name }
-
-                console.log(this.item)
-          EnumeratorsService.saveEnumerator(this.item, () => {
-            if (item){
-              var itemIndex = this.enumerators[enumIndex].registers.indexOf(item)
-              createdOrEdited = ' editado'
-              this.enumerators[enumIndex].registers[itemIndex].name = newName
-            }else{
-              this.enumerators[enumIndex].registers.push({ name: newName })
-              createdOrEdited = ' criado'
+          if (!item){
+            var item = {
+              name: '',
+              kind: ''
             }
-            this.dialog = false
-            this.$toasted.success( newName +  createdOrEdited + ' com sucesso!', {icon: 'check'})
-          })
+          }
+          item.name = newName
+          item.kind = register.name
+          EnumeratorsService.saveEnumerator(item)
         }
+        this.dismiss()
       },
       edit (register, item) {
         this.registerForm = register
@@ -152,12 +155,7 @@
           cancelButtonText: 'Não'
         }).then((result) => {
           if (result.value) {
-            EnumeratorsService.removeEnumerator(item.id, () => {
-              var enumIndex = this.enumerators.indexOf(register)
-              var itemIndex = this.enumerators[enumIndex].registers.indexOf(item)
-              this.enumerators[enumIndex].registers.splice(itemIndex, 1)
-              this.$toasted.success( item.name + ' removido com sucesso!', {icon: 'check'})
-            })
+            EnumeratorsService.removeEnumerator(item.id)
           }
         })
       }
