@@ -44,6 +44,7 @@
           {icon: 'local_shipping', title: 'Fornecedores', to: '/suppliers'},
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', title: 'Internamentos', to: '/internments'},
+          {icon: 'extension', title: 'Cadastros complementares', to: '/enumerators'},
           {icon: 'security', title: 'Login', to: '/login'}
         ]
       }
