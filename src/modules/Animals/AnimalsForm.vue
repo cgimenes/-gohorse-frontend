@@ -12,16 +12,48 @@
                                 <v-text-field name="name" label="Nome do Animal" id="name" v-model="animal.name" key="name"></v-text-field>
                             </v-flex>
                             <v-flex col xs12 sm6="sm6">
-                              <v-text-field type="date" name="birthDate" label="Data de Nascimento" id="birthDate" v-model="animal.birthDate" key="birthDate"></v-text-field>
+                              <v-menu
+                              ref='menuBusyUntil'
+                              :close-on-content-click='false'
+                              v-model='menuDateBirth'
+                              :nudge-right='40'
+                              lazy
+                              transition='scale-transition'
+                              offset-y
+                              full-width
+                              max-width='290px'
+                              min-width='290px'
+                              >
+                                <v-text-field
+                                  required
+                                  :rules='[rules.empty]'
+                                  name="name"
+                                  :mask='dateMask'
+                                  label="Data de nascimento"
+                                  slot='activator'
+                                  id="birthdate"
+                                  v-model="animal.birthDate"
+                                  :key="animal.id"
+                                  prepend-icon='event'
+                                  >
+                                </v-text-field>
+                                <v-date-picker
+                                  v-model='dateBirth'
+                                  no-title
+                                  locale='pt-br'
+                                  @input='menuDateBirth=false'
+                                  >
+                                </v-date-picker>
+                              </v-menu>
                             </v-flex>
                             <v-flex col xs12 sm6="sm6">
                               <autocomplete label="Proprietário do Animal" :model.sync="animal.owner" :key="animal.id"></autocomplete>
                             </v-flex>
                             <v-flex col xs12 sm4="sm4">
-                                <v-text-field name="specie" label="Espécie do Animal" id="specie" v-model="animal.specie" key="specie"></v-text-field>
+                                <speciecomplete label="Espécie do Animal" :model.sync="animal.specie" :key="animal.id"></speciecomplete>
                             </v-flex>
                             <v-flex col xs12 sm4="sm4">
-                                <v-text-field name="breed" label="Raça do Animal" id="breed" v-model="animal.breed" key="breed"></v-text-field>
+                                <breedcomplete label="Raça do Animal" :model.sync="animal.breed" :key="animal.id"></breedcomplete>
                             </v-flex>
                             <v-flex col xs12 sm4="sm4">
                                 <v-text-field name="sex" label="Sexo do Animal" id="sex" v-model="animal.sex" key="sex"></v-text-field>
@@ -39,31 +71,64 @@
 
 <script>
 import AnimalsService from './AnimalsService'
-import Autocomplete from './Autocomplete'
+import Autocomplete from '../Owners/Autocomplete'
+import Breedcomplete from '../Enumerators/AutocompleteBreed'
+import Speciecomplete from '../Enumerators/AutocompleteSpecie'
+import moment from 'moment'
 
 export default {
-    components: { Autocomplete },
+    components: { Autocomplete, Breedcomplete, Speciecomplete },
     data () {
         return {
             animal: {
                 owner: {
+                },
+                breed: {
                 }
+            },
+            menuDateBirth: false,
+            dateMask: 'date',
+            dateBirth: null,
+            rules: {
+              empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!'
             }
         }
     },
+    watch: {
+      dateBirth (val) {
+        this.animal.birthDate = this.formatDate(this.dateBirth)
+      }
+    },
     methods: {
         saveAnimal () {
-                AnimalsService.saveAnimal(this.animal, (res) => {
-                    this
-                        .$router
-                        .push('/animals/')
-                })
-            },
-            getDataForEdit () {
-                AnimalsService.getAnimalDetails(this.$route.params.id, (animal) => {
-                    this.animal = animal
-                })
-            }
+          const animalFinal = { ...this.animal }
+          animalFinal.birthDate = moment.utc(
+            this.animal.birthDate, 'DD/MM/YYYY'
+          ).format('YYYY-MM-DD')
+          AnimalsService.saveAnimal(animalFinal, (res) => {
+              this
+                  .$router
+                  .push('/animals/')
+          })
+        },
+        getDataForEdit () {
+          AnimalsService.getAnimalDetails(this.$route.params.id, (animal) => {
+            this.animal = animal
+            this.animal.birthDate = moment(animal.birthDate).format('DD/MM/YYYY')
+          })
+        },
+        formatDate (date) {
+          if (!date) return null
+
+          const [year, month, day] = date.split('-')
+          return `${day}/${month}/${year}`
+        },
+        parseDate (date) {
+          if (!date) return null
+
+          const [month, day, year] = date.split('/')
+          return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+        }
     },
     created () {
         if (this.$route.params.id) {
