@@ -13,6 +13,12 @@ export default {
     })
   },
 
+  getOwnersByName (name, callback) {
+    http.get('/owners/find?name=' + name).then(response => {
+      return callback(response.data.content)
+    })
+  },
+
   createOwner (owner, callback) {
     http.post('/owners', owner).then(response => {
       return callback(response)
