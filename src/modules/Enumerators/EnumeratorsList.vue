@@ -77,7 +77,6 @@
 
 <script>
   import EnumeratorsService from './EnumeratorsService'
-  import axios from 'axios'
 
   export default {
     data () {
@@ -95,7 +94,6 @@
     },
     mounted () {
       EnumeratorsService.getEnumerators((enumeratorsFound) => {
-        console.log('aqui, certeza')
         this.enumerators = enumeratorsFound
       })
     },
@@ -103,8 +101,6 @@
       loadEnumerators () {
         EnumeratorsService.getEnumerators((enumeratorsFound) => {
           this.enumerators = enumeratorsFound
-          console.log('vish maria')
-          console.log(enumeratorsFound)
         })
         return true
       }
@@ -118,15 +114,15 @@
         this.newName = ''
         this.valid = true
         if (item) {
-            this.newName = item.name
+          this.newName = item.name
         }
         this.item = item
         this.dialog = true
       },
-      save (register, newName, item){
+      save (register, newName, item) {
         if (newName) {
-          if (!item){
-            var item = {
+          if (!item) {
+            item = {
               name: '',
               kind: ''
             }
@@ -134,6 +130,7 @@
           item.name = newName
           item.kind = register.name
           EnumeratorsService.saveEnumerator(item)
+          this.$router.go(this.$route.path)
         }
         this.dismiss()
       },
@@ -145,7 +142,7 @@
         this.registerForm = register
         this.openForm(register, null)
       },
-      remove(register, item){
+      remove (register, item) {
         this.$swal({
           title: 'Você deseja deletar ?',
           text: 'Esta operação não pode ser desfeita',
@@ -156,6 +153,7 @@
         }).then((result) => {
           if (result.value) {
             EnumeratorsService.removeEnumerator(item.id)
+            this.$router.go(this.$route.path)
           }
         })
       }
