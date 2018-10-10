@@ -2,9 +2,9 @@ import http from '@core/http'
 
 export default {
 
-  getEnumerators(callback) {
-      http.get('/enumerators/all').then(response => {
-        return callback(response.data)
+  getEnumerators (callback) {
+    http.get('/enumerators/all').then(response => {
+      return callback(response.data)
     })
   },
 
@@ -16,10 +16,10 @@ export default {
   },
 
   createEnumerator (item) {
-    var created = false;
+    var created = false
 
     http.post('/enumerators', item).then(response => {
-      created = response.status == 201
+      created = response.status === 201
       return created
     })
   },
@@ -31,7 +31,11 @@ export default {
   },
 
   removeEnumerator (id, callback) {
-    http.delete('/enumerators/', {data: {id: id}}).then(response => {
+    http.delete('/enumerators/', {
+      data: {
+        id: id
+      }
+    }).then(response => {
       return callback(response.statusCode)
     })
   }
