@@ -42,6 +42,7 @@
           {icon: 'pets', title: 'Pacientes', to: '/animals'},
           {icon: 'face', title: 'Proprietários', to: '/owners'},
           {icon: 'local_shipping', title: 'Fornecedores', to: '/suppliers'},
+          {icon: 'add_shopping_cart', title: 'Produtos', to: '/products'},
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', title: 'Internamentos', to: '/internments'},
           {icon: 'extension', title: 'Cadastros complementares', to: '/enumerators'},
