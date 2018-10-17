@@ -45,7 +45,8 @@ export default {
   components: {
     Autocomplete
   },
-  data() {
+
+  data () {
     return {
       animal: {
         owner: {}
@@ -53,20 +54,22 @@ export default {
     }
   },
   methods: {
-    saveAnimal() {
+    saveAnimal () {
       AnimalsService.saveAnimal(this.animal, (res) => {
         this
           .$router
           .push('/animals/')
       })
     },
-    getDataForEdit() {
+
+    getDataForEdit () {
       AnimalsService.getAnimalDetails(this.$route.params.id, (animal) => {
         this.animal = animal
       })
     }
   },
-  created() {
+
+  created () {
     if (this.$route.params.id) {
       this.getDataForEdit()
     }
