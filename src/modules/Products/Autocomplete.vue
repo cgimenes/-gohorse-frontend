@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import OwnersService from '../Owners/OwnersService'
+  import SuppliersService from '../Suppliers/SuppliersService'
 
   export default {
     props: {
@@ -56,8 +56,8 @@
       querySelections (v) {
         this.loading = true
         this.searchTimeout = setTimeout(() => {
-        OwnersService.getOwnersByName(v,(owners) => {
-          this.items = owners
+        SuppliersService.getSuppliersByName(v,(suppliers) => {
+          this.items = suppliers
           this.loading = false
         })
         }, 100)

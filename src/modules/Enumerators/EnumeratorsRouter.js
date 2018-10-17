@@ -13,7 +13,7 @@ export default [
           unrequiredAuth: true,
           title: 'Cadastros complementares'
         }
-      },
+      }
     ]
   }
 ]
