@@ -31,7 +31,11 @@ export default {
   },
 
   removeEnumerator (id, callback) {
-    http.delete('/enumerators/', {data: {id: id}}).then(response => {
+    http.delete('/enumerators/', {
+      data: {
+        id: id
+      }
+    }).then(response => {
       return callback(response.statusCode)
     })
   }

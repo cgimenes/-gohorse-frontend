@@ -1,3 +1,8 @@
+import moment from 'moment'
+
+/**
+ * @return {string}
+ */
 function PhoneFilter (phone) {
   if (phone) {
     if (phone.length > 10) {
@@ -9,6 +14,9 @@ function PhoneFilter (phone) {
   return ''
 }
 
+/**
+ * @return {string}
+ */
 function CEPFilter (CEP) {
   if (CEP) {
     return CEP.slice(0, 5) + '-' + CEP.slice(5)
@@ -16,6 +24,9 @@ function CEPFilter (CEP) {
   return ''
 }
 
+/**
+ * @return {string}
+ */
 function DocumentFilter (document) {
   if (document) {
     if (document.length > 13) {
@@ -27,11 +38,22 @@ function DocumentFilter (document) {
   return ''
 }
 
+/**
+ * @return {string}
+ */
 function DateFilter (date) {
-  if (date) {
-    return date.slice(8, 10) + '/' + date.slice(5, 7) + '/' + date.slice(0, 4)
-  }
-  return ''
+  return date ? parseDate(date).format('DD/MM/YYYY') : ''
 }
 
-export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter}
+/**
+ * @return {string}
+ */
+function HourFilter (date) {
+  return parseDate(date).format('HH:mm')
+}
+
+function parseDate (date) {
+  return moment(date, 'YYYY-MM-DD[T]HH:mm:ss')
+}
+
+export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter}
