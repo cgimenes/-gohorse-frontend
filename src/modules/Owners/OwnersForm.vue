@@ -72,6 +72,8 @@
               <v-flex col xs12>
                 <address-component
                   :address="owner.address"
+                  :model.sync="owner.address"
+                  :key="owner.id"
                   >
                 </address-component>
               </v-flex>
