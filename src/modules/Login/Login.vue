@@ -31,7 +31,6 @@
                     bottom
                     absolute
                     type="submit"
-                    :class="$colorClass('loginPage')"
                   )
                     v-icon chevron_right
 </template>
