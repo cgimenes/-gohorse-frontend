@@ -43,19 +43,27 @@ export default {
   },
 
   includeMissingEnumerators (enumeratorsFound, callback) {
-    if(!enumeratorsFound.find(x => x.name === 'Espécie')){
-      enumeratorsFound.push({ name: 'Espécie' })
+    if (!enumeratorsFound.find(x => x.name === 'Espécie')) {
+      enumeratorsFound.push({
+        name: 'Espécie'
+      })
     }
-    if(!enumeratorsFound.find(x => x.name === 'Raça')){
-      enumeratorsFound.push({ name: 'Raça' })
+    if (!enumeratorsFound.find(x => x.name === 'Raça')) {
+      enumeratorsFound.push({
+        name: 'Raça'
+      })
     }
-    if(!enumeratorsFound.find(x => x.name === 'Tipo de distribuição')){
-      enumeratorsFound.push({ name: 'Tipo de distribuição' })
+    if (!enumeratorsFound.find(x => x.name === 'Tipo de distribuição')) {
+      enumeratorsFound.push({
+        name: 'Tipo de distribuição'
+      })
     }
-    if(!enumeratorsFound.find(x => x.name === 'Sexo')){
-      enumeratorsFound.push({ name: 'Sexo' })
+    if (!enumeratorsFound.find(x => x.name === 'Sexo')) {
+      enumeratorsFound.push({
+        name: 'Sexo'
+      })
     }
     callback(enumeratorsFound)
-  },
+  }
 
 }
