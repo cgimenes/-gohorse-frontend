@@ -45,7 +45,6 @@ export default {
   components: {
     Autocomplete
   },
-
   data () {
     return {
       animal: {
@@ -61,14 +60,12 @@ export default {
           .push('/animals/')
       })
     },
-
     getDataForEdit () {
       AnimalsService.getAnimalDetails(this.$route.params.id, (animal) => {
         this.animal = animal
       })
     }
   },
-
   created () {
     if (this.$route.params.id) {
       this.getDataForEdit()

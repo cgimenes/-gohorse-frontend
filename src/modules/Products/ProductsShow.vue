@@ -45,7 +45,7 @@
 import ProductsService from './ProductsService'
 
 export default {
-  data() {
+  data () {
     return {
       fab: false,
       product: {
@@ -53,18 +53,18 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     ProductsService.getProductDetails(this.$route.params.id, (product) => {
       this.product = product
     })
   },
   methods: {
-    edit() {
+    edit () {
       this
         .$router
         .push('/products/' + this.product.id + '/edit')
     },
-    destroy() {
+    destroy () {
       this.$swal({
         title: 'Você deseja deletar este product?',
         text: 'Esta operação não pode ser desfeita',
