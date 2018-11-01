@@ -124,8 +124,8 @@ export default {
         item.name = newName
         item.kind = register.name
         EnumeratorsService.saveEnumerator(item)
+        this.$router.go(this.$route.path)
       }
-      this.dismiss()
     },
     edit (register, item) {
       this.registerForm = register
@@ -146,6 +146,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           EnumeratorsService.removeEnumerator(item.id)
+          this.$router.go(this.$route.path)
         }
       })
     }

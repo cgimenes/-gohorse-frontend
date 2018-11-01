@@ -37,18 +37,18 @@ export default {
   components: {
     ListInitialLetter
   },
-  data() {
+  data () {
     return {
       products: []
     }
   },
-  mounted() {
+  mounted () {
     ProductsService.getProduct((products) => {
       this.products = products
     })
   },
   methods: {
-    show(product) {
+    show (product) {
       this
         .$router
         .push('/products/' + product.id)

@@ -38,13 +38,13 @@
         loading: false,
         items: [],
         search: null,
-        select: null,
+        select: null
       }
     },
     watch: {
       search (val) {
         this.items = null
-        if(this.searchTimeout){
+        if (this.searchTimeout) {
           clearTimeout(this.searchTimeout)
         }
         if (val.length >= 3) {
@@ -56,10 +56,10 @@
       querySelections (v) {
         this.loading = true
         this.searchTimeout = setTimeout(() => {
-        SuppliersService.getSuppliersByName(v,(suppliers) => {
-          this.items = suppliers
-          this.loading = false
-        })
+          SuppliersService.getSuppliersByName(v, (suppliers) => {
+            this.items = suppliers
+            this.loading = false
+          })
         }, 100)
       }
     },
