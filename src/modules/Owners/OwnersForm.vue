@@ -8,20 +8,17 @@
               <v-flex col xs12>
                 <h4 class="grey--text">Dados do Proprietário</h4>
               </v-flex>
-              <v-flex col xs12 sm3="sm3">
+              <v-flex col xs12 sm6="sm6">
                 <v-text-field
                   required
                   :rules='[rules.empty]'
                   name="name"
-                  label="Nome do Proprietário"
+                  label="Nome"
                   id="name"
                   v-model="owner.name"
                   key="name"
                   >
                 </v-text-field>
-              </v-flex>
-              <v-flex col xs12 sm3="sm3">
-                <document-input label="CPF do Proprietário" :model.sync="owner.document"></document-input>
               </v-flex>
               <v-flex col xs12 sm3="sm3">
                 <v-menu
@@ -60,11 +57,24 @@
               </v-flex>
               <v-flex col xs12 sm3="sm3">
                 <phone-input
-                  label="Telefone do Proprietário"
+                  label="Telefone"
                   :model.sync="owner.phone"
                   :key="owner.id"
                   >
                 </phone-input>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <v-text-field
+                  name="email"
+                  label="Email"
+                  id="email"
+                  v-model="owner.email"
+                  key="email"
+                  >
+                </v-text-field>
+              </v-flex>
+              <v-flex col xs12 sm6="sm6">
+                <document-input label="CPF" :model.sync="owner.document"></document-input>
               </v-flex>
               <v-flex col xs12>
                 <h4 class="grey--text">Endereço</h4>

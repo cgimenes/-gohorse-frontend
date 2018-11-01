@@ -35,6 +35,9 @@
                 <p>
                   <b>Data de Nascimento: </b> {{ owner.birthDate}}
                 </p>
+                <p>
+                  <b>Email: </b> {{ owner.email}}
+                </p>
               </v-flex>
               <v-flex col xs12 sm6>
                 <h4 class="grey--text mb-3">Endereço</h4>
