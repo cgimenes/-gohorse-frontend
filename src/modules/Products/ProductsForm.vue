@@ -90,10 +90,10 @@ export default {
   components: {
     Autocomplete
   },
-  data() {
+  data () {
     return {
       product: {
-        supplier: { //fornecedor esta dentro de produtos
+        supplier: { // fornecedor esta dentro de produtos
         }
       },
       rules: {
@@ -102,20 +102,20 @@ export default {
     }
   },
   methods: {
-    saveProduct() {
+    saveProduct () {
       ProductsService.saveProduct(this.product, (res) => {
         this
           .$router
           .push('/products/')
       })
     },
-    getDataForEdit() {
+    getDataForEdit () {
       ProductsService.getProductDetails(this.$route.params.id, (product) => {
         this.product = product
       })
     }
   },
-  created() {
+  created () {
     if (this.$route.params.id) {
       this.getDataForEdit()
     }
