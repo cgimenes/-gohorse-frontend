@@ -4,7 +4,9 @@ export default {
 
   getEnumerators (callback) {
     http.get('/enumerators/all').then(response => {
-      return callback(response.data)
+      this.includeMissingEnumerators(response.data, (allEnumerators) => {
+        return callback(allEnumerators)
+      })
     })
   },
 
@@ -38,6 +40,35 @@ export default {
     }).then(response => {
       return callback(response.statusCode)
     })
+  },
+
+  includeMissingEnumerators (enumeratorsFound, callback) {
+    if (!enumeratorsFound.find(x => x.name === 'Espécie')) {
+      enumeratorsFound.push({
+        name: 'Espécie'
+      })
+    }
+    if (!enumeratorsFound.find(x => x.name === 'Raça')) {
+      enumeratorsFound.push({
+        name: 'Raça'
+      })
+    }
+    if (!enumeratorsFound.find(x => x.name === 'Tipo de distribuição')) {
+      enumeratorsFound.push({
+        name: 'Tipo de distribuição'
+      })
+    }
+    if (!enumeratorsFound.find(x => x.name === 'Sexo')) {
+      enumeratorsFound.push({
+        name: 'Sexo'
+      })
+    }
+    enumeratorsFound.sort(function (a, b) {
+      if (a.name < b.name) return -1
+      if (a.name > b.name) return 1
+      return 0
+    })
+    callback(enumeratorsFound)
   }
 
 }
