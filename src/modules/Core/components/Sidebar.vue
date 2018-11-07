@@ -11,16 +11,38 @@
 
     slot(name="menu")
       v-list
-        v-list-tile(
-          router
-          :key="key"
-          :to="item.to"
-          v-for="(item, key) in menuPrincipal"
-        )
-          v-list-tile-action
-            v-icon(v-html="item.icon")
-          v-list-tile-content
-            v-list-tile-title(v-text="item.title")
+        template(v-for="item in menuPrincipal")
+          v-list-group(
+              v-if="item.children"
+              v-model="item.model"
+              :key="item.text"
+              :prepend-icon="item.model ? item.icon : item['icon-alt']"
+              append-icon=""
+          )
+            v-list-tile(slot="activator")
+              v-list-tile-content
+                v-list-tile-title(v-text="item.text")
+            v-list-tile(
+                router
+                v-for="(child, i) in item.children"
+                :key="i"
+                :to="child.to"
+            )
+              v-list-tile-action(v-if="child.icon")
+                v-icon(v-text="child.icon")
+              v-list-tile-content
+                v-list-tile-title(v-text="child.text")
+          v-list-tile(
+              router
+              v-else
+              :to="item.to"
+              :key="item.text"
+          )
+            v-list-tile-action
+              v-icon(v-text="item.icon")
+            v-list-tile-content
+              v-list-tile-title(v-text="item.text")
+
         v-list-tile(@click.stop="toggle('miniVariant')")
           v-list-tile-action
             v-icon(v-html="$store.getters.miniVariant ? 'chevron_right' : 'chevron_left'")
@@ -36,17 +58,20 @@
       return {
         show: this.showSidebar,
         menuPrincipal: [
-          {icon: 'home', title: 'Dashboard', to: '/'},
-          {icon: 'book', title: 'Consultas', to: '/appointments'},
-          {icon: 'location_city', title: 'Laboratórios', to: '/laboratories'},
-          {icon: 'pets', title: 'Pacientes', to: '/animals'},
-          {icon: 'face', title: 'Proprietários', to: '/owners'},
-          {icon: 'local_shipping', title: 'Fornecedores', to: '/suppliers'},
-          {icon: 'add_shopping_cart', title: 'Produtos', to: '/products'},
-          {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
-          {icon: 'hotel', title: 'Internamentos', to: '/internments'},
-          {icon: 'extension', title: 'Cadastros complementares', to: '/enumerators'},
-          {icon: 'security', title: 'Login', to: '/login'}
+          {icon: 'home', text: 'Dashboard', to: '/'},
+          {icon: 'assignment', text: 'Consultas', to: '/appointments'},
+          {icon: 'location_city', text: 'Laboratórios', to: '/laboratories'},
+          {icon: 'pets', text: 'Pacientes', to: '/animals'},
+          {icon: 'face', text: 'Proprietários', to: '/owners'},
+          {icon: 'local_shipping', text: 'Fornecedores', to: '/suppliers'},
+          {icon: 'add_shopping_cart', text: 'Produtos', to: '/products'},
+          {icon: 'local_hospital', text: 'Veterinários', to: '/veterinaries'},
+          {icon: 'hotel', text: 'Internamentos', to: '/internments'},
+          {icon: 'keyboard_arrow_up', 'icon-alt': 'book', text: 'Relatórios', to: '/reports', children: [
+              {icon: 'account_balance_wallet', text: 'Fluxo de caixa', to: '/cashflow'}
+            ]},
+          {icon: 'extension', text: 'Cadastros complementares', to: '/enumerators'},
+          {icon: 'security', text: 'Login', to: '/login'}
         ]
       }
     },
