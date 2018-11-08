@@ -23,7 +23,6 @@
       </v-layout>
     </v-flex>
     <v-flex sm12="sm12" md4="md4" lg4="lg4">
-      <h2>Últimos acontecimentos</h2>
       <v-card id="timeline">
         <Timeline :timeline-items="timelineItems" :message-when-no-items="messageWhenNoItems" />
       </v-card>
@@ -85,7 +84,7 @@ export default {
 
 <style>
 #timeline{
-  height: 580px !important;
+  height: 586px !important;
   overflow-y: auto;
 }
 </style>
