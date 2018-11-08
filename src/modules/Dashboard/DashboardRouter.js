@@ -10,7 +10,7 @@ export default [
         path: '/',
         component: Dashboard,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Dashboard'
         }
       }

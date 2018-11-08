@@ -12,7 +12,7 @@ export default [
         path: '/products',
         component: ProductsList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Produtos'
         }
       },
@@ -20,7 +20,7 @@ export default [
         path: '/products/create',
         component: ProductsForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Criar um um novo produto'
         }
       },
@@ -28,7 +28,7 @@ export default [
         path: '/products/:id',
         component: ProductsShow,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Visualização de produto'
         }
       },
@@ -36,7 +36,7 @@ export default [
         path: '/products/:id/edit',
         component: ProductsForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de produto'
         }
       }

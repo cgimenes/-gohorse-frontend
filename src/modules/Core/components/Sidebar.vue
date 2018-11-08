@@ -48,7 +48,7 @@
           {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', title: 'Internamentos', to: '/internments'},
           {icon: 'extension', title: 'Cadastros complementares', to: '/enumerators'},
-          {icon: 'security', title: 'Login', to: '/login'}
+          {icon: 'security', title: 'Logout', to: '/login'}
         ]
       }
     },
@@ -63,15 +63,17 @@
   }
 </script>
 
-<style lang="stylus">
-
-.logo
-  text-align center
-  padding-top 10px
-
-  img
-    max-width 50%
-@media screen and (max-height: 600px)
-  aside
-    overflow: scroll !important;
+<style>
+  .logo {
+    text-align: center;
+    padding-top: 10px;
+  }
+  .logo img {
+    max-width: 50%;
+  }
+  @media screen and (max-height: 600px) {
+    aside {
+      overflow: scroll !important;
+    }
+  }
 </style>

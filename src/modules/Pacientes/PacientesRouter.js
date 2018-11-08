@@ -10,7 +10,7 @@ export default [
         path: '/pacientes',
         component: Pacientes,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Pacientes'
         }
       }

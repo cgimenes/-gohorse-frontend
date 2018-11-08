@@ -10,7 +10,7 @@ export default [
         path: '/buscar-cep-store',
         component: BuscarCepComStor,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Buscar CEP utilizando store'
         }
       }

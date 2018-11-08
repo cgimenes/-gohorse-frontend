@@ -12,7 +12,7 @@ export default [
         path: '/laboratories',
         component: LaboratoriesList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Laboratórios'
         }
       },
@@ -20,7 +20,7 @@ export default [
         path: '/laboratories/create',
         component: LaboratoriesForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Criar um novo laboratório'
         }
       },
@@ -28,7 +28,7 @@ export default [
         path: '/laboratories/:id',
         component: LaboratoriesShow,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Visualização de Laboratório'
         }
       },
@@ -36,7 +36,7 @@ export default [
         path: '/laboratories/:id/edit',
         component: LaboratoriesForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de Laboratório'
         }
       }

@@ -10,7 +10,7 @@ export default [
         path: '/enumerators',
         component: EnumeratorsList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Cadastros complementares'
         }
       }

@@ -13,8 +13,6 @@
         </v-flex>
         <v-flex sm12="sm12">
           <v-card>
-            <v-card-title>
-            </v-card-title>
             <v-card-text>
               <grafico-barras></grafico-barras>
             </v-card-text>
@@ -83,8 +81,8 @@ export default {
 </script>
 
 <style>
-#timeline{
-  height: 586px !important;
-  overflow-y: auto;
-}
+  #timeline{
+    height: 586px !important;
+    overflow-y: auto;
+  }
 </style>

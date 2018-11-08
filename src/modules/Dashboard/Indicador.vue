@@ -1,9 +1,11 @@
-<template lang="pug">
-  v-card.indicador(dark :class="color")
-    v-card-title
-      div.headline {{ title }}
-      h1 {{ value }}
-    v-icon {{icon}}
+<template>
+  <v-card class="indicador" dark="dark" :class="color">
+    <v-card-title>
+      <div class="headline">{{ title }}</div>
+      <h1>{{ value }}</h1>
+    </v-card-title>
+    <v-icon>{{icon}}</v-icon>
+  </v-card>
 </template>
 
 <script>
@@ -28,24 +30,25 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Modular Vue.js App'
+      msg: 'GoHorse App'
     }
   }
 }
 </script>
 
-<style lang="stylus">
-  .indicador
-    position relative
-
-    .card__title
-      z-index 1
-
-    i.icon
-      position absolute
-      font-size 6em !important
-      top 0
-      right 0
-      opacity .2
-      z-index 0
+<style>
+  .indicador {
+    position: relative;
+  }
+  .indicador .card__title {
+    z-index: 1;
+  }
+  .indicador i.icon {
+    position: absolute;
+    font-size: 6em !important;
+    top: 0;
+    right: 0;
+    opacity: 0.2;
+    z-index: 0;
+  }
 </style>

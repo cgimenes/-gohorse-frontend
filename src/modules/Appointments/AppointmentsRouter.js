@@ -12,7 +12,7 @@ export default [
         path: '/appointments',
         component: AppointmentsList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Consultas'
         }
       },
@@ -20,7 +20,7 @@ export default [
         path: '/appointments/create',
         component: AppointmentsForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Cadastro de Consulta'
         }
       },
@@ -28,7 +28,7 @@ export default [
         path: '/appointments/:id',
         component: AppointmentsShow,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Visualização de Consulta'
         }
       },
@@ -36,7 +36,7 @@ export default [
         path: '/appointments/:id/edit',
         component: AppointmentsForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de Consulta'
         }
       }

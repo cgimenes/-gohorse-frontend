@@ -8,13 +8,23 @@
       // Overwriting base render method with actual data.
       this.renderChart(
         {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
           datasets: [
             {
-              label: 'News reports',
-              backgroundColor: '#3c8dbc',
-              data: [12, 20, 12, 18, 10, 6, 9, 32, 29, 19, 12, 11]
-            }
+              label: 'Consultas',
+              backgroundColor: '#F44336',
+              data: [7, 12, 2, 4, 2, 3, 4, 5, 1, 0, 7, 1]
+            },
+            {
+              label: 'Internamentos',
+              backgroundColor: '#2196F3',
+              data: [1, 1, 2, 0, 0, 4, 4, 2, 1, 2, 2, 3]
+            }/*,
+            {
+              label: 'Cirurgias',
+              backgroundColor: '#4CAF50',
+              data: [4, 2, 3, 5, 2, 0, 2, 2, 3, 1, 2, 2]
+            }*/
           ]
         },
         {

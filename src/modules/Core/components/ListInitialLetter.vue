@@ -1,4 +1,4 @@
-<template lang="pug">
+<template >
     <b class="list_letter" :style="{ 'background': avatarColor } ">{{ letter }}</b>
 </template>
 
@@ -41,14 +41,13 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-
-  b.list_letter
-    width 40px
-    height 40px
-    border-radius 50%
-    line-height 40px
-    text-transform uppercase
-    color #FFF
-
+<style>
+  b.list_letter {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    text-transform: uppercase;
+    color: #fff;
+  }
 </style>
