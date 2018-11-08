@@ -13,6 +13,12 @@ export default {
     })
   },
 
+  getSuppliersByName (name, callback) {
+    http.get('/suppliers/find?name=' + name).then(response => {
+      return callback(response.data.content)
+    })
+  },
+
   createSupplier (supplier, callback) {
     http.post('/suppliers', supplier).then(response => {
       return callback(response)

@@ -1,123 +1,65 @@
 <template>
-  <v-container grid-list-lg="grid-list-lg" fluid="fluid">
-    <v-layout row="row" wrap="wrap">
-      <v-flex xs12>
-        <v-card>
-          <v-container grid-list-lg="grid-list-lg" fluid="fluid">
-            <v-layout row="row" wrap="wrap">
-              <v-flex col xs12>
-                <h4 class="grey--text">Dados da consulta</h4>
-              </v-flex>
-              <v-flex col xs12 sm3="sm3">
-                <v-text-field
-                  required
-                  :rules='[rules.empty]'
-                  name="animal"
-                  label="Paciente"
-                  id="animal"
-                  v-model="appointment.animal.id"
-                  key="animal"
-                  >
-                </v-text-field>
-              </v-flex>
+<v-container grid-list-lg="grid-list-lg" fluid="fluid">
+  <v-layout row="row" wrap="wrap">
+    <v-flex xs12>
+      <v-card>
+        <v-container grid-list-lg="grid-list-lg" fluid="fluid">
+          <v-layout row="row" wrap="wrap">
+            <v-flex col xs12>
+              <h4 class="grey--text">Dados da consulta</h4>
+            </v-flex>
+            <v-flex col xs12 sm3="sm3">
+              <v-text-field required :rules='[rules.empty]' name="animal" label="Paciente" id="animal" v-model="appointment.animal.id" key="animal">
+              </v-text-field>
+            </v-flex>
 
-              <v-flex col xs12 sm3="sm3">
-                <v-text-field
-                  required
-                  :rules='[rules.empty]'
-                  name="veterinary"
-                  label="Veterinário"
-                  id="veterinary"
-                  v-model="appointment.veterinary.id"
-                  key="veterinary"
-                  >
-                </v-text-field>
-              </v-flex>
+            <v-flex col xs12 sm3="sm3">
+              <v-text-field required :rules='[rules.empty]' name="veterinary" label="Veterinário" id="veterinary" v-model="appointment.veterinary.id" key="veterinary">
+              </v-text-field>
+            </v-flex>
 
-              <v-flex col xs12 sm3='sm3'>
-                <v-menu
-                  ref='menuDate'
-                  :close-on-content-click='false'
-                  v-model='menuDate'
-                  :nudge-right='40'
-                  lazy
-                  transition='scale-transition'
-                  offset-y
-                  full-width
-                  max-width='290px'
-                  min-width='290px'
-                >
-                  <v-text-field
-                    required
-                    :rules='[rules.empty]'
-                    :mask='dateMask'
-                    slot='activator'
-                    v-model='appointment.dateTime.date'
-                    label='Data da consulta'
-                    prepend-icon='event'
-                    @blur='date = parseDate(appointment.dateTime.date)'
-                  ></v-text-field>
-                  <v-date-picker
-                    v-model='date'
-                    no-title
-                    locale='pt-br'
-                    @input='menuDate=false'
-                    >
-                  </v-date-picker>
-                </v-menu>
-              </v-flex>
+            <v-flex col xs12 sm3='sm3'>
+              <v-menu ref='menuDate' :close-on-content-click='false' v-model='menuDate' :nudge-right='40' lazy transition='scale-transition' offset-y full-width max-width='290px' min-width='290px'>
+                <v-text-field required :rules='[rules.empty]' :mask='dateMask' slot='activator' v-model='appointment.dateTime.date' label='Data da consulta' prepend-icon='event' @blur='date = parseDate(appointment.dateTime.date)'></v-text-field>
+                <v-date-picker v-model='date' no-title locale='pt-br' @input='menuDate=false'>
+                </v-date-picker>
+              </v-menu>
+            </v-flex>
 
-              <v-flex col xs12 sm3='sm3'>
-                <v-text-field
-                  required
-                  :rules='[rules.empty, rules.hour]'
-                  :mask='hourMask'
-                  name='name'
-                  label='Horário da consulta'
-                  id='hour'
-                  prepend-icon='access_time'
-                  v-model='appointment.dateTime.hour'
-                  key='name'
-                  >
-                </v-text-field>
-              </v-flex>
-              
-              <v-flex col xs12>
-                <h4 class="grey--text">Endereço</h4>
-              </v-flex>
-              <v-flex col xs12>
-                <address-component
-                  :address="appointment.address"
-                  :model.sync="appointment.address"
-                  :key="appointment.id"
-                  >
-                </address-component>
-              </v-flex>
-              
-              <v-flex col xs12>
-                <v-btn
-                  color="primary"
-                  :disabled='!formIsValid'
-                  @click="saveAppointment()"
-                  >Salvar
-                </v-btn>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+            <v-flex col xs12 sm3='sm3'>
+              <v-text-field required :rules='[rules.empty, rules.hour]' :mask='hourMask' name='name' label='Horário da consulta' id='hour' prepend-icon='access_time' v-model='appointment.dateTime.hour' key='name'>
+              </v-text-field>
+            </v-flex>
+
+            <v-flex col xs12>
+              <h4 class="grey--text">Endereço</h4>
+            </v-flex>
+            <v-flex col xs12>
+              <address-component :address="appointment.address" :model.sync="appointment.address" :key="appointment.id">
+              </address-component>
+            </v-flex>
+
+            <v-flex col xs12>
+              <v-btn color="primary" :disabled='!formIsValid' @click="saveAppointment()">Salvar
+              </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+  </v-layout>
+</v-container>
 </template>
 
 <script>
-
 import AppointmentsService from './AppointmentsService'
 import AddressComponent from '../Form/Address/AddressComponent'
 import moment from 'moment'
 
 export default {
-  components: {AddressComponent},
+  components: {
+    AddressComponent
+  },
   data () {
     return {
       appointment: {
@@ -174,7 +116,8 @@ export default {
   },
   methods: {
     saveAppointment () {
-      const appointmentFinal = { ...this.appointment }
+      const appointmentFinal = { ...this.appointment
+      }
 
       appointmentFinal.dateTime = moment.utc(
         `${this.appointment.dateTime.date} ${this.appointment.dateTime.hour}`,
@@ -187,14 +130,14 @@ export default {
             icon: 'warning'
           })
         }
-        
+
         this.$toasted.success('Consulta salva com sucesso!', {
           icon: 'check'
         })
 
         this.$router.push('/appointments/')
       })
-    },    
+    },
     getDataForEdit () {
       AppointmentsService.getAppointmentDetails(
         this.$route.params.id,

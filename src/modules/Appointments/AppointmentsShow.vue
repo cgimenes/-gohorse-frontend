@@ -69,7 +69,7 @@ export default {
         appointmentType: '',
         place: '',
         address: {
-          postalCode:{}
+          postalCode: {}
         }
       }
     }
