@@ -84,7 +84,10 @@ export default {
                 owner: {
                 },
                 breed: {
+                },
+                specie: {
                 }
+
             },
             menuDateBirth: false,
             dateMask: 'date',

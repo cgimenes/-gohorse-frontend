@@ -53,6 +53,10 @@ export default {
                 fab: false,
                 animal: {
                     owner: {
+                    },
+                    specie: {
+                    },
+                    breed: {
                     }
                 }
             }
