@@ -7,6 +7,7 @@ Vue.use(Router)
 var routes = importByFile(require.context('../modules/', true, /\.js$/), 'Router.js')
 
 const router = new Router({
+  mode: 'history',
   linkActiveClass: 'open active',
   scrollBehavior: () => ({y: 0}),
   routes: routes
