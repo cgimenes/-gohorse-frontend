@@ -82,7 +82,7 @@ export default {
 
 <style>
   #timeline{
-    height: 586px !important;
+    height: 554px !important;
     overflow-y: auto;
   }
 </style>

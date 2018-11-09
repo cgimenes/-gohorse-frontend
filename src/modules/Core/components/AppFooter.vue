@@ -11,7 +11,17 @@
 <script>
   export default {
     data: () => ({
-      links: ['Home', 'About Us', 'Team', 'Services', 'Blog', 'Contact Us']
+      links: ['Home', 'Sobre', 'Time', 'Serviços', 'Entre em contato']
     })
   }
 </script>
+
+<style>
+  footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+</style>

@@ -27,7 +27,7 @@
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn color="blue darken-1" flat @click.native="dismiss()">Fechar</v-btn>
-                      <v-btn color="blue darken-1" flat @click.native="save(registerForm, newName, item)">Salvar</v-btn>
+                      <v-btn color="blue darken-1" flat @click.native="save(registerForm, newName, item)" type="submit">Salvar</v-btn>
                     </v-card-actions>
                   </v-form>
                 </v-card>
@@ -87,6 +87,10 @@ export default {
     }
   },
   mounted () {
+    const serialized = localStorage.getItem('authorization')
+    if (!serialized || serialized == "false" || serialized === "false") {
+      this.$router.go('/login')
+    }
     EnumeratorsService.getEnumerators((enumeratorsFound) => {
       this.enumerators = enumeratorsFound
     })

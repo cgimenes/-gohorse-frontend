@@ -30,6 +30,7 @@
 <style>
   #app-container {
     margin-top: -80px;
+    margin-bottom: 100px;
     padding-top: 0 !important;
   }
 </style>

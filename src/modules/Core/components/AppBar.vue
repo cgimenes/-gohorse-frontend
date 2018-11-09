@@ -6,6 +6,7 @@
       </v-toolbar-title>
       <v-toolbar-side-icon @click.stop="toggle('showSidebar')"></v-toolbar-side-icon>
       <v-text-field class="elevation-0" id="buscar" solo="" dark="" name="input-1" label="Buscar"></v-text-field>
+      <v-spacer></v-spacer>
     </v-toolbar>
   </v-card>
 </template>
