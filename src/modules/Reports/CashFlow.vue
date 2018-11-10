@@ -32,18 +32,18 @@
             )
               td
                 strong Saldo inicial no período
-              td(:text-content.prop="props.item.JANUARY | currency")
-              td(:text-content.prop="props.item.FEBRUARY | currency")
-              td(:text-content.prop="props.item.MARCH | currency")
-              td(:text-content.prop="props.item.APRIL | currency")
-              td(:text-content.prop="props.item.MAY | currency")
-              td(:text-content.prop="props.item.JUNE | currency")
-              td(:text-content.prop="props.item.JULY | currency")
-              td(:text-content.prop="props.item.AUGUST | currency")
-              td(:text-content.prop="props.item.SEPTEMBER | currency")
-              td(:text-content.prop="props.item.OCTOBER | currency")
-              td(:text-content.prop="props.item.NOVEMBER | currency")
-              td(:text-content.prop="props.item.DECEMBER | currency")
+              td(:text-content.prop="props.item.january | currency")
+              td(:text-content.prop="props.item.february | currency")
+              td(:text-content.prop="props.item.march | currency")
+              td(:text-content.prop="props.item.april | currency")
+              td(:text-content.prop="props.item.may | currency")
+              td(:text-content.prop="props.item.june | currency")
+              td(:text-content.prop="props.item.july | currency")
+              td(:text-content.prop="props.item.august | currency")
+              td(:text-content.prop="props.item.september | currency")
+              td(:text-content.prop="props.item.october | currency")
+              td(:text-content.prop="props.item.november | currency")
+              td(:text-content.prop="props.item.december | currency")
 
         template
           v-container.grid-list-lg.fluid
