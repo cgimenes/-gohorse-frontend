@@ -1,4 +1,4 @@
-<template lang="pug">
+<template>
     <b class="list_letter" :style="{ 'background': avatarColor } ">{{ letter }}</b>
 </template>
 

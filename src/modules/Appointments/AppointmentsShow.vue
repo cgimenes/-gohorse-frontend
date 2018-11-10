@@ -36,10 +36,10 @@
                   <b>Local: </b> {{ appointment.place === 'CLINIC' ? 'Clínica' : `${appointment.address.postalCode.streetName}, ${appointment.address.number}, ${appointment.address.complement}, ${appointment.address.postalCode.city}, ${appointment.address.postalCode.state}`}}
                 </p>
                 <p>
-                  <b>Data:</b> 16/08/2018
+                  <b>Data:</b> {{ appointment.dateTime.date }}
                 </p>
                 <p>
-                  <b>Hora:</b> 15:00
+                  <b>Hora:</b> {{ appointment.dateTime.hour }}
                 </p>
               </v-flex>
             </v-layout>
@@ -51,58 +51,63 @@
 </template>
 
 <script>
-
-import AppointmentsService from './AppointmentsService'
+import AppointmentsService from './AppointmentsService';
+import Moment from 'moment';
 
 export default {
-  data () {
+  data() {
     return {
       fab: false,
       appointment: {
         id: '',
         animal: {
-          owner: {}
+          owner: {},
         },
         veterinary: {},
-        dateTime: null,
+        dateTime: {},
         status: '',
         appointmentType: '',
         place: '',
         address: {
-          postalCode: {}
-        }
-      }
-    }
+          postalCode: {},
+        },
+      },
+    };
   },
-  mounted () {
-    AppointmentsService.getAppointmentDetails(this.$route.params.id, (appointment) => {
-      this.appointment = appointment
-    })
+  mounted() {
+    AppointmentsService.getAppointmentDetails(
+      this.$route.params.id,
+      appointment => {
+        this.appointment = {
+          ...appointment,
+          dateTime: {
+            date: new Moment(appointment.dateTime).format('DD/MM/YYYY'),
+            hour: new Moment(appointment.dateTime).format('HH:mm'),
+          },
+        };
+      }
+    );
   },
   methods: {
-    edit () {
-      this
-        .$router
-        .push('/appointments/' + this.appointment.id + '/edit')
+    edit() {
+      this.$router.push('/appointments/' + this.appointment.id + '/edit');
     },
-    destroy () {
+    destroy() {
       this.$swal({
         title: 'Você deseja deletar este consulta?',
         text: 'Esta operação não pode ser desfeita',
         type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sim, eu quero deletar!',
-        cancelButtonText: 'Não'
-      }).then((result) => {
+        cancelButtonText: 'Não',
+      }).then(result => {
         if (result.value) {
-          AppointmentsService.removeAppointment(this.appointment.id, (res) => {
-            this
-              .$router
-              .push('/appointments/')
-          })
+          AppointmentsService.removeAppointment(this.appointment.id, res => {
+            this.$router.push('/appointments/');
+          });
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
