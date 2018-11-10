@@ -9,22 +9,45 @@
               <h4 class="grey--text">Dados da consulta</h4>
             </v-flex>
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="animal" label="Paciente" id="animal" v-model="appointment.animal.id" key="animal">
+              <v-text-field required :rules='[rules.empty]' name="animal" label="Paciente" id="animal" v-model="appointment.animal" key="animal">
               </v-text-field>
             </v-flex>
 
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="veterinary" label="Veterinário" id="veterinary" v-model="appointment.veterinary.id" key="veterinary">
+              <v-text-field required :rules='[rules.empty]' name="veterinary" label="Veterinário" id="veterinary" v-model="appointment.veterinary" key="veterinary">
               </v-text-field>
             </v-flex>
 
             <v-flex col xs12 sm3='sm3'>
-              <v-menu ref='menuDate' :close-on-content-click='false' v-model='menuDate' :nudge-right='40' lazy transition='scale-transition' offset-y full-width max-width='290px' min-width='290px'>
-                <v-text-field required :rules='[rules.empty]' :mask='dateMask' slot='activator' v-model='appointment.dateTime.date' label='Data da consulta' prepend-icon='event' @blur='date = parseDate(appointment.dateTime.date)'></v-text-field>
-                <v-date-picker v-model='date' no-title locale='pt-br' @input='menuDate=false'>
-                </v-date-picker>
-              </v-menu>
-            </v-flex>
+                <v-menu
+                  ref='menuDate'
+                  :close-on-content-click='false'
+                  v-model='menuDate'
+                  :nudge-right='40'
+                  lazy
+                  transition='scale-transition'
+                  offset-y
+                  full-width
+                  max-width='290px'
+                  min-width='290px'
+                >
+                  <v-text-field
+                    :mask='dateMask'
+                    slot='activator'
+                    v-model='appointment.dateTime.date'
+                    label='Data da Consulta'
+                    prepend-icon='event'
+                    @blur='date = parseDate(appointment.dateTime.date)'
+                  ></v-text-field>
+                  <v-date-picker
+                    v-model='date'
+                    no-title
+                    locale='pt-br'
+                    @input='menuDate=false'
+                    >
+                  </v-date-picker>
+                </v-menu>
+              </v-flex>            
 
             <v-flex col xs12 sm3='sm3'>
               <v-text-field required :rules='[rules.empty, rules.hour]' :mask='hourMask' name='name' label='Horário da consulta' id='hour' prepend-icon='access_time' v-model='appointment.dateTime.hour' key='name'>
@@ -90,19 +113,28 @@ export default {
       hourMask: 'time',
       dateMask: 'date',
       rules: {
-        empty: value => (value || '').length > 0 || 'Preenchimento obrigatório!',
+        empty: value =>
+          (value || '').length > 0 || 'Preenchimento obrigatório!',
         hour: value => {
           const pattern = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/
-          return pattern.test(moment(value, 'HH:mm').format('HH:mm')) || 'Horário inválido!'
+          return (
+            pattern.test(moment(value, 'HH:mm').format('HH:mm')) ||
+            'Horário inválido!'
+          )
         }
       }
+    }
+  },
+  watch: {
+    date (val) {
+      this.appointment.dateTime.date = this.formatDate(this.date)
     }
   },
   computed: {
     formIsValid () {
       return (
-        this.appointment.animal.id &&
-        this.appointment.veterinary.id &&
+        this.appointment.animal &&
+        this.appointment.veterinary &&
         this.appointment.dateTime.date &&
         this.appointment.dateTime.hour &&
         this.appointment.address.postalCode.code &&
@@ -116,7 +148,8 @@ export default {
   },
   methods: {
     saveAppointment () {
-      const appointmentFinal = { ...this.appointment
+      const appointmentFinal = {
+        ...this.appointment
       }
 
       appointmentFinal.dateTime = moment.utc(
@@ -126,9 +159,12 @@ export default {
 
       AppointmentsService.saveAppointment(appointmentFinal, res => {
         if (appointmentFinal.dateTime < moment()) {
-          return this.$toasted.error('A consulta não pode ser agendada com data retroativa!', {
-            icon: 'warning'
-          })
+          return this.$toasted.error(
+            'A consulta não pode ser agendada com data retroativa!',
+            {
+              icon: 'warning'
+            }
+          )
         }
 
         this.$toasted.success('Consulta salva com sucesso!', {
@@ -141,17 +177,17 @@ export default {
     getDataForEdit () {
       AppointmentsService.getAppointmentDetails(
         this.$route.params.id,
-        (appointment) => {
+        appointment => {
           this.appointment.id = appointment.id
-          this.appointment.animal = appointment.animal
-          this.appointment.veterinary = appointment.veterinary
+          this.appointment.animal = appointment.animal.id
+          this.appointment.veterinary = appointment.veterinary.id
           this.appointment.address = appointment.address
-          this.appointment.dateTime.date =
-            moment(appointment.dateTime)
-            .format('DD/MM/YYYY')
-          this.appointment.dateTime.hour =
-            moment(appointment.dateTime)
-            .format('HH:mm')
+          this.appointment.dateTime.date = moment(appointment.dateTime).format(
+            'DD/MM/YYYY'
+          )
+          this.appointment.dateTime.hour = moment(appointment.dateTime).format(
+            'HH:mm'
+          )
         }
       )
     },
