@@ -34,43 +34,43 @@
 </template>
 
 <script>
-import AppointmentsService from './AppointmentsService';
-import ListInitialLetter from '@core/components/ListInitialLetter';
-import moment from 'moment';
+import AppointmentsService from './AppointmentsService'
+import ListInitialLetter from '@core/components/ListInitialLetter'
+import moment from 'moment'
 
 export default {
   components: {
-    ListInitialLetter,
+    ListInitialLetter
   },
-  data() {
+  data () {
     return {
       date: moment()
         .format()
         .substr(0, 10),
       monthDaysWithAppointments: [],
       dayAppointments: [],
-      pickerDate: null,
-    };
+      pickerDate: null
+    }
   },
-  mounted() {
-    this.pickerDay();
+  mounted () {
+    this.pickerDay()
   },
   watch: {
-    pickerDate(month) {
+    pickerDate (month) {
       AppointmentsService.getMonthDaysWithAppointments(month, days => {
-        this.monthDaysWithAppointments = days;
-      });
-    },
+        this.monthDaysWithAppointments = days
+      })
+    }
   },
   methods: {
-    show(appointment) {
-      this.$router.push('/appointments/' + appointment.id);
+    show (appointment) {
+      this.$router.push('/appointments/' + appointment.id)
     },
-    pickerDay() {
+    pickerDay () {
       AppointmentsService.getDayAppointments(this.date, appointments => {
-        this.dayAppointments = appointments;
-      });
-    },
-  },
-};
+        this.dayAppointments = appointments
+      })
+    }
+  }
+}
 </script>

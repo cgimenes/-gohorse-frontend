@@ -51,17 +51,17 @@
 </template>
 
 <script>
-import AppointmentsService from './AppointmentsService';
-import Moment from 'moment';
+import AppointmentsService from './AppointmentsService'
+import Moment from 'moment'
 
 export default {
-  data() {
+  data () {
     return {
       fab: false,
       appointment: {
         id: '',
         animal: {
-          owner: {},
+          owner: {}
         },
         veterinary: {},
         dateTime: {},
@@ -69,12 +69,12 @@ export default {
         appointmentType: '',
         place: '',
         address: {
-          postalCode: {},
-        },
-      },
-    };
+          postalCode: {}
+        }
+      }
+    }
   },
-  mounted() {
+  mounted () {
     AppointmentsService.getAppointmentDetails(
       this.$route.params.id,
       appointment => {
@@ -82,32 +82,32 @@ export default {
           ...appointment,
           dateTime: {
             date: new Moment(appointment.dateTime).format('DD/MM/YYYY'),
-            hour: new Moment(appointment.dateTime).format('HH:mm'),
-          },
-        };
+            hour: new Moment(appointment.dateTime).format('HH:mm')
+          }
+        }
       }
-    );
+    )
   },
   methods: {
-    edit() {
-      this.$router.push('/appointments/' + this.appointment.id + '/edit');
+    edit () {
+      this.$router.push('/appointments/' + this.appointment.id + '/edit')
     },
-    destroy() {
+    destroy () {
       this.$swal({
         title: 'Você deseja deletar este consulta?',
         text: 'Esta operação não pode ser desfeita',
         type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sim, eu quero deletar!',
-        cancelButtonText: 'Não',
+        cancelButtonText: 'Não'
       }).then(result => {
         if (result.value) {
           AppointmentsService.removeAppointment(this.appointment.id, res => {
-            this.$router.push('/appointments/');
-          });
+            this.$router.push('/appointments/')
+          })
         }
-      });
-    },
-  },
-};
+      })
+    }
+  }
+}
 </script>

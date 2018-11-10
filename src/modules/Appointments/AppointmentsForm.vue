@@ -75,22 +75,22 @@
 </template>
 
 <script>
-import AppointmentsService from './AppointmentsService';
-import AddressComponent from '../Form/Address/AddressComponent';
-import moment from 'moment';
+import AppointmentsService from './AppointmentsService'
+import AddressComponent from '../Form/Address/AddressComponent'
+import moment from 'moment'
 
 export default {
   components: {
-    AddressComponent,
+    AddressComponent
   },
-  data() {
+  data () {
     return {
       appointment: {
         animal: '',
         veterinary: '',
         dateTime: {
           date: null,
-          hour: null,
+          hour: null
         },
         appointmentType: 'FIRST',
         place: 'OWNER',
@@ -104,9 +104,9 @@ export default {
             neighbourhood: '',
             city: '',
             state: '',
-            country: 'Brasil',
-          },
-        },
+            country: 'Brasil'
+          }
+        }
       },
       menuDate: false,
       date: false,
@@ -116,22 +116,22 @@ export default {
         empty: value =>
           (value || '').length > 0 || 'Preenchimento obrigatório!',
         hour: value => {
-          const pattern = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/;
+          const pattern = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/
           return (
             pattern.test(moment(value, 'HH:mm').format('HH:mm')) ||
             'Horário inválido!'
-          );
-        },
-      },
-    };
+          )
+        }
+      }
+    }
   },
   watch: {
-    date(val) {
-      this.appointment.dateTime.date = this.formatDate(this.date);
-    },
+    date (val) {
+      this.appointment.dateTime.date = this.formatDate(this.date)
+    }
   },
   computed: {
-    formIsValid() {
+    formIsValid () {
       return (
         this.appointment.animal &&
         this.appointment.veterinary &&
@@ -143,71 +143,71 @@ export default {
         this.appointment.address.postalCode.streetName &&
         this.appointment.address.postalCode.city &&
         this.appointment.address.postalCode.state
-      );
-    },
+      )
+    }
   },
   methods: {
-    saveAppointment() {
+    saveAppointment () {
       const appointmentFinal = {
-        ...this.appointment,
-      };
+        ...this.appointment
+      }
 
       appointmentFinal.dateTime = moment.utc(
         `${this.appointment.dateTime.date} ${this.appointment.dateTime.hour}`,
         'DD/MM/YYYY HH:mm'
-      );
+      )
 
       AppointmentsService.saveAppointment(appointmentFinal, res => {
         if (appointmentFinal.dateTime < moment()) {
           return this.$toasted.error(
             'A consulta não pode ser agendada com data retroativa!',
             {
-              icon: 'warning',
+              icon: 'warning'
             }
-          );
+          )
         }
 
         this.$toasted.success('Consulta salva com sucesso!', {
-          icon: 'check',
-        });
+          icon: 'check'
+        })
 
-        this.$router.push('/appointments/');
-      });
+        this.$router.push('/appointments/')
+      })
     },
-    getDataForEdit() {
+    getDataForEdit () {
       AppointmentsService.getAppointmentDetails(
         this.$route.params.id,
         appointment => {
-          this.appointment.id = appointment.id;
-          this.appointment.animal = appointment.animal.id;
-          this.appointment.veterinary = appointment.veterinary.id;
-          this.appointment.address = appointment.address;
+          this.appointment.id = appointment.id
+          this.appointment.animal = appointment.animal.id
+          this.appointment.veterinary = appointment.veterinary.id
+          this.appointment.address = appointment.address
           this.appointment.dateTime.date = moment(appointment.dateTime).format(
             'DD/MM/YYYY'
-          );
+          )
           this.appointment.dateTime.hour = moment(appointment.dateTime).format(
             'HH:mm'
-          );
+          )
         }
-      );
+      )
     },
-    formatDate(date) {
-      if (!date) return null;
+    formatDate (date) {
+      if (!date) return null
 
-      const [year, month, day] = date.split('-');
-      return `${day}/${month}/${year}`;
+      const [year, month, day] = date.split('-')
+      return `${day}/${month}/${year}`
     },
-    parseDate(date) {
-      if (!date) return null;
+    parseDate (date) {
+      if (!date) return null
 
-      const [month, day, year] = date.split('/');
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-    },
-  },
-  created() {
-    if (this.$route.params.id) {
-      this.getDataForEdit();
+      const [month, day, year] = date.split('/')
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     }
   },
-};
+  created () {
+    if (this.$route.params.id) {
+      this.getDataForEdit()
+    }
+  }
+}
 </script>
