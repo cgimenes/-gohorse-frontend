@@ -60,8 +60,8 @@ function parseDate (date) {
  * @return {string}
  */
 function CurrencyFilter(value) {
-  if (typeof value !== "number") {
-    value = 0;
+  if (typeof value !== "number" || value === 0) {
+    return '-'
   }
   var formatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
