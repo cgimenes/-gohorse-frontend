@@ -1,24 +1,24 @@
 <template lang="pug">
   v-container.grid-list-lg.fluid
+    v-dialog(
+    v-model="loading"
+    hide-overlay
+    persistent
+    width="300"
+    )
+      v-card(
+      color="primary"
+      dark
+      )
+        v-card-text
+          span Carregando
+          v-progress-linear(
+          indeterminate
+          color="white"
+          class="mb-0"
+          )
     v-layout.row.wrap(v-if="!loading")
       .flex
-        v-dialog(
-        v-model="loading"
-        hide-overlay
-        persistent
-        width="300"
-        )
-          v-card(
-          color="primary"
-          dark
-          )
-            v-card-text
-              span Carregando
-              v-progress-linear(
-              indeterminate
-              color="white"
-              class="mb-0"
-              )
         template
           v-data-table(
           :headers="headers"
