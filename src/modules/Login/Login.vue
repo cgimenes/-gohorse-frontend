@@ -2,7 +2,7 @@
   <div class="login primary-gradient">
     <v-container fill-height="fill-height">
       <v-layout row="row" wrap="wrap" align-center="align-center">
-        <v-flex class="login__img" xs12="xs12" md6="md6"><img src="/static/logo-x600.png" height="200px" /></v-flex>
+        <v-flex class="login__img" xs12="xs12" md6="md6"><img src="/static/logo.png" height="200px" /></v-flex>
         <v-flex xs12="xs12" md6="md6">
           <v-card>
             <form id="form-login" @submit.prevent="login()">

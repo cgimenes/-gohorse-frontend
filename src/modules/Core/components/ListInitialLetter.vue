@@ -1,4 +1,4 @@
-<template >
+<template>
     <b class="list_letter" :style="{ 'background': avatarColor } ">{{ letter }}</b>
 </template>
 
