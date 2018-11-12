@@ -56,7 +56,7 @@
                                 <breedcomplete label="Raça do Animal" :model.sync="animal.breed" :key="animal.id"></breedcomplete>
                             </v-flex>
                             <v-flex col xs12 sm4="sm4">
-                                <v-text-field name="sex" label="Sexo do Animal" id="sex" v-model="animal.sex" key="sex"></v-text-field>
+                                <sexcomplete label="Sexo do Animal" :model.sync="animal.sex" :key="animal.id"></sexcomplete>
                             </v-flex>
                             <v-flex col xs12>
                                 <v-btn color="primary" @click="saveAnimal()">Salvar</v-btn>
@@ -74,10 +74,11 @@ import AnimalsService from './AnimalsService'
 import Autocomplete from '../Owners/Autocomplete'
 import Breedcomplete from '../Enumerators/AutocompleteBreed'
 import Speciecomplete from '../Enumerators/AutocompleteSpecie'
+import Sexcomplete from '../Enumerators/AutocompleteSex'
 import moment from 'moment'
 
 export default {
-    components: { Autocomplete, Breedcomplete, Speciecomplete },
+    components: { Autocomplete, Breedcomplete, Speciecomplete, Sexcomplete  },
     data () {
         return {
             animal: {
@@ -86,8 +87,9 @@ export default {
                 breed: {
                 },
                 specie: {
+                },
+                sex: {
                 }
-
             },
             menuDateBirth: false,
             dateMask: 'date',
