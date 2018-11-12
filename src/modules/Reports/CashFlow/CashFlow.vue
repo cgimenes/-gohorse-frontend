@@ -176,7 +176,7 @@
 </template>
 
 <script>
-  import ReportsService from './ReportsService'
+  import ReportsService from '../ReportsService'
 
   export default {
     components: {},

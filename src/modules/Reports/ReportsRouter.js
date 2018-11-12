@@ -1,5 +1,5 @@
 import Layout from '@core/components/Layout'
-import CashFlow from './CashFlow'
+import CashFlow from './CashFlow/CashFlow'
 
 export default [
   {
