@@ -20,13 +20,13 @@
                 </v-menu>
               </v-flex>
               <v-flex col xs12 sm6="sm6">
-                <autocomplete label="Proprietário do Animal" :model.sync="animal.owner" :key="animal.id"></autocomplete>
+                <autocomplete label="Proprietário do Animal" :proprietario="animal.owner.id" :model.sync="animal.owner" :key="animal.id"></autocomplete>
               </v-flex>
               <v-flex col xs12 sm4="sm4">
-                <speciecomplete label="Espécie do Animal" :model.sync="animal.specie" :key="animal.id"></speciecomplete>
+                <speciecomplete label="Espécie do Animal" :specie="animal.specie.id" :model.sync="animal.specie" :key="animal.id"></speciecomplete>
               </v-flex>
               <v-flex col xs12 sm4="sm4">
-                <breedcomplete label="Raça do Animal" :model.sync="animal.breed" :key="animal.id"></breedcomplete>
+                <breedcomplete label="Raça do Animal" :breed="animal.breed.id" :model.sync="animal.breed" :key="animal.id"></breedcomplete>
               </v-flex>
               <v-flex col xs12 sm4="sm4">
                 <v-select :items="sex" v-model="animal.sex" item-value="value" item-text="name" label="Sexo"></v-select>
@@ -100,6 +100,9 @@ export default {
     getDataForEdit () {
       AnimalsService.getAnimalDetails(this.$route.params.id, (animal) => {
         this.animal = animal
+        this.animal.owner = this.animal.owner.id
+        this.animal.breed = this.animal.breed.id
+        this.animal.specie = this.animal.specie.id
         this.animal.birthDate = moment(animal.birthDate).format('DD/MM/YYYY')
       })
     },

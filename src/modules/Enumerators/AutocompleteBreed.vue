@@ -24,7 +24,7 @@
         type: Object,
         required: true,
         default () {
-          return ''
+          return {}
         }
       },
       disabled: {
@@ -37,7 +37,6 @@
         items: [],
         select: null,
         customFilter (item, queryText, itemText) {
-        console.log(item.name)
           const hasValue = val => val != null ? val : ''
           const text = hasValue(item.name)
           const query = hasValue(queryText)

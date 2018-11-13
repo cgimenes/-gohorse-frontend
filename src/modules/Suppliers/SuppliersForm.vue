@@ -27,11 +27,6 @@
                         item-value="text"
                       ></v-select>
                     </v-flex>
-                    <v-flex xs2>
-                      <v-btn dark fab flat color='teal' to='' >
-                        <v-icon> add </v-icon>
-                      </v-btn>
-                    </v-flex>
                   </v-layout>
                 </template>
 

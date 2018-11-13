@@ -64,11 +64,6 @@ export default {
         name: 'Tipo de distribuição'
       })
     }
-    if (!enumeratorsFound.find(x => x.name === 'Sexo')) {
-      enumeratorsFound.push({
-        name: 'Sexo'
-      })
-    }
     enumeratorsFound.sort(function (a, b) {
       if (a.name < b.name) return -1
       if (a.name > b.name) return 1

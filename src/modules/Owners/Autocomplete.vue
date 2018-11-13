@@ -16,7 +16,7 @@ export default {
       type: Object,
       required: true,
       default () {
-        return ''
+        return {}
       }
     },
     disabled: {
@@ -28,20 +28,26 @@ export default {
     return {
       loading: false,
       items: [],
-      search: null,
-      select: null
+      search: '',
+      select: ''
     }
   },
   watch: {
     search (val) {
-      this.items = null
-      if (this.searchTimeout) {
+      this.items = []
+      if (this && this.searchTimeout) {
         clearTimeout(this.searchTimeout)
       }
-      if (val.length >= 3) {
+      if (val && val.length >= 3) {
         val && this.querySelections(val)
       }
     }
+  },
+  mounted () {
+    OwnersService.getOwnersByName('', (owners) => {
+      this.items = owners
+      this.loading = false
+    })
   },
   methods: {
     querySelections (v) {

@@ -24,7 +24,7 @@
         type: Object,
         required: true,
         default () {
-          return ''
+          return {}
         }
       },
       disabled: {
