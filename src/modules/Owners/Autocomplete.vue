@@ -34,7 +34,7 @@ export default {
   },
   watch: {
     search (val) {
-      this.items = []
+      this.items = null
       if (this && this.searchTimeout) {
         clearTimeout(this.searchTimeout)
       }
