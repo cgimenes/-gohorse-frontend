@@ -17,30 +17,21 @@
                         <v-icon>delete</v-icon>
                     </v-btn>
                 </v-speed-dial>
-                <v-container grid-list-lg="grid-list-lg" fluid="fluid">
-                    <v-layout row="row" wrap="wrap">
+                <v-container grid-list-lg fluid>
+                    <v-layout row wrap>
                         <v-flex col xs12>
                             <h1>{{ animal.name }}</h1>
                         </v-flex>
-                        <v-flex col xs12 sm4="sm4">
+                        <v-flex col xs12 sm6>
                             <h4 class="grey--text mb-3">Dados do Animal</h4>
                             <p>
-                                <b>Nome: </b> {{animal.name}}
+                                <b>Nome: </b> {{ animal.name }}
                             </p>
+                        </v-flex>
+                        <v-flex col xs12 sm6>
+                            <h4 class="grey--text mb-3">Proprietário</h4>
                             <p>
-                                <b>Nome do Proprietário: </b> {{animal.owner.name}}
-                            </p>
-                            <p>
-                                <b>Telefone do Proprietário: </b> {{animal.owner.phone}}
-                            </p>
-                            <p>
-                                <b>Espécie do Animal: </b> {{animal.specie.name}}
-                            </p>
-                            <p>
-                                <b>Raça do Animal: </b> {{animal.breed.name}}
-                            </p>
-                            <p>
-                                <b>Sexo do Animal: </b> {{animal.sex}}
+                                <b>Nome: </b> {{animal.owner.name}}
                             </p>
                         </v-flex>
                     </v-layout>
@@ -61,9 +52,12 @@ export default {
             return {
                 fab: false,
                 animal: {
-                    owner: {},
-                    specie: {},
-                    breed: {}
+                    owner: {
+                    },
+                    specie: {
+                    },
+                    breed: {
+                    }
                 }
             }
         },
@@ -98,4 +92,5 @@ export default {
                 }
         }
 }
+
 </script>

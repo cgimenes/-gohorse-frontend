@@ -1,7 +1,7 @@
 <template>
   <v-select
     :label="label"
-    v-model="distributionType"
+    v-model="sex"
     autocomplete
     :items="items"
     :filter="customFilter"
@@ -12,19 +12,19 @@
 </template>
 
 <script>
-  import EnumeratorsService from './EnumeratorsService'
+import EnumeratorsService from './EnumeratorsService'
 
   export default {
     props: {
       label: {
         type: String,
-        default: 'Tipo de Distribuição'
+        default: 'Sex'
       },
       model: {
         type: Object,
         required: true,
         default () {
-          return {}
+          return ''
         }
       },
       disabled: {
@@ -47,12 +47,12 @@
       }
     },
     mounted () {
-        EnumeratorsService.getEnumeratorsByType('Tipo de distribuição',(distributiontypes) => {
-        this.items = distributiontypes
+        EnumeratorsService.getEnumeratorsByType('sexo',(sexs) => {
+        this.items = sexs
       })
     },
     computed: {
-      distributionType: {
+      sex: {
         get: function () {
           return this.model
         },
