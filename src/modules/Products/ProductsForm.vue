@@ -34,10 +34,10 @@
             </v-flex>
             <v-flex col xs12 sm6="sm6">
               <autocomplete
-              :key="product.id"
-                :rules="[rules.empty]"
+              :rules="[rules.empty]"
                 label="Fornecedor do produto"
                 :model.sync="product.supplier"
+                :key="product.id"
                 >
               </autocomplete>
             </v-flex>
@@ -84,7 +84,7 @@
 
 <script>
 import ProductsService from './ProductsService'
-import Autocomplete from './Autocomplete'
+import Autocomplete from '../Suppliers/Autocomplete'
 
 export default {
   components: {
