@@ -1,66 +1,68 @@
 <template>
-  <v-select
-    :label="label"
-    v-model="supplier"
-    autocomplete
-    :items="items"
-    :filter="customFilter"
-    item-text="name"
-    item-value="id"
-    :value="select"
-  ></v-select>
+<v-select :label="label" v-model="fornecedor" autocomplete :loading="loading" :items="items" item-text="name" item-value="id" :search-input.sync="search" :value="select">
+</v-select>
 </template>
 
 <script>
-  import SuppliersService from './SuppliersService'
+import SuppliersService from '../Suppliers/SuppliersService'
 
-  export default {
-    props: {
-      label: {
-        type: String,
-        default: 'Supplier'
-      },
-      model: {
-        type: Object,
-        required: true,
-        default () {
-          return ''
-        }
-      },
-      disabled: {
-        type: Boolean,
-        default: false
+export default {
+  props: {
+    label: {
+      type: String,
+      default: 'Fornecedor'
+    },
+    model: {
+      type: Object,
+      required: true,
+      default () {
+        return ''
       }
     },
-    data () {
-      return {
-        items: [],
-        select: null,
-        customFilter (item, queryText, itemText) {
-        console.log(item.name)
-          const hasValue = val => val != null ? val : ''
-          const text = hasValue(item.name)
-          const query = hasValue(queryText)
-          return text.toString()
-            .toLowerCase()
-            .indexOf(query.toString().toLowerCase()) > -1
-        }
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      loading: false,
+      items: [],
+      search: null,
+      select: null
+    }
+  },
+  watch: {
+    search (val) {
+      this.items = null
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout)
       }
-    },
-    mounted () {
-      SuppliersService.getSuppliersByName('',(supplier) => {
-      this.items = supplier
-      })
-    },
-    computed: {
-      supplier: {
-        get: function () {
-          return this.model
-        },
-        set: function (newValue) {
-          this.$emit('update:model', newValue)
-        }
+      if (val.length >= 3) {
+        val && this.querySelections(val)
+      }
+    }
+  },
+  methods: {
+    querySelections (v) {
+      this.loading = true
+      this.searchTimeout = setTimeout(() => {
+        SuppliersService.getSuppliersByName(v, (suppliers) => {
+          this.items = suppliers
+          this.loading = false
+        })
+      }, 100)
+    }
+  },
+  computed: {
+    fornecedor: {
+      get: function () {
+        return this.model
+      },
+      set: function (newValue) {
+        this.$emit('update:model', newValue)
       }
     }
   }
+}
 </script>
