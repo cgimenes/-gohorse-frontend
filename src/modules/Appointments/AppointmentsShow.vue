@@ -36,10 +36,10 @@
                   <b>Local: </b> {{ appointment.place === 'CLINIC' ? 'Clínica' : `${appointment.address.postalCode.streetName}, ${appointment.address.number}, ${appointment.address.complement}, ${appointment.address.postalCode.city}, ${appointment.address.postalCode.state}`}}
                 </p>
                 <p>
-                  <b>Data:</b> {{ appointment.dateTime.date }}
+                  <b>Data:</b> 16/08/2018
                 </p>
                 <p>
-                  <b>Hora:</b> {{ appointment.dateTime.hour }}
+                  <b>Hora:</b> 15:00
                 </p>
               </v-flex>
             </v-layout>
@@ -51,8 +51,8 @@
 </template>
 
 <script>
+
 import AppointmentsService from './AppointmentsService'
-import Moment from 'moment'
 
 export default {
   data () {
@@ -64,7 +64,7 @@ export default {
           owner: {}
         },
         veterinary: {},
-        dateTime: {},
+        dateTime: null,
         status: '',
         appointmentType: '',
         place: '',
@@ -75,22 +75,15 @@ export default {
     }
   },
   mounted () {
-    AppointmentsService.getAppointmentDetails(
-      this.$route.params.id,
-      appointment => {
-        this.appointment = {
-          ...appointment,
-          dateTime: {
-            date: new Moment(appointment.dateTime).format('DD/MM/YYYY'),
-            hour: new Moment(appointment.dateTime).format('HH:mm')
-          }
-        }
-      }
-    )
+    AppointmentsService.getAppointmentDetails(this.$route.params.id, (appointment) => {
+      this.appointment = appointment
+    })
   },
   methods: {
     edit () {
-      this.$router.push('/appointments/' + this.appointment.id + '/edit')
+      this
+        .$router
+        .push('/appointments/' + this.appointment.id + '/edit')
     },
     destroy () {
       this.$swal({
@@ -100,10 +93,12 @@ export default {
         showCancelButton: true,
         confirmButtonText: 'Sim, eu quero deletar!',
         cancelButtonText: 'Não'
-      }).then(result => {
+      }).then((result) => {
         if (result.value) {
-          AppointmentsService.removeAppointment(this.appointment.id, res => {
-            this.$router.push('/appointments/')
+          AppointmentsService.removeAppointment(this.appointment.id, (res) => {
+            this
+              .$router
+              .push('/appointments/')
           })
         }
       })
