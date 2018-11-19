@@ -8,9 +8,6 @@
             <v-flex col xs12>
               <h4 class="grey--text">Dados do produto</h4>
             </v-flex>
-            <v-flex col xs12 sm6="sm6">
-              <suppliercomplete label="Fornecedor" :fornecedor="product.supplier.id" :model.sync="product.supplier" :key="supplier.id"></suppliercomplete>
-            </v-flex>
             <v-flex col xs12>
               <v-text-field
                 id="name"
@@ -34,6 +31,15 @@
                 placeholder="ex: Special Dog"
                 >
               </v-text-field>
+            </v-flex>
+            <v-flex col xs12 sm6="sm6">
+              <autocomplete
+              :rules="[rules.empty]"
+                label="Fornecedor do produto"
+                :model.sync="product.supplier"
+                :key="product.id"
+                >
+              </autocomplete>
             </v-flex>
             <v-flex col xs12 sm6="sm6">
               <v-text-field name="price"
@@ -78,7 +84,7 @@
 
 <script>
 import ProductsService from './ProductsService'
-import SupplierComplete from '../Suppliers/Autocomplete'
+import Autocomplete from '../Suppliers/Autocomplete'
 
 export default {
   components: {
@@ -106,7 +112,6 @@ export default {
     getDataForEdit () {
       ProductsService.getProductDetails(this.$route.params.id, (product) => {
         this.product = product
-        this.product.supplier = this.product.supplier.id
       })
     }
   },
