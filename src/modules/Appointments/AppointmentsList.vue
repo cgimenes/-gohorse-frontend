@@ -44,9 +44,7 @@ export default {
   },
   data () {
     return {
-      date: moment()
-        .format()
-        .substr(0, 10),
+      date: moment().format().substr(0, 10),
       monthDaysWithAppointments: [],
       dayAppointments: [],
       pickerDate: null
@@ -57,17 +55,19 @@ export default {
   },
   watch: {
     pickerDate (month) {
-      AppointmentsService.getMonthDaysWithAppointments(month, days => {
+      AppointmentsService.getMonthDaysWithAppointments(month, (days) => {
         this.monthDaysWithAppointments = days
       })
     }
   },
   methods: {
     show (appointment) {
-      this.$router.push('/appointments/' + appointment.id)
+      this
+        .$router
+        .push('/appointments/' + appointment.id)
     },
     pickerDay () {
-      AppointmentsService.getDayAppointments(this.date, appointments => {
+      AppointmentsService.getDayAppointments(this.date, (appointments) => {
         this.dayAppointments = appointments
       })
     }
