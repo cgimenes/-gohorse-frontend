@@ -4,7 +4,7 @@
     <v-layout row="row" wrap="wrap">
       <v-flex xs12>
         <v-card>
-          <v-speed-dial class="show-actions" v-model="fab" absolute top right direction="bottom" open-on-hover transition="scale-transition"        >
+          <v-speed-dial class="show-actions" v-model="fab" absolute top right direction="bottom" open-on-hover transition="scale-transition">
             <v-btn slot="activator" color="blue darken-2" dark fab hover v-model="fab">
               <v-icon>more_vert</v-icon>
               <v-icon>close</v-icon>
@@ -81,9 +81,7 @@ export default {
   },
   methods: {
     edit () {
-      this
-        .$router
-        .push('/appointments/' + this.appointment.id + '/edit')
+      this.$router.push('/appointments/' + this.appointment.id + '/edit')
     },
     destroy () {
       this.$swal({
@@ -96,9 +94,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           AppointmentsService.removeAppointment(this.appointment.id, (res) => {
-            this
-              .$router
-              .push('/appointments/')
+            this.$router.push('/appointments/')
           })
         }
       })
