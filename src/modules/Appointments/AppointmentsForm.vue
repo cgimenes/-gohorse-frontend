@@ -19,12 +19,37 @@
             </v-flex>
 
             <v-flex col xs12 sm3='sm3'>
-              <v-menu ref='menuDate' :close-on-content-click='false' v-model='menuDate' :nudge-right='40' lazy transition='scale-transition' offset-y full-width max-width='290px' min-width='290px'>
-                <v-text-field required :rules='[rules.empty]' :mask='dateMask' slot='activator' v-model='appointment.dateTime.date' label='Data da consulta' prepend-icon='event' @blur='date = parseDate(appointment.dateTime.date)'></v-text-field>
-                <v-date-picker v-model='date' no-title locale='pt-br' @input='menuDate=false'>
-                </v-date-picker>
-              </v-menu>
-            </v-flex>
+                <v-menu
+                  ref='menuDate'
+                  :close-on-content-click='false'
+                  v-model='menuDate'
+                  :nudge-right='40'
+                  lazy
+                  transition='scale-transition'
+                  offset-y
+                  full-width
+                  max-width='290px'
+                  min-width='290px'
+                >
+                  <v-text-field
+                    required 
+                    :rules='[rules.empty]'
+                    :mask='dateMask'
+                    slot='activator'
+                    v-model='appointment.dateTime.date'
+                    label='Data da Consulta'
+                    prepend-icon='event'
+                    @blur='date = parseDate(appointment.dateTime.date)'
+                  ></v-text-field>
+                  <v-date-picker
+                    v-model='date'
+                    no-title
+                    locale='pt-br'
+                    @input='menuDate=false'
+                    >
+                  </v-date-picker>
+                </v-menu>
+              </v-flex>            
 
             <v-flex col xs12 sm3='sm3'>
               <v-text-field required :rules='[rules.empty, rules.hour]' :mask='hourMask' name='name' label='Horário da consulta' id='hour' prepend-icon='access_time' v-model='appointment.dateTime.hour' key='name'>
@@ -40,8 +65,7 @@
             </v-flex>
 
             <v-flex col xs12>
-              <v-btn color="primary" :disabled='!formIsValid' @click="saveAppointment()">Salvar
-              </v-btn>
+              <v-btn color="primary" :disabled='!formIsValid' @click="saveAppointment()">Salvar</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
