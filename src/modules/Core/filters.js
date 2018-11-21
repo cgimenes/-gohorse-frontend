@@ -56,4 +56,19 @@ function parseDate (date) {
   return moment(date, 'YYYY-MM-DD[T]HH:mm:ss')
 }
 
-export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter}
+/**
+ * @return {string}
+ */
+function CurrencyFilter(value) {
+  if (typeof value !== "number" || value === 0) {
+    return '-'
+  }
+  var formatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2
+  });
+  return formatter.format(value);
+}
+
+export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter, CurrencyFilter}
