@@ -68,6 +68,7 @@
           {icon: 'local_hospital', text: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', text: 'Internamentos', to: '/internments'},
           {icon: 'keyboard_arrow_up', 'icon-alt': 'book', text: 'Relatórios', children: [{icon: 'account_balance_wallet', text: 'Fluxo de caixa', to: '/reports/cashflow'}]},
+          {icon: 'keyboard_arrow_up', 'icon-alt': 'attach_money', text: 'Financeiro', children: [{icon: 'receipt', text: 'Títulos pendentes', to: '/financial/invoices'}]},
           {icon: 'extension', text: 'Cadastros complementares', to: '/enumerators'},
           {icon: 'security', text: 'Login', to: '/login'}
         ]
