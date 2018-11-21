@@ -1,16 +1,12 @@
-<template>
-  <div class="main-layout">
-    <sidebar></sidebar>
-    <app-bar></app-bar>
-    <v-content id="app-container">
-      <v-fade-transition mode="out-in">
-        <div class="app-container__padding">
-          <router-view></router-view>
-        </div>
-      </v-fade-transition>
-    </v-content>
-    <app-footer></app-footer>
-  </div>
+<template lang="pug">
+  .main-layout
+    sidebar
+    app-bar
+    v-content#app-container
+      v-fade-transition(mode="out-in")
+        .app-container__padding
+          router-view
+    app-footer
 </template>
 
 <script>
