@@ -1,31 +1,70 @@
-<script>
+itemsDefault<script>
   import { Bar } from 'vue-chartjs'
-  // import the component - chart you need
 
   export default {
     extends: Bar,
-    mounted () {
-      // Overwriting base render method with actual data.
-      this.renderChart(
-        {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-          datasets: [
+    data () {
+      return {
+        namesDefault: [],
+        itemsDefault: []
+      }
+    },
+    props: [ 'items', 'names' ],
+    watch: {
+      items: {
+        handler: function (val) {
+          this.itemsDefault = val
+          this._data._chart.update()
+          this.renderChart(
             {
-              label: 'Consultas',
-              backgroundColor: '#F44336',
-              data: [7, 12, 2, 4, 2, 3, 4, 5, 1, 0, 7, 1]
+              labels: this.namesA,
+              datasets: this.itemsDefault
             },
             {
-              label: 'Internamentos',
-              backgroundColor: '#2196F3',
-              data: [1, 1, 2, 0, 0, 4, 4, 2, 1, 2, 2, 3]
-            }/*,
+              maintainAspectRatio: false
+            }
+          )
+        }
+      },
+      names: {
+        handler: function (val) {
+          this.namesA = val
+          this._data._chart.update()
+          this.renderChart(
             {
-              label: 'Cirurgias',
-              backgroundColor: '#4CAF50',
-              data: [4, 2, 3, 5, 2, 0, 2, 2, 3, 1, 2, 2]
-            }*/
-          ]
+              labels: this.namesDefault,
+              datasets: this.itemsDefault
+            },
+            {
+              maintainAspectRatio: false
+            }
+          )
+        }
+      }
+    },
+    mounted () {
+      this.namesDefault = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+      this.itemsDefault = [
+        {
+          label: 'Consultas',
+          backgroundColor: '#F44336',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+          label: 'Internamentos',
+          backgroundColor: '#2196F3',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        } /*,
+        {
+          label: 'Cirurgias',
+          backgroundColor: '#4CAF50',
+          data: [4, 2, 3, 5, 2, 0, 2, 2, 3, 1, 2, 2]
+        } */
+      ]
+      this.renderChart(
+        {
+          labels: this.namesDefault,
+          datasets: this.itemsDefault
         },
         {
           maintainAspectRatio: false

@@ -31,5 +31,11 @@ export default {
     http.delete(`/internments/`, {data: {id: id}}).then(response => {
       return callback(response.statusCode)
     })
+  },
+
+  getLastInternments (callback) {
+    http.get('/internments/lasttwelvemonths/').then(response => {
+      return callback(response.data)
+    })
   }
 }

@@ -43,5 +43,17 @@ export default {
     http.delete('/appointments/', {data: {id: id}}).then(response => {
       return callback(response.statusCode)
     })
+  },
+
+  getActiveAppointments (callback) {
+    http.get('/appointments/find?status=SCHEDULED').then(response => {
+      return callback(response.data.content.length)
+    })
+  },
+
+  getLastAppointments (callback) {
+    http.get('/appointments/lasttwelvemonths/').then(response => {
+      return callback(response.data)
+    })
   }
 }

@@ -6,7 +6,6 @@ import EnvPlugin from '../../util/env-plugin'
 import VueSweetalert2 from 'vue-sweetalert2'
 import Toasted from 'vue-toasted'
 import {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter} from './filters.js'
-import '../../../node_modules/timeline-vuejs/dist/timeline-vuejs.css'
 
 Vue.use(Vuex)
 Vue.use(Vuetify)

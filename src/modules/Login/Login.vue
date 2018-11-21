@@ -41,10 +41,9 @@ export default {
   },
   methods: {
     login () {
-
       let rollbackUri = localStorage.getItem('rollback-uri')
 
-      if(this.user.email != 'clinica@email.com' || this.user.password != 'teste123'){
+      if (this.user.email !== 'clinica@email.com' || this.user.password !== 'teste123') {
         return this.$toasted.error('E-mail não encontrado ou senha incorreta!', {
           icon: 'warning'
         })

@@ -88,7 +88,7 @@ export default {
   },
   mounted () {
     const serialized = localStorage.getItem('authorization')
-    if (!serialized || serialized == "false" || serialized === "false") {
+    if (!serialized || serialized === 'false') {
       this.$router.go('/login')
     }
     EnumeratorsService.getEnumerators((enumeratorsFound) => {
