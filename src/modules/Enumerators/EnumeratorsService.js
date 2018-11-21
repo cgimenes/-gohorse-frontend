@@ -9,7 +9,11 @@ export default {
       })
     })
   },
-
+  getEnumeratorsByType (type, callback) {
+    http.get('/enumerators/find?type=' + type).then(response => {
+      return callback(response.data.content)
+    })
+  },
   saveEnumerator (item) {
     if (item && item.id) {
       return this.updateEnumerator(item)
@@ -58,9 +62,9 @@ export default {
         name: 'Tipo de distribuição'
       })
     }
-    if (!enumeratorsFound.find(x => x.name === 'Sexo')) {
+    if (!enumeratorsFound.find(x => x.name === 'Leitos')) {
       enumeratorsFound.push({
-        name: 'Sexo'
+        name: 'Leitos'
       })
     }
     enumeratorsFound.sort(function (a, b) {

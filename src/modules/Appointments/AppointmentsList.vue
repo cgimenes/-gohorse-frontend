@@ -90,7 +90,7 @@ export default {
     },
     finish () {
       AppointmentsService.finishAppointment(this.selected.filter(this.isScheduled), (res) => {
-        for(let appointment of this.selected.filter(this.isScheduled)){
+        for (let appointment of this.selected.filter(this.isScheduled)) {
           appointment.status = 'FINISHED'
         }
       })

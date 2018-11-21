@@ -180,7 +180,7 @@
 
   export default {
     components: {},
-    data() {
+    data () {
       return {
         year: new Date().getFullYear(),
         loading: true,
@@ -243,7 +243,7 @@
         operations: {
           surgery: 'Cirurgia',
           appointment: 'Consulta'
-        },
+        }
       }
     },
     mounted () {
@@ -251,18 +251,18 @@
     },
     methods: {
       getReport (year) {
-        this.loading = true;
+        this.loading = true
         ReportsService.getCashFlow(year, (report) => {
-          this.report = report;
+          this.report = report
           this.loading = false
         })
       },
       getInitialBalances () {
-        return [this.report.initialBalances];
+        return [this.report.initialBalances]
       },
       getSummary (type) {
         if (!this.report.summarized[type]) {
-          return [];
+          return []
         }
         return Object.keys(this.report.summarized[type]).map(k => {
           return {
@@ -272,7 +272,7 @@
         })
       },
       getTypeTotal (type) {
-        return this.report.typeTotalBalances[type] === undefined ? {} : this.report.typeTotalBalances[type];
+        return this.report.typeTotalBalances[type] === undefined ? {} : this.report.typeTotalBalances[type]
       },
       getTotalizers () {
         return [

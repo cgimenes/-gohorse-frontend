@@ -67,9 +67,7 @@
           {icon: 'add_shopping_cart', text: 'Produtos', to: '/products'},
           {icon: 'local_hospital', text: 'Veterinários', to: '/veterinaries'},
           {icon: 'hotel', text: 'Internamentos', to: '/internments'},
-          {icon: 'keyboard_arrow_up', 'icon-alt': 'book', text: 'Relatórios', children: [
-              {icon: 'account_balance_wallet', text: 'Fluxo de caixa', to: '/reports/cashflow'}
-            ]},
+          {icon: 'keyboard_arrow_up', 'icon-alt': 'book', text: 'Relatórios', children: [{icon: 'account_balance_wallet', text: 'Fluxo de caixa', to: '/reports/cashflow'}]},
           {icon: 'extension', text: 'Cadastros complementares', to: '/enumerators'},
           {icon: 'security', text: 'Login', to: '/login'}
         ]
