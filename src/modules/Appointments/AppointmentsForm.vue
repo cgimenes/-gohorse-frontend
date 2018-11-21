@@ -9,12 +9,12 @@
               <h4 class="grey--text">Dados da consulta</h4>
             </v-flex>
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="animal" label="Paciente" id="animal" v-model="appointment.animal.id" key="animal">
+              <v-text-field required :rules='[rules.empty]' name="animal" label="Paciente" id="animal" v-model="appointment.animal" key="animal">
               </v-text-field>
             </v-flex>
 
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="veterinary" label="Veterinário" id="veterinary" v-model="appointment.veterinary.id" key="veterinary">
+              <v-text-field required :rules='[rules.empty]' name="veterinary" label="Veterinário" id="veterinary" v-model="appointment.veterinary" key="veterinary">
               </v-text-field>
             </v-flex>
 
@@ -32,7 +32,7 @@
                   min-width='290px'
                 >
                   <v-text-field
-                    required 
+                    required
                     :rules='[rules.empty]'
                     :mask='dateMask'
                     slot='activator'
@@ -49,7 +49,7 @@
                     >
                   </v-date-picker>
                 </v-menu>
-              </v-flex>            
+              </v-flex>
 
             <v-flex col xs12 sm3='sm3'>
               <v-text-field required :rules='[rules.empty, rules.hour]' :mask='hourMask' name='name' label='Horário da consulta' id='hour' prepend-icon='access_time' v-model='appointment.dateTime.hour' key='name'>
@@ -122,11 +122,16 @@ export default {
       }
     }
   },
+  watch: {
+    date (val) {
+      this.appointment.dateTime.date = this.formatDate(this.date)
+    }
+  },
   computed: {
     formIsValid () {
       return (
-        this.appointment.animal.id &&
-        this.appointment.veterinary.id &&
+        this.appointment.animal &&
+        this.appointment.veterinary &&
         this.appointment.dateTime.date &&
         this.appointment.dateTime.hour &&
         this.appointment.address.postalCode.code &&

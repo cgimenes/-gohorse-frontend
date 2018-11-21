@@ -90,7 +90,9 @@ export default {
     },
     finish () {
       AppointmentsService.finishAppointment(this.selected.filter(this.isScheduled), (res) => {
-        this.$router.push('/appointments/')
+        for(let appointment of this.selected.filter(this.isScheduled)){
+          appointment.status = 'FINISHED'
+        }
       })
     },
     pickerDay () {
