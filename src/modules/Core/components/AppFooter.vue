@@ -8,9 +8,7 @@
 </template>
 <!--<script>
   export default {
-    data: () => ({
-      links: ['Home', 'Sobre', 'Time', 'Serviços', 'Entre em contato']
-    })
+    data: () => {}
   }
 </script>-->
 

@@ -38,17 +38,20 @@
       return {
         show: this.$store.getters.showSidebar,
         menuPrincipal: [
-          {icon: 'home', title: 'Dashboard', to: '/'},
-          {icon: 'book', title: 'Consultas', to: '/appointments'},
-          {icon: 'location_city', title: 'Laboratórios', to: '/laboratories'},
-          {icon: 'pets', title: 'Pacientes', to: '/animals'},
-          {icon: 'face', title: 'Proprietários', to: '/owners'},
-          {icon: 'local_shipping', title: 'Fornecedores', to: '/suppliers'},
-          {icon: 'add_shopping_cart', title: 'Produtos', to: '/products'},
-          {icon: 'local_hospital', title: 'Veterinários', to: '/veterinaries'},
-          {icon: 'hotel', title: 'Internamentos', to: '/internments'},
-          {icon: 'extension', title: 'Cadastros complementares', to: '/enumerators'},
-          {icon: 'security', title: 'Logout', to: '/login'}
+          {icon: 'home', text: 'Dashboard', to: '/'},
+          {icon: 'assignment', text: 'Consultas', to: '/appointments'},
+          {icon: 'location_city', text: 'Laboratórios', to: '/laboratories'},
+          {icon: 'pets', text: 'Pacientes', to: '/animals'},
+          {icon: 'face', text: 'Proprietários', to: '/owners'},
+          {icon: 'local_shipping', text: 'Fornecedores', to: '/suppliers'},
+          {icon: 'add_shopping_cart', text: 'Produtos', to: '/products'},
+          {icon: 'local_hospital', text: 'Veterinários', to: '/veterinaries'},
+          {icon: 'hotel', text: 'Internamentos', to: '/internments'},
+          {icon: 'keyboard_arrow_up', 'icon-alt': 'book', text: 'Relatórios', children: [
+              {icon: 'account_balance_wallet', text: 'Fluxo de caixa', to: '/reports/cashflow'}
+            ]},
+          {icon: 'extension', text: 'Cadastros complementares', to: '/enumerators'},
+          {icon: 'security', text: 'Login', to: '/login'}
         ]
       }
     },
