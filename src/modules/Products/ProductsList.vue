@@ -20,6 +20,13 @@
               </v-btn>
             </v-list-tile-action>
           </v-list-tile>
+          <div class="text-xs-center">
+            <v-pagination
+              v-model="pageable.pageNumber"
+              :length="pageable.totalPages"
+              >
+            </v-pagination>
+          </div>
         </v-list>
         <v-divider inset></v-divider>
         <p class="grey--text pa-5" v-if="products.length == 0"> Nenhum produto encontrado </p>
@@ -39,12 +46,21 @@ export default {
   },
   data () {
     return {
-      products: []
+      products: [],
+      number: null,
+      totalPages: null,
+      pageable: {
+      },
     }
   },
   mounted () {
     ProductsService.getProduct((products) => {
       this.products = products
+      //this.attributePages();
+    }),
+    ProductsService.getPages((pages) => {
+      this.pageable = pages
+      console.log(this.pageable);
     })
   },
   methods: {
@@ -52,7 +68,10 @@ export default {
       this
         .$router
         .push('/products/' + product.id)
-    }
+    },
+    attributePages() {
+
+    },
   }
 }
 </script>

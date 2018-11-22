@@ -34,10 +34,7 @@
             </v-flex>
             <v-flex col xs12 sm6="sm6">
               <autocomplete
-              :key="product.id"
-                :rules="[rules.empty]"
-                label="Fornecedor do produto"
-                :model.sync="product.supplier"
+                label="Fornecedor" :supplier="product.supplier.id" :model.sync="product.supplier" :key="product.id"
                 >
               </autocomplete>
             </v-flex>
@@ -84,7 +81,7 @@
 
 <script>
 import ProductsService from './ProductsService'
-import Autocomplete from './Autocomplete'
+import Autocomplete from '../Suppliers/Autocomplete'
 
 export default {
   components: {
@@ -103,6 +100,7 @@ export default {
   },
   methods: {
     saveProduct () {
+      this.product.supplierId = this.product.supplier
       ProductsService.saveProduct(this.product, (res) => {
         this
           .$router
@@ -112,6 +110,7 @@ export default {
     getDataForEdit () {
       ProductsService.getProductDetails(this.$route.params.id, (product) => {
         this.product = product
+        this.product.supplier = this.product.supplier.id
       })
     }
   },

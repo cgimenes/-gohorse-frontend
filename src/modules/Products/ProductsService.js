@@ -7,6 +7,12 @@ export default {
     })
   },
 
+  getPages (callback) {
+    http.get('/products').then(response => {
+      return callback(response.data)
+    })
+  },
+
   getProductDetails (id, callback) {
     http.get('/products/' + id).then(response => {
       return callback(response.data)

@@ -26,11 +26,29 @@
               <p>
                 <b>Nome: </b> {{ product.name }}
               </p>
+              <p>
+                <b>Marca: </b> {{ product.brand }}
+              </p>
+              <p>
+                <b>Quantidade: </b> {{ product.amount }}
+              </p>
+              <p>
+                <b>Preço: </b> R${{ product.price }}
+              </p>
             </v-flex>
             <v-flex col xs12 sm6>
               <h4 class="grey--text mb-3">Proprietário</h4>
               <p>
-                <b>Nome: </b> {{product.owner.name}}
+                <b>Nome: </b> {{product.supplier.name}}
+              </p>
+              <p>
+                <b>Telefone: </b>{{ product.supplier.phone }}
+              </p>
+              <p>
+                <b>Cidade: </b>{{ product.supplier.address.postalCode.city }} - {{ product.supplier.address.postalCode.state}}
+              </p>
+              <p>
+                <b>CEP: </b>{{ product.supplier.address.postalCode.code }}
               </p>
             </v-flex>
           </v-layout>
@@ -49,7 +67,21 @@ export default {
     return {
       fab: false,
       product: {
-        owner: {}
+        supplier: {
+          address: {
+            number: null,
+            complement: null,
+            postalCode: {
+              code: null,
+              streetType: 'Rua',
+              streetName: '',
+              neighbourhood: '',
+              city: '',
+              state: '',
+              country: 'Brasil'
+            }
+          }
+        }
       }
     }
   },
