@@ -36,28 +36,28 @@
   import InvoicesService from './InvoicesService'
 
   export default {
-    data() {
+    data () {
       return {
         invoices: []
       }
     },
-    mounted() {
+    mounted () {
       InvoicesService.getInvoices(invoices => {
         this.invoices = invoices
       })
     },
     methods: {
-      getOperationName(invoice) {
+      getOperationName (invoice) {
         switch (invoice.operationName) {
-          case "APPOINTMENT":
-            return "Consulta";
-          case "SURGERY":
-            return "Cirurgia";
-          case "INTERNMENT":
-            return "Internamento";
+          case 'APPOINTMENT':
+            return 'Consulta'
+          case 'SURGERY':
+            return 'Cirurgia'
+          case 'INTERNMENT':
+            return 'Internamento'
         }
       },
-      pay(invoice) {
+      pay (invoice) {
         this.$swal({
           title: 'Você deseja confirmar o pagamento deste título?',
           text: 'Esta operação não pode ser desfeita',
@@ -68,13 +68,13 @@
         }).then((result) => {
           if (result.value) {
             InvoicesService.payInvoice(invoice.id, () => {
-              this.invoices.splice(this.invoices.indexOf(invoice), 1);
+              this.invoices.splice(this.invoices.indexOf(invoice), 1)
               this.$toasted.success('Pagamento do título confirmado com sucesso!', {
                 icon: 'check'
-              });
-            });
+              })
+            })
           }
-        });
+        })
       }
     }
   }

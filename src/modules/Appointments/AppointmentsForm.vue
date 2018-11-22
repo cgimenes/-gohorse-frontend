@@ -7,14 +7,28 @@
           <v-layout row="row" wrap="wrap">
             <v-flex col xs12>
               <h4 class="grey--text">Dados da consulta</h4>
+              {{appointment}}
             </v-flex>
             <v-flex col xs12 sm3="sm3">
-              <AnimalComplete label="Animal" :bed="appointment.animal.id" :model.sync="appointment.animal" :key="appointment.id"></AnimalComplete>
+              <AnimalComplete
+                required
+                :rules='[rules.empty]'
+                label="Animal"
+                :animal="appointment.animal.id"
+                :model.sync="appointment.animal"
+                :key="appointment.id">
+              </AnimalComplete>
             </v-flex>
 
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="veterinary" label="Veterinário" id="veterinary" v-model="appointment.veterinary" key="veterinary">
-              </v-text-field>
+              <VeterinaryComplete
+                required
+                :rules='[rules.empty]'
+                label="Veterinário"
+                :veterinary="appointment.veterinary.id"
+                :model.sync="appointment.veterinary"
+                :key="appointment.id">
+              </VeterinaryComplete>
             </v-flex>
 
             <v-flex col xs12 sm3='sm3'>
@@ -78,18 +92,20 @@
 import AppointmentsService from './AppointmentsService'
 import AddressComponent from '../Form/Address/AddressComponent'
 import AnimalComplete from '../Animals/AutocompleteAnimal'
+import VeterinaryComplete from '../Veterinary/AutocompleteVeterinary'
 import moment from 'moment'
 
 export default {
   components: {
-    AddressComponent, AnimalComplete
+    AddressComponent, AnimalComplete, VeterinaryComplete
   },
   data () {
     return {
       appointment: {
         animal: {},
         animalId: '',
-        veterinary: '',
+        veterinary: {},
+        veterinaryId: '',
         dateTime: {
           date: null,
           hour: null
@@ -174,7 +190,7 @@ export default {
         (appointment) => {
           this.appointment.id = appointment.id
           this.appointment.animal = appointment.animal
-          this.appointment.veterinary = appointment.veterinary
+          this.appointment.veterinary = appointment.veterinary.id
           this.appointment.address = appointment.address
           this.appointment.dateTime.date =
             moment(appointment.dateTime)
