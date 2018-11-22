@@ -5,13 +5,11 @@
         | {{ link }}
       v-flex(xs12 py-3 text-xs-center white--text)
         | ©2018 —
-        strong Time 02
+        strong Time 02 - GoHorseApp
 
 </template>
 <script>
   export default {
-    data: () => ({
-      links: ['Home', 'About Us', 'Team', 'Services', 'Blog', 'Contact Us']
-    })
+    data: () => {}
   }
 </script>
