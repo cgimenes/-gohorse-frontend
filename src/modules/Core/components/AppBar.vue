@@ -5,23 +5,6 @@
         title-from-route
       v-toolbar-side-icon(@click.stop="toggle('miniVariant')")
       v-text-field#buscar.elevation-0(solo='', dark='', name='input-1', label='Buscar')
-      v-spacer
-      v-menu
-        v-btn(dark slot='activator' icon)
-          v-icon more_vert
-        v-list
-          v-list-tile(@click="")
-            v-list-tile-title Teste 1
-          v-list-tile(@click="")
-            v-list-tile-title Teste 2
-          v-list-tile(@click="")
-            v-list-tile-title Teste 3
-          v-list-tile(@click="")
-            v-list-tile-title Teste 4
-          v-divider
-          v-list-tile(@click="")
-            v-list-tile-title Teste 5
-
 </template>
 
 <script>
