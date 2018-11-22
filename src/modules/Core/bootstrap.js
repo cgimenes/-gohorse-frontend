@@ -5,7 +5,7 @@ import Vuetify from 'vuetify'
 import EnvPlugin from '../../util/env-plugin'
 import VueSweetalert2 from 'vue-sweetalert2'
 import Toasted from 'vue-toasted'
-import {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter, CurrencyFilter} from './filters.js'
+import {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, DateTimeFilter, HourFilter, CurrencyFilter} from './filters.js'
 
 Vue.use(Vuex)
 Vue.use(Vuetify)
@@ -20,6 +20,7 @@ Vue.filter('phone', PhoneFilter)
 Vue.filter('cep', CEPFilter)
 Vue.filter('document', DocumentFilter)
 Vue.filter('date', DateFilter)
+Vue.filter('dateTime', DateTimeFilter)
 Vue.filter('hour', HourFilter)
 Vue.filter('currency', CurrencyFilter)
 

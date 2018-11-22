@@ -48,6 +48,13 @@ function DateFilter (date) {
 /**
  * @return {string}
  */
+function DateTimeFilter (date) {
+  return date ? parseDate(date).format('DD/MM/YYYY HH:mm') : ''
+}
+
+/**
+ * @return {string}
+ */
 function HourFilter (date) {
   return parseDate(date).format('HH:mm')
 }
@@ -71,4 +78,4 @@ function CurrencyFilter (value) {
   return formatter.format(value)
 }
 
-export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter, CurrencyFilter}
+export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter, CurrencyFilter, DateTimeFilter}
