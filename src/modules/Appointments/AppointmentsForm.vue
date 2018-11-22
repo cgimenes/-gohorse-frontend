@@ -7,7 +7,6 @@
           <v-layout row="row" wrap="wrap">
             <v-flex col xs12>
               <h4 class="grey--text">Dados da consulta</h4>
-              {{appointment}}
             </v-flex>
             <v-flex col xs12 sm3="sm3">
               <AnimalComplete
