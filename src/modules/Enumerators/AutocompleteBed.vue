@@ -21,7 +21,7 @@
         default: 'Leito'
       },
       model: {
-        type: Object,
+        type: String,
         required: true,
         default () {
           return {}

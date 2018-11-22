@@ -9,8 +9,7 @@
               <h4 class="grey--text">Dados da consulta</h4>
             </v-flex>
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="animal" label="Paciente" id="animal" v-model="appointment.animal" key="animal">
-              </v-text-field>
+              <AnimalComplete label="Animal" :bed="appointment.animal.id" :model.sync="appointment.animal" :key="appointment.id"></AnimalComplete>
             </v-flex>
 
             <v-flex col xs12 sm3="sm3">
@@ -78,16 +77,18 @@
 <script>
 import AppointmentsService from './AppointmentsService'
 import AddressComponent from '../Form/Address/AddressComponent'
+import AnimalComplete from '../Animals/AutocompleteAnimal'
 import moment from 'moment'
 
 export default {
   components: {
-    AddressComponent
+    AddressComponent, AnimalComplete
   },
   data () {
     return {
       appointment: {
-        animal: '',
+        animal: {},
+        animalId: '',
         veterinary: '',
         dateTime: {
           date: null,
