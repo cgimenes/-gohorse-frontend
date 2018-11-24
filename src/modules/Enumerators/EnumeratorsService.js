@@ -10,6 +10,12 @@ export default {
     })
   },
 
+  getEnumeratorsByType (type, callback) {
+    http.get('/enumerators/find?type=' + type).then(response => {
+      return callback(response.data.content)
+    })
+  },
+
   saveEnumerator (item) {
     if (item && item.id) {
       return this.updateEnumerator(item)
@@ -56,11 +62,6 @@ export default {
     if (!enumeratorsFound.find(x => x.name === 'Tipo de distribuição')) {
       enumeratorsFound.push({
         name: 'Tipo de distribuição'
-      })
-    }
-    if (!enumeratorsFound.find(x => x.name === 'Sexo')) {
-      enumeratorsFound.push({
-        name: 'Sexo'
       })
     }
     enumeratorsFound.sort(function (a, b) {
