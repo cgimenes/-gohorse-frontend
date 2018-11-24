@@ -7,7 +7,7 @@
             <v-icon> add </v-icon>
           </v-btn>
           <v-list two-line v-if="animals.length > 0">
-            <v-list-tile avatar @click="" v-for="animal in animals" :key="animal.id">
+            <v-list-tile avatar @click="show(animal)" v-for="animal in animals" :key="animal.id">
               <v-list-tile-avatar>
                 <list-initial-letter :word="animal.name"></list-initial-letter>
               </v-list-tile-avatar>

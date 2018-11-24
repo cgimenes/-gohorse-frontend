@@ -7,7 +7,7 @@
             <v-icon>add</v-icon>
           </v-btn>
           <v-list two-line v-if="laboratories.length > 0">
-            <v-list-tile avatar v-for="laboratory in laboratories" :key="laboratory.id">
+            <v-list-tile avatar @click="show(laboratory)" v-for="laboratory in laboratories" :key="laboratory.id">
               <v-list-tile-avatar>
                 <list-initial-letter :word="laboratory.companyName"></list-initial-letter>
               </v-list-tile-avatar>
@@ -20,9 +20,9 @@
                   <v-icon color='grey lighten-1'>info</v-icon>
                 </v-btn>
               </v-list-tile-action>
-            </v-list-tile>            
+            </v-list-tile>
           </v-list>
-          <p class='grey--text pa-5' v-if="laboratories.length == 0">Nenhum laboratório encontrado</p>
+          <p class="grey--text pa-5" v-if="laboratories.length == 0">Nenhum laboratório encontrado</p>
         </v-card>
       </v-flex>
     </v-layout>
