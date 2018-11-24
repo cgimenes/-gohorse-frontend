@@ -9,11 +9,13 @@ export default {
       })
     })
   },
+
   getEnumeratorsByType (type, callback) {
     http.get('/enumerators/find?type=' + type).then(response => {
       return callback(response.data.content)
     })
   },
+
   saveEnumerator (item) {
     if (item && item.id) {
       return this.updateEnumerator(item)
