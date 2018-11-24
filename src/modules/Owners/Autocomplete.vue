@@ -4,7 +4,7 @@
 </template>
 
 <script>
-  import OwnersService from './OwnersService'
+import OwnersService from './OwnersService'
 
 export default {
   props: {
