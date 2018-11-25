@@ -1,32 +1,45 @@
 <template>
-  <v-navigation-drawer app overflow persistent
-    :mobile-break-point="0"
-    :enable-resize-watcher="true"
-    :mini-variant="$store.getters.miniVariant"
-    v-if="show">
-  <div class="logo">
-    <router-link to="/"><img src="/static/logo.png" alt="logo" /></router-link>
-  </div>
-  <slot name="menu">
-    <v-list>
-      <v-list-tile router="router" :key="key" :to="item.to" v-for="(item, key) in menuPrincipal">
-        <v-list-tile-action>
-          <v-icon v-html="item.icon"></v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title v-text="item.text"></v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile @click.stop="toggle('miniVariant')">
-        <v-list-tile-action>
-          <v-icon v-html="$store.getters.miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Recolher Menu</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </slot>
+  <v-navigation-drawer app="app" persistent="persistent" enable-resize-watcher="enable-resize-watcher" :mini-variant="$store.getters.miniVariant">
+    <div class="logo">
+      <router-link to="/"><img src="/static/logo.png" alt="logo" /></router-link>
+    </div>
+    <slot name="menu">
+      <v-list>
+        <template v-for="item in menuPrincipal">
+          <v-list-group v-if="item.children" v-model="item.model" :key="item.text" :prepend-icon="item.model ? item.icon : item['icon-alt']" append-icon="">
+            <v-list-tile slot="activator">
+              <v-list-tile-content>
+                <v-list-tile-title v-text="item.text"></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile router="router" v-for="(child, i) in item.children" :key="i" :to="child.to">
+              <v-list-tile-action v-if="child.icon">
+                <v-icon v-text="child.icon"></v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title v-text="child.text"></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list-group>
+          <v-list-tile router="router" v-else="v-else" :to="item.to" :key="item.text">
+            <v-list-tile-action>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title v-text="item.text"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
+        <v-list-tile @click.stop="toggle('miniVariant')">
+          <v-list-tile-action>
+            <v-icon v-html="$store.getters.miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Recolher Menu</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </slot>
   </v-navigation-drawer>
 </template>
 
