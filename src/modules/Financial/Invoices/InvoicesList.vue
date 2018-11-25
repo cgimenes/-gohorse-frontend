@@ -39,14 +39,14 @@ export default {
     })
   },
   methods: {
-    getOperationName(invoice) {
+    getOperationName (invoice) {
       switch (invoice.operationName) {
-        case "APPOINTMENT":
-          return "Consulta";
-        case "SURGERY":
-          return "Cirurgia";
-        case "INTERNMENT":
-          return "Internamento";
+        case 'APPOINTMENT':
+          return 'Consulta'
+        case 'SURGERY':
+          return 'Cirurgia'
+        case 'INTERNMENT':
+          return 'Internamento'
       }
     },
     pay (invoice) {
@@ -60,13 +60,13 @@ export default {
       }).then((result) => {
         if (result.value) {
           InvoicesService.payInvoice(invoice.id, () => {
-            this.invoices.splice(this.invoices.indexOf(invoice), 1);
+            this.invoices.splice(this.invoices.indexOf(invoice), 1)
             this.$toasted.success('Pagamento do título confirmado com sucesso!', {
               icon: 'check'
-            });
-          });
+            })
+          })
         }
-      });
+      })
     }
   }
 }

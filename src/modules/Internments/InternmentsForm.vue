@@ -10,7 +10,7 @@
               </v-flex>
 
               <v-flex col xs12 sm6='sm6'>
-                <AnimalComplete label="Animal" :bed="internment.animal.id" :model.sync="internment.animalId" :key="internment.id"></AnimalComplete>
+                <AnimalComplete label="Animal" :animal="internment.animal.id" :model.sync="internment.animalId" :key="internment.id"></AnimalComplete>
               </v-flex>
 
               <v-flex col xs12 sm3='sm3'>

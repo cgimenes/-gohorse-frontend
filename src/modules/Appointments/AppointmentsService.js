@@ -14,11 +14,10 @@ export default {
   },
 
   saveAppointment (appointment, callback) {
-    if (!appointment.id) {
-      return this.createAppointment(appointment, callback)
+    if (appointment.id) {
+      return this.updateAppointment(appointment, callback)
     }
-
-    return this.updateAppointment(appointment, callback)
+    return this.createAppointment(appointment, callback)
   },
 
   createAppointment (appointment, callback) {
