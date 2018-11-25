@@ -48,6 +48,13 @@ function DateFilter (date) {
 /**
  * @return {string}
  */
+function DateTimeFilter (date) {
+  return date ? parseDate(date).format('DD/MM/YYYY HH:mm') : ''
+}
+
+/**
+ * @return {string}
+ */
 function HourFilter (date) {
   return parseDate(date).format('HH:mm')
 }
@@ -59,16 +66,16 @@ function parseDate (date) {
 /**
  * @return {string}
  */
-function CurrencyFilter(value) {
-  if (typeof value !== "number" || value === 0) {
+function CurrencyFilter (value) {
+  if (typeof value !== 'number' || value === 0) {
     return '-'
   }
   var formatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
     minimumFractionDigits: 2
-  });
-  return formatter.format(value);
+  })
+  return formatter.format(value)
 }
 
-export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter, CurrencyFilter}
+export {PhoneFilter, CEPFilter, DocumentFilter, DateFilter, HourFilter, CurrencyFilter, DateTimeFilter}

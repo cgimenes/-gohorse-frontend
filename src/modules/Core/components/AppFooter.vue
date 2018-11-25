@@ -6,11 +6,6 @@
     </v-layout>
   </v-footer>
 </template>
-<!--<script>
-  export default {
-    data: () => {}
-  }
-</script>-->
 
 <style>
   footer{

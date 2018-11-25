@@ -21,7 +21,7 @@ export default [
         component: ProductsForm,
         meta: {
           unrequiredAuth: false,
-          title: 'Criar um um novo produto'
+          title: 'Criar um novo produto'
         }
       },
       {

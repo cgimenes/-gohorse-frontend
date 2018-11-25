@@ -27,7 +27,7 @@
                   <b>Paciente: </b> {{ internment.animal.name }}
                 </p>
                 <p>
-                  <b>Leito: </b> {{ internment.bed.code }}
+                  <b>Leito: </b> {{ internment.bed.name }}
                 </p>
               </v-flex>
               <v-flex col xs12 sm6>
@@ -58,7 +58,7 @@ export default {
         id: null,
         bed: {
           id: null,
-          code: null,
+          name: null,
           busy: null
         },
         animal: {

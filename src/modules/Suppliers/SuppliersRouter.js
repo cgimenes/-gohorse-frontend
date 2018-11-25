@@ -21,7 +21,7 @@ export default [
         component: SuppliersForm,
         meta: {
           unrequiredAuth: false,
-          title: 'Criar um um novo Fornecedor'
+          title: 'Criar um novo Fornecedor'
         }
       },
       {

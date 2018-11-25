@@ -5,5 +5,5 @@ export default {
     http.get('/reports/cashflow/' + year).then(response => {
       return callback(response.data)
     })
-  },
+  }
 }

@@ -21,7 +21,7 @@ export default [
         component: OwnersForm,
         meta: {
           unrequiredAuth: false,
-          title: 'Criar um um novo Proprietário'
+          title: 'Criar um novo Proprietário'
         }
       },
       {

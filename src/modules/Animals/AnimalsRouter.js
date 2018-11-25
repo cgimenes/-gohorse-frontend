@@ -21,7 +21,7 @@ export default [
         component: AnimalsForm,
         meta: {
           unrequiredAuth: false,
-          title: 'Criar um um novo Animal'
+          title: 'Criar um novo Animal'
         }
       },
       {
