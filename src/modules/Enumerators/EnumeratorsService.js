@@ -12,7 +12,7 @@ export default {
 
   getEnumeratorsByType (type, callback) {
     http.get('/enumerators/find?type=' + type).then(response => {
-      return callback(response.data.content)
+      return callback(response.data)
     })
   },
 
