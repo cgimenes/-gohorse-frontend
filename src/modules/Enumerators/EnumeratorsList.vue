@@ -8,31 +8,6 @@
             <v-btn absolute dark fab top right small color='red' @click="create(register)" style="z-index: 1;">
               <v-icon>add</v-icon>
             </v-btn>
-            <v-layout row justify-center>
-              <v-dialog v-model="dialog" max-width="400px">
-                <v-card>
-                  <v-form v-model="valid" lazy-validation>
-                    <v-card-title>
-                      <span class="headline">{{registerForm.name}}</span>
-                    </v-card-title>
-                    <v-card-text>
-                      <v-container grid-list-md>
-                        <v-layout wrap>
-                          <v-flex xs12>
-                            <v-text-field id="nome" v-model="newName" :rules="nameRules" label="Nome" required></v-text-field>
-                          </v-flex>
-                        </v-layout>
-                      </v-container>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn color="blue darken-1" flat @click.native="dismiss()">Fechar</v-btn>
-                      <v-btn color="blue darken-1" flat @click.native="save(registerForm, newName, item)" type="submit">Salvar</v-btn>
-                    </v-card-actions>
-                  </v-form>
-                </v-card>
-              </v-dialog>
-            </v-layout>
             <v-card-title primary-title>
               <v-spacer></v-spacer>
               <div>
@@ -63,6 +38,31 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-layout row justify-center>
+        <v-dialog v-model="dialog" max-width="400px">
+          <v-card>
+            <v-form ref="form" v-model="valid" @submit.prevent="save(registerForm, newName, item)" id="check-enum-form" lazy-validation>
+              <v-card-title>
+                <span class="headline">{{registerForm.name}}</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container grid-list-md>
+                  <v-layout wrap>
+                    <v-flex xs12>
+                      <v-text-field id="nome" v-model="newName" :rules="nameRules" label="Nome" required></v-text-field>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" flat @click.native="dismiss()">Fechar</v-btn>
+                <v-btn type="submit" color="blue darken-1" flat :disabled='!formIsValid'>Salvar</v-btn>
+              </v-card-actions>
+            </v-form>
+          </v-card>
+        </v-dialog>
+      </v-layout>
       <p class="grey--text pt-3" v-if="enumerators.length == 0"> Nenhum cadastro adicional encontrado </p>
     </v-container>
   </v-card>
@@ -82,7 +82,8 @@ export default {
       valid: true,
       newName: '',
       nameRules: [
-        v => !!v || 'Nome é obrigatorio'
+        v => (v || '').length > 0 || 'Nome é obrigatorio',
+        v => (v || '').length > 2 || 'Mínimo 3 caracteres'
       ]
     }
   },
@@ -96,6 +97,9 @@ export default {
     })
   },
   computed: {
+    formIsValid () {
+      return this.newName.length > 2
+    },
     loadEnumerators () {
       EnumeratorsService.getEnumerators((enumeratorsFound) => {
         this.enumerators = enumeratorsFound
@@ -108,6 +112,7 @@ export default {
       this.dialog = false
     },
     openForm (register, item) {
+      this.$refs.form.reset()
       this.registerForm = register
       this.newName = ''
       this.valid = true
@@ -127,8 +132,12 @@ export default {
         }
         item.name = newName
         item.kind = register.name
-        EnumeratorsService.saveEnumerator(item)
-        this.$router.go(this.$route.path)
+        EnumeratorsService.saveEnumerator(item, () => {
+          EnumeratorsService.getEnumerators((enumeratorsFound) => {
+            this.enumerators = enumeratorsFound
+          })
+        })
+        this.dialog = false
       }
     },
     edit (register, item) {
@@ -149,8 +158,11 @@ export default {
         cancelButtonText: 'Não'
       }).then((result) => {
         if (result.value) {
-          EnumeratorsService.removeEnumerator(item.id)
-          this.$router.go(this.$route.path)
+          EnumeratorsService.removeEnumerator(item.id, () => {
+            EnumeratorsService.getEnumerators((enumeratorsFound) => {
+              this.enumerators = enumeratorsFound
+            })
+          })
         }
       })
     }

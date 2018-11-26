@@ -16,25 +16,22 @@ export default {
     })
   },
 
-  saveEnumerator (item) {
+  saveEnumerator (item, callback) {
     if (item && item.id) {
       return this.updateEnumerator(item)
     }
-    return this.createEnumerator(item)
+    return this.createEnumerator(item, callback)
   },
 
-  createEnumerator (item) {
-    var created = false
-
+  createEnumerator (item, callback) {
     http.post('/enumerators', item).then(response => {
-      created = response.status === 201
-      return created
+      return callback()
     })
   },
 
   updateEnumerator (item) {
     http.put('/enumerators', item).then(response => {
-      return response.status === 201
+      return true
     })
   },
 
@@ -44,7 +41,7 @@ export default {
         id: id
       }
     }).then(response => {
-      return callback(response.statusCode)
+      return callback()
     })
   },
 
