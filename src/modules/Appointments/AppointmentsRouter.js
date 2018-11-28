@@ -17,7 +17,15 @@ export default [
         }
       },
       {
-        path: '/appointments/create',
+        path: '/appointments/create/',
+        component: AppointmentsForm,
+        meta: {
+          unrequiredAuth: false,
+          title: 'Cadastro de Consulta'
+        }
+      },
+      {
+        path: '/appointments/create/:date',
         component: AppointmentsForm,
         meta: {
           unrequiredAuth: false,

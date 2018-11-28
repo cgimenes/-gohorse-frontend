@@ -169,14 +169,14 @@ export default {
         'DD/MM/YYYY HH:mm'
       )
 
-      AppointmentsService.saveAppointment(appointmentFinal, res => {
-        if (appointmentFinal.dateTime < moment()) {
-          return this.$toasted.error('A consulta não pode ser agendada com data retroativa!', {
-            icon: 'warning'
-          })
-        }
+      if (appointmentFinal.dateTime < moment()) {
+        return this.$toasted.error('A consulta não pode ser agendada com data retroativa!', {
+          icon: 'warning'
+        })
+      }
 
-        this.$toasted.success('Consulta salva com sucesso!', {
+      AppointmentsService.saveAppointment(appointmentFinal, res => {
+        this.$toasted.success('Consulta finalizada com sucesso!', {
           icon: 'check'
         })
 
@@ -216,6 +216,9 @@ export default {
   created () {
     if (this.$route.params.id) {
       this.getDataForEdit()
+    }
+    if (this.$route.params.date){
+      this.appointment.dateTime.date = moment(this.$route.params.date).format('DD/MM/YYYY')
     }
   }
 }

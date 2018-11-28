@@ -20,7 +20,7 @@ export default {
       required: true
     },
     value: {
-      type: Number,
+      type: String,
       default: 0
     },
     color: {

@@ -45,8 +45,8 @@ export default {
   },
   data () {
     return {
-      activeAppointments: 0,
-      appointmentsToday: 0,
+      activeAppointments: '0',
+      appointmentsToday: '0',
       graphItems: [],
       appointments: [],
       internments: [],
@@ -86,10 +86,22 @@ export default {
       items: []
     })
     AppointmentsService.getActiveAppointments((activeAppointments) => {
-      this.activeAppointments = activeAppointments
+      this.activeAppointments = 'Nenhuma nos próximos dias'
+      if (activeAppointments.length > 0){
+        let diff = moment(activeAppointments[activeAppointments.length-1].dateTime).diff(moment(), 'days')
+        if (diff > 0){
+          this.activeAppointments = activeAppointments.length.toString() + ' consulta' + ( activeAppointments.length > 1 ? 's' : '' ) + ' no período de ' + diff + ' dia' + ( diff > 1 ? 's' : '' )
+        } else if ( diff === 0 ) {
+          this.activeAppointments = activeAppointments.length.toString() + ' hoje'
+        }
+      }
     })
     AppointmentsService.getDayAppointments(moment().format().substr(0, 10), (appointmentsToday) => {
-      this.appointmentsToday = appointmentsToday.length
+      this.appointmentsToday = 'Nenhuma'
+      if ( appointmentsToday.length > 0 ){
+        let appointmentsDone = appointmentsToday.filter(a => a.status !== 'SCHEDULED')
+        this.appointmentsToday = appointmentsDone.length.toString() + ' finalizada' + ( appointmentsDone.length > 1 ? 's' : '' ) + ' de ' + appointmentsToday.length.toString() + ' agendadas'
+      }
     })
     AppointmentsService.getLastAppointments((graphItems) => {
       this.appointments = graphItems
@@ -136,7 +148,7 @@ export default {
           date = moment(internment.busyAt).format('DD/MM')
           internmentTimeline = {
             title: moment(internment.busyAt).format('HH:mm'),
-            description: 'Internamento do animal ' + internment.animal.name + ' no leito ' + internment.bed.code,
+            description: 'Internamento do animal ' + internment.animal.name + ' no leito ' + internment.bed.name,
             nameMonth: date
           }
           if (!(this.timelineItems[0].items && this.timelineItems[0].items.find(x => x.nameMonth === date))) {

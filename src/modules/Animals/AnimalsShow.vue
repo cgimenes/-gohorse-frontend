@@ -39,7 +39,7 @@
                 <b>Raça do Animal: </b> {{animal.breed.name}}
               </p>
               <p>
-                <b>Sexo do Animal: </b> {{animal.sex}}
+                <b>Sexo do Animal: </b> {{animal.sex == 'MALE' ? 'Masculino' : 'Feminino'}}
               </p>
             </v-flex>
           </v-layout>

@@ -14,7 +14,7 @@
     </v-flex>
     <v-flex xs6>
       <v-card>
-        <v-btn absolute dark fab top right small color='red' to='/appointments/create'>
+        <v-btn absolute dark fab top right small color='red' @click='create()'>
           <v-icon>add</v-icon>
         </v-btn>
         <v-list two-line v-if="dayAppointments.length > 0">
@@ -88,10 +88,16 @@ export default {
     show (appointment) {
       this.$router.push('/appointments/' + appointment.id)
     },
+    create () {
+      this.$router.push( '/appointments/create/' + this.date )
+    },
     finish () {
       AppointmentsService.finishAppointment(this.selected.filter(this.isScheduled), (res) => {
         for (let appointment of this.selected.filter(this.isScheduled)) {
           appointment.status = 'FINISHED'
+          this.$toasted.success('Consulta salva com sucesso!', {
+            icon: 'check'
+          })
         }
       })
     },

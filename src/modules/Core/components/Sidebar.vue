@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app="app" persistent="persistent" enable-resize-watcher="enable-resize-watcher" :mini-variant="$store.getters.miniVariant">
+  <v-navigation-drawer app="app" persistent="persistent" permanent :mini-variant="$store.getters.miniVariant">
     <div class="logo">
       <router-link to="/"><img src="/static/logo.png" alt="logo" /></router-link>
     </div>

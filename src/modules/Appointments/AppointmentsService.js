@@ -52,7 +52,7 @@ export default {
 
   getActiveAppointments (callback) {
     http.get('/appointments/find?status=SCHEDULED').then(response => {
-      return callback(response.data.content.length)
+      return callback(response.data.content)
     })
   },
 
