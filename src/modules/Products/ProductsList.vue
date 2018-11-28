@@ -43,17 +43,12 @@ export default {
       number: null,
       totalPages: null,
       pageable: {
-      },
+      }
     }
   },
   mounted () {
     ProductsService.getProduct((products) => {
       this.products = products
-      //this.attributePages();
-    }),
-    ProductsService.getPages((pages) => {
-      this.pageable = pages
-      console.log(this.pageable);
     })
   },
   methods: {
@@ -61,10 +56,7 @@ export default {
       this
         .$router
         .push('/products/' + product.id)
-    },
-    attributePages() {
-
-    },
+    }
   }
 }
 </script>
