@@ -1,17 +1,17 @@
 import Layout from '@core/components/Layout'
-import Dashboard from './Dashboard'
+import NotFoundPage from './NotFoundPage'
 
 export default [
   {
-    path: '/',
+    path: '/*',
     component: Layout,
     children: [
       {
         path: '/',
-        component: Dashboard,
+        component: NotFoundPage,
         meta: {
-          unrequiredAuth: false,
-          title: 'Dashboard'
+          unrequiredAuth: true,
+          title: ' '
         }
       }
     ]

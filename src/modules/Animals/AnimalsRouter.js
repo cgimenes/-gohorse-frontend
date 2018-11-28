@@ -12,7 +12,7 @@ export default [
         path: '/animals',
         component: AnimalsList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Animais'
         }
       },
@@ -20,15 +20,15 @@ export default [
         path: '/animals/create',
         component: AnimalsForm,
         meta: {
-          unrequiredAuth: true,
-          title: 'Criar um um novo Animal'
+          unrequiredAuth: false,
+          title: 'Criar um novo Animal'
         }
       },
       {
         path: '/animals/:id',
         component: AnimalsShow,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Visualização de Animal'
         }
       },
@@ -36,7 +36,7 @@ export default [
         path: '/animals/:id/edit',
         component: AnimalsForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de Animal'
         }
       }

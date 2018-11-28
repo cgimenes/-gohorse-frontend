@@ -9,13 +9,25 @@
               <h4 class="grey--text">Dados da consulta</h4>
             </v-flex>
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="animal" label="Paciente" id="animal" v-model="appointment.animal" key="animal">
-              </v-text-field>
+              <AnimalComplete
+                required
+                :rules='[rules.empty]'
+                label="Animal"
+                :animal="appointment.animal.id"
+                :model.sync="appointment.animal"
+                :key="appointment.id">
+              </AnimalComplete>
             </v-flex>
 
             <v-flex col xs12 sm3="sm3">
-              <v-text-field required :rules='[rules.empty]' name="veterinary" label="Veterinário" id="veterinary" v-model="appointment.veterinary" key="veterinary">
-              </v-text-field>
+              <VeterinaryComplete
+                required
+                :rules='[rules.empty]'
+                label="Veterinário"
+                :veterinary="appointment.veterinary.id"
+                :model.sync="appointment.veterinary"
+                :key="appointment.id">
+              </VeterinaryComplete>
             </v-flex>
 
             <v-flex col xs12 sm3='sm3'>
@@ -78,17 +90,21 @@
 <script>
 import AppointmentsService from './AppointmentsService'
 import AddressComponent from '../Form/Address/AddressComponent'
+import AnimalComplete from '../Animals/AutocompleteAnimal'
+import VeterinaryComplete from '../Veterinary/AutocompleteVeterinary'
 import moment from 'moment'
 
 export default {
   components: {
-    AddressComponent
+    AddressComponent, AnimalComplete, VeterinaryComplete
   },
   data () {
     return {
       appointment: {
-        animal: '',
-        veterinary: '',
+        animal: {},
+        animalId: '',
+        veterinary: {},
+        veterinaryId: '',
         dateTime: {
           date: null,
           hour: null
@@ -153,14 +169,14 @@ export default {
         'DD/MM/YYYY HH:mm'
       )
 
-      AppointmentsService.saveAppointment(appointmentFinal, res => {
-        if (appointmentFinal.dateTime < moment()) {
-          return this.$toasted.error('A consulta não pode ser agendada com data retroativa!', {
-            icon: 'warning'
-          })
-        }
+      if (appointmentFinal.dateTime < moment()) {
+        return this.$toasted.error('A consulta não pode ser agendada com data retroativa!', {
+          icon: 'warning'
+        })
+      }
 
-        this.$toasted.success('Consulta salva com sucesso!', {
+      AppointmentsService.saveAppointment(appointmentFinal, res => {
+        this.$toasted.success('Consulta finalizada com sucesso!', {
           icon: 'check'
         })
 
@@ -173,7 +189,7 @@ export default {
         (appointment) => {
           this.appointment.id = appointment.id
           this.appointment.animal = appointment.animal
-          this.appointment.veterinary = appointment.veterinary
+          this.appointment.veterinary = appointment.veterinary.id
           this.appointment.address = appointment.address
           this.appointment.dateTime.date =
             moment(appointment.dateTime)
@@ -200,6 +216,9 @@ export default {
   created () {
     if (this.$route.params.id) {
       this.getDataForEdit()
+    }
+    if (this.$route.params.date) {
+      this.appointment.dateTime.date = moment(this.$route.params.date).format('DD/MM/YYYY')
     }
   }
 }

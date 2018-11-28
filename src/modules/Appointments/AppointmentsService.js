@@ -14,11 +14,10 @@ export default {
   },
 
   saveAppointment (appointment, callback) {
-    if (!appointment.id) {
-      return this.createAppointment(appointment, callback)
+    if (appointment.id) {
+      return this.updateAppointment(appointment, callback)
     }
-
-    return this.updateAppointment(appointment, callback)
+    return this.createAppointment(appointment, callback)
   },
 
   createAppointment (appointment, callback) {
@@ -48,6 +47,18 @@ export default {
   removeAppointment (id, callback) {
     http.delete('/appointments/', {data: {id: id}}).then(response => {
       return callback(response.statusCode)
+    })
+  },
+
+  getActiveAppointments (callback) {
+    http.get('/appointments/find?status=SCHEDULED').then(response => {
+      return callback(response.data.content)
+    })
+  },
+
+  getLastAppointments (callback) {
+    http.get('/appointments/lasttwelvemonths/').then(response => {
+      return callback(response.data)
     })
   }
 }

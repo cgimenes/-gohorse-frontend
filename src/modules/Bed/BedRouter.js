@@ -11,7 +11,7 @@ export default [
         path: '/bed',
         component: BedList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Leitos'
         }
       },
@@ -19,7 +19,7 @@ export default [
         path: '/bed/create',
         component: BedForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Criar um novo Leito'
         }
       },
@@ -27,7 +27,7 @@ export default [
         path: '/bed/:id/edit',
         component: BedForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de Leitos'
         }
       }

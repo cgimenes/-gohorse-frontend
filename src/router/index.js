@@ -7,15 +7,17 @@ Vue.use(Router)
 var routes = importByFile(require.context('../modules/', true, /\.js$/), 'Router.js')
 
 const router = new Router({
+  mode: 'history',
   linkActiveClass: 'open active',
   scrollBehavior: () => ({y: 0}),
   routes: routes
 })
 
 router.beforeEach((to, from, next) => {
-  if (!to.meta.unrequiredAuth) {
+
+  if (!to.meta || !to.meta.unrequiredAuth || to.meta.unrequiredAuth == "false" || to.unrequiredAuth === "false") {
     const serialized = localStorage.getItem('authorization')
-    if (!serialized) {
+    if (!serialized || serialized == "false" || serialized === "false") {
       localStorage.setItem('rollback-uri', to.fullPath)
       next('/login')
     } else {

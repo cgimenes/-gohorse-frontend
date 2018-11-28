@@ -12,7 +12,7 @@ export default [
         path: '/owners',
         component: OwnersList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Proprietários'
         }
       },
@@ -20,15 +20,15 @@ export default [
         path: '/owners/create',
         component: OwnersForm,
         meta: {
-          unrequiredAuth: true,
-          title: 'Criar um um novo Proprietário'
+          unrequiredAuth: false,
+          title: 'Criar um novo Proprietário'
         }
       },
       {
         path: '/owners/:id',
         component: OwnersShow,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Visualização de Proprietário'
         }
       },
@@ -36,7 +36,7 @@ export default [
         path: '/owners/:id/edit',
         component: OwnersForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de Proprietário'
         }
       }

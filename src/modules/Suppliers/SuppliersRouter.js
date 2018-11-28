@@ -12,7 +12,7 @@ export default [
         path: '/suppliers',
         component: SuppliersList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Fornecedores'
         }
       },
@@ -20,15 +20,15 @@ export default [
         path: '/suppliers/create',
         component: SuppliersForm,
         meta: {
-          unrequiredAuth: true,
-          title: 'Criar um um novo Fornecedor'
+          unrequiredAuth: false,
+          title: 'Criar um novo Fornecedor'
         }
       },
       {
         path: '/suppliers/:id',
         component: SuppliersShow,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Visualização de Fornecedor'
         }
       },
@@ -36,7 +36,7 @@ export default [
         path: '/suppliers/:id/edit',
         component: SuppliersForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de Fornecedor'
         }
       }

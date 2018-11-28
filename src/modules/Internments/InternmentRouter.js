@@ -12,7 +12,7 @@ export default [
         path: '/internments',
         component: InternmentsList,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Internamentos'
         }
       },
@@ -20,7 +20,7 @@ export default [
         path: '/internments/create',
         component: InternmentsForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Cadastro de Internamento'
         }
       },
@@ -28,7 +28,7 @@ export default [
         path: '/internments/:id',
         component: InternmentsShow,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Visualização de Internamento'
         }
       },
@@ -36,7 +36,7 @@ export default [
         path: '/internments/:id/edit',
         component: InternmentsForm,
         meta: {
-          unrequiredAuth: true,
+          unrequiredAuth: false,
           title: 'Edição de Internamento'
         }
       }

@@ -26,7 +26,7 @@
                 <list-initial-letter :word='internment.animal.name'></list-initial-letter>
               </v-list-tile-avatar>
               <v-list-tile-content>
-                <v-list-tile-title>{{ internment.bed.code }}</v-list-tile-title>
+                <v-list-tile-title>{{ internment.bed.name }}</v-list-tile-title>
                 <v-list-tile-sub-title>{{ internment.animal.name }}</v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>

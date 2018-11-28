@@ -10,16 +10,7 @@
               </v-flex>
 
               <v-flex col xs12 sm6='sm6'>
-                <v-text-field
-                  :rules='[rules.empty]'
-                  required
-                  name='name'
-                  label='Paciente'
-                  id='name'
-                  v-model='internment.animalId'
-                  key='name'
-                  >
-                </v-text-field>
+                <AnimalComplete label="Animal" :animal="internment.animal.id" :model.sync="internment.animalId" :key="internment.id"></AnimalComplete>
               </v-flex>
 
               <v-flex col xs12 sm3='sm3'>
@@ -71,16 +62,7 @@
               </v-flex>
 
               <v-flex col xs12 sm6='sm6'>
-                <v-text-field
-                  :rules='[rules.empty]'
-                  required
-                  name='name'
-                  label='Leito'
-                  id='name'
-                  v-model='internment.bedId'
-                  key='name'
-                  >
-                </v-text-field>
+                <BedComplete label="Leito" :bed="internment.bed.id" :model.sync="internment.bedId" :key="internment.id"></BedComplete>
               </v-flex>
 
               <v-flex col xs12 sm3='sm3'>
@@ -146,15 +128,19 @@
 
 <script>
 import InternmentsService from './InternmentsService'
+import BedComplete from '../Enumerators/AutocompleteBed'
+import AnimalComplete from '../Animals/AutocompleteAnimal'
 import moment from 'moment'
 
 export default {
-  components: {},
+  components: { BedComplete, AnimalComplete },
   data () {
     return {
       internment: {
-        animalId: null,
-        bedId: null,
+        animal: {},
+        bed: {},
+        animalId: '',
+        bedId: '',
         busyAt: {
           date: null,
           hour: null
@@ -190,8 +176,8 @@ export default {
   computed: {
     formIsValid () {
       return (
-        this.internment.animalId &&
-        this.internment.bedId &&
+        this.internment.animal &&
+        this.internment.bed &&
         this.internment.busyAt.date &&
         this.internment.busyAt.hour
       )

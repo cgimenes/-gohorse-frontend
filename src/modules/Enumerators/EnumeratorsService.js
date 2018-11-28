@@ -10,25 +10,28 @@ export default {
     })
   },
 
-  saveEnumerator (item) {
+  getEnumeratorsByType (type, callback) {
+    http.get('/enumerators/find?type=' + type).then(response => {
+      return callback(response.data)
+    })
+  },
+
+  saveEnumerator (item, callback) {
     if (item && item.id) {
       return this.updateEnumerator(item)
     }
-    return this.createEnumerator(item)
+    return this.createEnumerator(item, callback)
   },
 
-  createEnumerator (item) {
-    var created = false
-
+  createEnumerator (item, callback) {
     http.post('/enumerators', item).then(response => {
-      created = response.status === 201
-      return created
+      return callback()
     })
   },
 
   updateEnumerator (item) {
     http.put('/enumerators', item).then(response => {
-      return response.status === 201
+      return true
     })
   },
 
@@ -38,7 +41,7 @@ export default {
         id: id
       }
     }).then(response => {
-      return callback(response.statusCode)
+      return callback()
     })
   },
 
@@ -58,9 +61,9 @@ export default {
         name: 'Tipo de distribuição'
       })
     }
-    if (!enumeratorsFound.find(x => x.name === 'Sexo')) {
+    if (!enumeratorsFound.find(x => x.name === 'Leitos')) {
       enumeratorsFound.push({
-        name: 'Sexo'
+        name: 'Leitos'
       })
     }
     enumeratorsFound.sort(function (a, b) {
