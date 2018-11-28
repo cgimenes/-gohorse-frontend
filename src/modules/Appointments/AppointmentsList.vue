@@ -89,7 +89,7 @@ export default {
       this.$router.push('/appointments/' + appointment.id)
     },
     create () {
-      this.$router.push( '/appointments/create/' + this.date )
+      this.$router.push('/appointments/create/' + this.date)
     },
     finish () {
       AppointmentsService.finishAppointment(this.selected.filter(this.isScheduled), (res) => {

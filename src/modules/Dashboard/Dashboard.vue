@@ -87,30 +87,30 @@ export default {
     })
     AppointmentsService.getActiveAppointments((activeAppointments) => {
       this.activeAppointments = 'Nenhuma nos próximos dias'
-      if (activeAppointments.length > 0){
-        let diff = moment(activeAppointments[activeAppointments.length-1].dateTime).diff(moment(), 'days')
-        if (diff > 0){
-          this.activeAppointments = activeAppointments.length.toString() + ' consulta' + ( activeAppointments.length > 1 ? 's' : '' ) + ' no período de ' + diff + ' dia' + ( diff > 1 ? 's' : '' )
-        } else if ( diff === 0 ) {
+      if (activeAppointments.length > 0) {
+        let diff = moment(activeAppointments[activeAppointments.length - 1].dateTime).diff(moment(), 'days')
+        if (diff > 0) {
+          this.activeAppointments = activeAppointments.length.toString() + ' consulta' + (activeAppointments.length > 1 ? 's' : '') + ' no período de ' + diff + ' dia' + (diff > 1 ? 's' : '')
+        } else if (diff === 0) {
           this.activeAppointments = activeAppointments.length.toString() + ' hoje'
         }
       }
     })
     AppointmentsService.getDayAppointments(moment().format().substr(0, 10), (appointmentsToday) => {
       this.appointmentsToday = 'Nenhuma'
-      if ( appointmentsToday.length > 0 ){
+      if (appointmentsToday.length > 0) {
         let appointmentsDone = appointmentsToday.filter(a => a.status !== 'SCHEDULED')
-        this.appointmentsToday = appointmentsDone.length.toString() + ' finalizada' + ( appointmentsDone.length > 1 ? 's' : '' ) + ' de ' + appointmentsToday.length.toString() + ' agendadas'
+        this.appointmentsToday = appointmentsDone.length.toString() + ' finalizada' + (appointmentsDone.length > 1 ? 's' : '') + ' de ' + appointmentsToday.length.toString() + ' agendadas'
       }
     })
     AppointmentsService.getLastAppointments((graphItems) => {
       this.appointments = graphItems
       this.graphItems
-      .push({
-        label: 'Consultas',
-        backgroundColor: '#F44336',
-        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      })
+        .push({
+          label: 'Consultas',
+          backgroundColor: '#F44336',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        })
       var currentMonth
       var date
       var appointmentTimeline
@@ -135,11 +135,11 @@ export default {
       InternmentsService.getLastInternments((graphItems) => {
         this.internments = graphItems
         this.graphItems
-        .push({
-          label: 'Internamentos',
-          backgroundColor: '#2196F3',
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        })
+          .push({
+            label: 'Internamentos',
+            backgroundColor: '#2196F3',
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          })
         var internmentTimeline
         var internment
         for (var x = this.internments.length; x > 0; x--) {

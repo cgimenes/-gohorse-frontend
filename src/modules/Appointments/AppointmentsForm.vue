@@ -217,7 +217,7 @@ export default {
     if (this.$route.params.id) {
       this.getDataForEdit()
     }
-    if (this.$route.params.date){
+    if (this.$route.params.date) {
       this.appointment.dateTime.date = moment(this.$route.params.date).format('DD/MM/YYYY')
     }
   }
