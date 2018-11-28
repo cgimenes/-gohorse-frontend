@@ -98,7 +98,7 @@ export default {
     },
     destroy () {
       this.$swal({
-        title: 'Você deseja deletar este product?',
+        title: 'Você deseja deletar este produto?',
         text: 'Esta operação não pode ser desfeita',
         type: 'warning',
         showCancelButton: true,
