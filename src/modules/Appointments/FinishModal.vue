@@ -53,8 +53,8 @@
 
   export default {
     props: {
-      appointmentId: {
-        type: String,
+      appointment: {
+        type: Object,
         required: true
       }
     },
@@ -66,7 +66,8 @@
     },
     methods: {
       finish () {
-        AppointmentsService.finishAppointment(this.appointmentId, this.value, (res) => {
+        AppointmentsService.finishAppointment(this.appointment.id, this.value, (res) => {
+          this.appointment.status = 'FINISHED'
           this.$toasted.success('Consulta finalizada com sucesso!', {
             icon: 'check'
           })

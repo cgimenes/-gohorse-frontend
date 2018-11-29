@@ -29,7 +29,7 @@
                 <v-list-tile-sub-title>{{ appointment.dateTime | hour }}</v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
-                <finish-modal v-if="isScheduled(appointment)" :appointment-id="appointment.id"></finish-modal>
+                <finish-modal v-if="isScheduled(appointment)" :appointment="appointment"></finish-modal>
               </v-list-tile-action>
             </v-list-tile>
           </v-list>
