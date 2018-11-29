@@ -56,6 +56,12 @@ export default {
     })
   },
 
+  getFinishedAppointments (callback) {
+    http.get('/appointments/find?status=FINISHED').then(response => {
+      return callback(response.data.content)
+    })
+  },
+
   getLastAppointments (callback) {
     http.get('/appointments/lasttwelvemonths/').then(response => {
       return callback(response.data)

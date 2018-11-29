@@ -4,7 +4,7 @@
     <v-flex sm12="sm12" md8="md8" lg8="lg8">
       <v-layout row="row" wrap="wrap">
         <v-flex sm12="sm12" md6="md6" lg6="lg6">
-          <indicador title="Consultas Agendadas" :value="activeAppointments" color="deep-purple darken-1" icon="assignment">
+          <indicador title="Consultas Finalizadas" :value="finishedppointments" color="deep-purple darken-1" icon="assignment">
           </indicador>
         </v-flex>
         <v-flex sm12="sm12" md6="md6" lg6="lg6">
@@ -45,7 +45,7 @@ export default {
   },
   data () {
     return {
-      activeAppointments: '0',
+      finishedppointments: '0',
       appointmentsToday: '0',
       graphItems: [],
       appointments: [],
@@ -85,22 +85,21 @@ export default {
       },
       items: []
     })
-    AppointmentsService.getActiveAppointments((activeAppointments) => {
-      this.activeAppointments = 'Nenhuma nos próximos dias'
-      if (activeAppointments.length > 0) {
-        let diff = moment(activeAppointments[activeAppointments.length - 1].dateTime).diff(moment(), 'days')
-        if (diff > 0) {
-          this.activeAppointments = activeAppointments.length.toString() + ' consulta' + (activeAppointments.length > 1 ? 's' : '') + ' no período de ' + diff + ' dia' + (diff > 1 ? 's' : '')
-        } else if (diff === 0) {
-          this.activeAppointments = activeAppointments.length.toString() + ' hoje'
+    AppointmentsService.getFinishedAppointments((finishedppointments) => {
+      this.finishedppointments = 'Nenhuma este mês'
+      finishedppointments = finishedppointments.filter(a => moment(a.dateTime).format('YYYY/MM') === moment().format('YYYY/MM'))
+      if (finishedppointments.length > 0) {
+        let diff = moment(finishedppointments[finishedppointments.length - 1].dateTime).diff(moment(), 'days')
+        if (diff >= 0) {
+          this.finishedppointments = finishedppointments.length.toString() + ' consulta' + (finishedppointments.length > 1 ? 's' : '') + ' esse mês'
         }
       }
     })
     AppointmentsService.getDayAppointments(moment().format().substr(0, 10), (appointmentsToday) => {
       this.appointmentsToday = 'Nenhuma'
-      if (appointmentsToday.length > 0) {
-        let appointmentsDone = appointmentsToday.filter(a => a.status !== 'SCHEDULED')
-        this.appointmentsToday = appointmentsDone.length.toString() + ' finalizada' + (appointmentsDone.length > 1 ? 's' : '') + ' de ' + appointmentsToday.length.toString() + ' agendadas'
+      let appointmentsDone = appointmentsToday.filter(a => a.status === 'SCHEDULED')
+      if (appointmentsDone.length > 0) {
+        this.appointmentsToday = appointmentsDone.length.toString() + ' agendada' + (appointmentsDone.length > 1 ? 's' : '')
       }
     })
     AppointmentsService.getLastAppointments((graphItems) => {
@@ -115,7 +114,7 @@ export default {
       var date
       var appointmentTimeline
       var appointment
-      for (var x = this.appointments.length - 1; x > 0; x--) {
+      for (var x = this.appointments.length - 1; x >= 0; x--) {
         appointment = this.appointments[x]
         currentMonth = moment(appointment.dateTime.substr(0, 10), 'AAAA-MM-DD').format('MM')
         date = moment(appointment.dateTime).format('DD/MM')
