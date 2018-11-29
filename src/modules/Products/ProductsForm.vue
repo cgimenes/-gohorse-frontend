@@ -11,7 +11,7 @@
             <v-flex col xs12>
               <v-text-field
                 id="name"
-                key="name"
+                :key="product.id"
                 name="name"
                 :rules="[rules.empty]"
                 v-model="product.name"
@@ -23,7 +23,7 @@
             <v-flex col xs12 sm6="sm6">
               <v-text-field
                 id="brand"
-                key="brand"
+                :key="product.id"
                 name="brand"
                 :rules="[rules.empty]"
                 v-model="product.brand"
@@ -34,10 +34,7 @@
             </v-flex>
             <v-flex col xs12 sm6="sm6">
               <autocomplete
-              :key="product.id"
-                :rules="[rules.empty]"
-                label="Fornecedor do produto"
-                :model.sync="product.supplier"
+                label="Fornecedor" :supplier="product.supplier.id" :model.sync="product.supplier" :key="product.id"
                 >
               </autocomplete>
             </v-flex>
@@ -45,7 +42,7 @@
               <v-text-field name="price"
                 id="price"
                 prefix="R$"
-                key="price"
+                :key="product.id"
                 placeholder="500,00"
                 :rules="[rules.empty]"
                 v-model="product.price"
@@ -57,7 +54,7 @@
               <v-text-field
                 min="0"
                 id="amount"
-                key="amount"
+                :key="product.id"
                 type="number"
                 mask="######"
                 name="amount"
@@ -84,7 +81,7 @@
 
 <script>
 import ProductsService from './ProductsService'
-import Autocomplete from './Autocomplete'
+import Autocomplete from '../Suppliers/Autocomplete'
 
 export default {
   components: {
@@ -103,6 +100,7 @@ export default {
   },
   methods: {
     saveProduct () {
+      this.product.supplierId = this.product.supplier
       ProductsService.saveProduct(this.product, (res) => {
         this
           .$router
@@ -112,6 +110,7 @@ export default {
     getDataForEdit () {
       ProductsService.getProductDetails(this.$route.params.id, (product) => {
         this.product = product
+        this.product.supplier = this.product.supplier.id
       })
     }
   },
