@@ -32,10 +32,10 @@ export default {
     })
   },
 
-  finishAppointment (appointments, callback) {
-    appointments.forEach(appointment => http.put('/appointments/finish/', { id: appointment.id }))
-
-    return callback()
+  finishAppointment (id, value, callback) {
+    http.put('/appointments/finish/', { id: id, price: value }).then(response => {
+      return callback(response)
+    })
   },
 
   getAppointmentDetails (id, callback) {

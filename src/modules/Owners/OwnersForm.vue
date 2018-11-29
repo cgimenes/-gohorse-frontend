@@ -65,6 +65,7 @@
               </v-flex>
               <v-flex col xs12 sm6="sm6">
                 <v-text-field
+                  required
                   name="email"
                   label="Email"
                   id="email"

@@ -176,7 +176,7 @@ export default {
       }
 
       AppointmentsService.saveAppointment(appointmentFinal, res => {
-        this.$toasted.success('Consulta finalizada com sucesso!', {
+        this.$toasted.success('Consulta agendada com sucesso!', {
           icon: 'check'
         })
 
