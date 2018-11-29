@@ -54,20 +54,21 @@
 
   export default {
     props: {
-      appointmentId: {
-        type: String,
+      appointment: {
+        type: Object,
         required: true
       }
     },
-    data() {
+    data () {
       return {
         dialog: false,
         value: ''
       }
     },
     methods: {
-      finish() {
-        AppointmentsService.finishAppointment(this.appointmentId, Number.parseFloat(this.value.replace(',', '.')), (res) => {
+      finish () {
+        AppointmentsService.finishAppointment(this.appointment.id, Number.parseFloat(this.value.replace(',', '.')), (res) => {
+          this.appointment.status = 'FINISHED'
           this.$toasted.success('Consulta finalizada com sucesso!', {
             icon: 'check'
           })

@@ -29,7 +29,7 @@
                 <v-list-tile-sub-title>{{ appointment.dateTime | hour }}</v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action>
-                <finish-modal v-if="isScheduled(appointment)" :appointment-id="appointment.id"></finish-modal>
+                <finish-modal v-if="isScheduled(appointment)" :appointment="appointment"></finish-modal>
               </v-list-tile-action>
             </v-list-tile>
           </v-list>
@@ -51,7 +51,7 @@
     components: {
       ListInitialLetter, FinishModal
     },
-    data() {
+    data () {
       return {
         date: moment().format().substr(0, 10),
         monthDaysWithAppointments: [],
@@ -59,27 +59,27 @@
         pickerDate: null
       }
     },
-    mounted() {
+    mounted () {
       this.pickerDay()
     },
     watch: {
-      pickerDate(month) {
+      pickerDate (month) {
         AppointmentsService.getMonthDaysWithAppointments(month, (days) => {
           this.monthDaysWithAppointments = days
         })
       }
     },
     methods: {
-      isScheduled(appointment) {
+      isScheduled (appointment) {
         return appointment.status === 'SCHEDULED'
       },
-      show(appointment) {
+      show (appointment) {
         this.$router.push('/appointments/' + appointment.id)
       },
-      create() {
+      create () {
         this.$router.push('/appointments/create/' + this.date)
       },
-      pickerDay() {
+      pickerDay () {
         AppointmentsService.getDayAppointments(this.date, (appointments) => {
           this.dayAppointments = appointments
         })
