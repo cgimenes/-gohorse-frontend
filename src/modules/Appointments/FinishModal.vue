@@ -20,6 +20,7 @@
           <v-text-field
             required
             mask='###,##'
+            return-masked-value="true"
             v-model='value'
             label='Valor da Consulta'
           ></v-text-field>
@@ -61,12 +62,12 @@
     data() {
       return {
         dialog: false,
-        value: 0
+        value: ''
       }
     },
     methods: {
       finish() {
-        AppointmentsService.finishAppointment(this.appointmentId, this.value, (res) => {
+        AppointmentsService.finishAppointment(this.appointmentId, Number.parseFloat(this.value.replace(',', '.')), (res) => {
           this.$toasted.success('Consulta finalizada com sucesso!', {
             icon: 'check'
           })

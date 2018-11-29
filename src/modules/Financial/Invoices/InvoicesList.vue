@@ -6,7 +6,7 @@
         <v-list two-line v-if='invoices.length > 0'>
           <v-list-tile avatar v-for='invoice in invoices' :key='invoice.id'>
             <v-list-tile-content>
-              <v-list-tile-title>{{ getOperationName(invoice) }} - {{ invoice.issueDate | dateTime }}</v-list-tile-title>
+              <v-list-tile-title>{{ getOperationName(invoice) }} - {{ invoice.operation.dateTime | dateTime }}</v-list-tile-title>
               <v-list-tile-sub-title>Valor total: {{ invoice.totalValue | currency }}</v-list-tile-sub-title>
               <v-list-tile-sub-title>Animal: {{ invoice.operation.animal.name }} - Dono: {{ invoice.operation.animal.owner.name }}</v-list-tile-sub-title>
             </v-list-tile-content>
