@@ -42,13 +42,13 @@
                 <b>Nome: </b> {{product.supplier.name}}
               </p>
               <p>
-                <b>Telefone: </b>{{ product.supplier.phone }}
+                <b>Telefone: </b>{{ product.supplier.phone | phone }}
               </p>
               <p>
                 <b>Cidade: </b>{{ product.supplier.address.postalCode.city }} - {{ product.supplier.address.postalCode.state}}
               </p>
               <p>
-                <b>CEP: </b>{{ product.supplier.address.postalCode.code }}
+                <b>CEP: </b>{{ product.supplier.address.postalCode.code | cep }}
               </p>
             </v-flex>
           </v-layout>

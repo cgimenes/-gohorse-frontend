@@ -7,7 +7,7 @@
           <v-icon> add </v-icon>
         </v-btn>
         <v-list two-line v-if="products.length > 0">
-          <v-list-tile avatar @click="" v-for="product in products" :key="product.id">
+          <v-list-tile avatar @click="" v-for="product in products" :key="product.id"  @click="show(product)">
             <v-list-tile-avatar>
               <list-initial-letter :word="product.name"></list-initial-letter>
             </v-list-tile-avatar>
@@ -15,7 +15,7 @@
               <v-list-tile-title> {{product.name}} </v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-btn icon ripple @click="show(product)">
+              <v-btn icon ripple>
                 <v-icon color='grey lighten-1'> info </v-icon>
               </v-btn>
             </v-list-tile-action>

@@ -11,7 +11,7 @@
             <v-flex col xs12>
               <v-text-field
                 id="name"
-                key="name"
+                :key="product.id"
                 name="name"
                 :rules="[rules.empty]"
                 v-model="product.name"
@@ -23,7 +23,7 @@
             <v-flex col xs12 sm6="sm6">
               <v-text-field
                 id="brand"
-                key="brand"
+                :key="product.id"
                 name="brand"
                 :rules="[rules.empty]"
                 v-model="product.brand"
@@ -42,7 +42,7 @@
               <v-text-field name="price"
                 id="price"
                 prefix="R$"
-                key="price"
+                :key="product.id"
                 placeholder="500,00"
                 :rules="[rules.empty]"
                 v-model="product.price"
@@ -54,7 +54,7 @@
               <v-text-field
                 min="0"
                 id="amount"
-                key="amount"
+                :key="product.id"
                 type="number"
                 mask="######"
                 name="amount"
