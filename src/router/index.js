@@ -15,9 +15,9 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
 
-  if (!to.meta || !to.meta.unrequiredAuth || to.meta.unrequiredAuth == "false" || to.unrequiredAuth === "false") {
+  if (!to.meta || !to.meta.unrequiredAuth || to.unrequiredAuth === 'false') {
     const serialized = localStorage.getItem('authorization')
-    if (!serialized || serialized == "false" || serialized === "false") {
+    if (!serialized || serialized == 'false' || serialized === 'false') {
       localStorage.setItem('rollback-uri', to.fullPath)
       next('/login')
     } else {
