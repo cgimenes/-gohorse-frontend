@@ -58,14 +58,14 @@
         required: true
       }
     },
-    data() {
+    data () {
       return {
         dialog: false,
         value: 0
       }
     },
     methods: {
-      finish() {
+      finish () {
         AppointmentsService.finishAppointment(this.appointmentId, this.value, (res) => {
           this.$toasted.success('Consulta finalizada com sucesso!', {
             icon: 'check'
