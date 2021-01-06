@@ -15,7 +15,7 @@
     "check-lint": "eslint --ext .js,.vue src/modules"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chart.js": "^2.7.2",
     "moment": "^2.22.2",
     "randomcolor": "^0.5.3",
