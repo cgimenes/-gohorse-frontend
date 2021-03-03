@@ -78,7 +78,7 @@
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "ora": "^1.4.0",
     "phantomjs-prebuilt": "^2.1.16",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-loader": "^2.4.0",
     "request": "^2.85.0",
     "rimraf": "^2.6.0",
